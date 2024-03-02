@@ -197,10 +197,15 @@ html {
     display: contents;
 }
 
+.recipe-top-cards .card {
+    border: none;
+}
+
 .card .card-img-container{
     height: 12rem;
     overflow: hidden;
     object-fit: cover;
+    border-radius: 8px;
 }
 
 .recipe-cards {
@@ -252,6 +257,26 @@ html {
     width: fit-content;
 }
 
+.left-top-rated h4 {
+    color: var(--color-primary);
+    font-weight: 700;
+}
+
+.list-group-item a {
+    color: #1e1e1e;
+    font-weight: 500;
+    font-size: 18px;
+}
+.list-group-item a:hover,
+.list-group-item a:focus {
+  color: #fd9b3a;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  /* border-bottom: 1px solid var(--color-primary); */
+}
+
+
+
 
 
 
@@ -274,7 +299,7 @@ html {
     }
 
     .recipe-top-cats .recipe-top-cards {
-        display: block;
+        /* display: block; */
         width: 100%;
     }
     .recipe-top-cards .card{
