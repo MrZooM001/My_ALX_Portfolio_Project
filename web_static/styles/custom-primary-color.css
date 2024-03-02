@@ -1,0 +1,130 @@
+/* Override Bootstrap's primary color */
+:root {
+  --primary: #f68b21;
+}
+
+/* Navbar links */
+.navbar .navbar-nav .nav-link.active,
+.navbar .navbar-nav .nav-link:hover,
+.navbar .navbar-nav .nav-link:focus {
+  color: #fd9b3a;
+}
+
+/* Regular buttons */
+.btn-primary {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: #f68b21; /* Change to primary orange color */
+  --bs-btn-border-color: #f68b21; /* Change to primary orange color */
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #e57300; /* Adjusted hover color based on primary orange color */
+  --bs-btn-hover-border-color: #e57300; /* Adjusted hover border color based on primary orange color */
+  --bs-btn-focus-shadow-rgb: 246, 139, 33; /* RGB value of primary orange color */
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #e57300; /* Adjusted active color based on primary orange color */
+  --bs-btn-active-border-color: #e57300; /* Adjusted active border color based on primary orange color */
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #fff;
+  --bs-btn-disabled-bg: #f68b21; /* Change to primary orange color */
+  --bs-btn-disabled-border-color: #f68b21; /* Change to primary orange color */
+}
+
+/* Dropdown */
+.btn-primary.dropdown-toggle {
+  --bs-dropdown-toggle-bg: #f68b21; /* Change to primary orange color */
+  --bs-dropdown-toggle-border-color: #f68b21; /* Change to primary orange color */
+}
+
+.dropdown-menu {
+  --bs-dropdown-bg: #fff; /* Change to primary orange color */
+  --bs-dropdown-border-color: #fff; /* Change to primary orange color */
+  --bs-dropdown-link-active-bg: #e57300; /* Adjusted active border color based on primary orange color */
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+  --bs-dropdown-item-active-color: #fff;
+  --bs-dropdown-item-active-bg: #e57300; /* Adjusted active background color based on primary orange color */
+}
+
+.dropdown-item.disabled,
+.dropdown-item:disabled {
+  --bs-dropdown-item-disabled-color: #6c757d; /* Adjusted disabled color based on Bootstrap default */
+  --bs-dropdown-item-disabled-bg: #fff; /* Adjusted disabled background based on Bootstrap default */
+}
+
+.dropdown-item {
+  --bs-dropdown-item-color: #212529; /* Adjusted default color based on Bootstrap default */
+  --bs-dropdown-item-bg: #fff; /* Adjusted default background based on Bootstrap default */
+  --bs-dropdown-item-hover-color: #212529; /* Adjusted hover color based on Bootstrap default */
+  --bs-dropdown-item-hover-bg: #f8f9fa; /* Adjusted hover background based on Bootstrap default */
+}
+
+/* Input focus */
+.form-control:focus {
+  border-color: #f68b21; /* Change to primary orange color */
+  box-shadow: 0 0 0 0.25rem rgba(246, 139, 33, 0.25); /* Change focus shadow color based on primary orange color */
+}
+
+
+/* Style the select element */
+.form-select {
+  border-color: #ced4da; /* Default border color */
+}
+
+/* Style the select element on focus */
+.form-select:focus {
+  border-color: #f68b21; /* Change to primary orange color */
+  box-shadow: 0 0 0 0.25rem rgba(246, 139, 33, 0.25); /* Change focus shadow color based on primary orange color */
+}
+
+/* Style the option elements */
+.form-select option {
+  background-color: #fff; /* Default background color */
+  color: #212529; /* Default text color */
+}
+
+/* Style the option elements on hover and when selected */
+.form-select option:hover::before {
+  background-color: #f68b21 !important; /* Change to hover/selected background color */
+}
+
+
+
+.btn-primary:hover {
+  background-color: #e57300; /* Adjust hover color if needed */
+  border-color: #e57300; /* Adjust hover border color if needed */
+}
+
+.btn-primary:focus,
+.btn-primary.focus {
+  box-shadow: 0 0 0 0.25rem rgba(246, 139, 33, 0.5); /* Adjust focus shadow if needed */
+}
+
+.btn-primary.disabled,
+.btn-primary:disabled {
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+
+/* Outline buttons */
+.btn-outline-primary {
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
+.btn-outline-primary:hover {
+  color: #fff; /* Change text color on hover if needed */
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+
+.btn-outline-primary:focus,
+.btn-outline-primary.focus {
+  box-shadow: 0 0 0 0.25rem rgba(246, 139, 33, 0.5); /* Adjust focus shadow if needed */
+}
+
+.btn-outline-primary.disabled,
+.btn-outline-primary:disabled {
+  color: var(--primary);
+  border-color: var(--primary);
+}
