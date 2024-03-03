@@ -32,7 +32,8 @@
 /* End Colors Scheme */
 
 html {
-    user-select: none;
+    /* user-select: none; */
+    height: 100%;
 }
 
 /* top links bar */
@@ -110,11 +111,11 @@ html {
 }
 
 .dropdown-item input[type="checkbox"]::after {
-    font-family: 'Bootstrap-icons';
-    content: '\F633';
+    font-family: "Bootstrap-icons";
+    content: "\F633";
     font-weight: 500;
     font-size: 20px;
-    color:white;
+    color: white;
     display: none;
 }
 
@@ -139,12 +140,11 @@ html {
     padding: 100px 0;
 }
 
-
 .carousel-item {
     max-height: 720px;
 }
 
-.carousel-item img{
+.carousel-item img {
     overflow: hidden;
     object-fit: cover;
 }
@@ -154,14 +154,14 @@ html {
     z-index: 2;
 }
 
-.carousel-caption h5{
+.carousel-caption h5 {
     font-size: 45px;
     text-transform: uppercase;
     letter-spacing: 2px;
     margin-top: 25px;
 }
 
-.carousel-caption p{
+.carousel-caption p {
     width: 70%;
     margin: auto;
     font-size: 22px;
@@ -171,7 +171,7 @@ html {
 }
 
 .carousel-inner::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
@@ -181,19 +181,22 @@ html {
     z-index: 1;
 }
 
-
-
-
-
+.card-body {
+    padding: 0;
+}
 
 .card {
     /* border: none; */
-    width: 300px;
+    width: 250px;
     height: 20rem;
     margin-bottom: 1rem;
 }
 
-.recipe-top-cards .card a{
+.recipe-card-title {
+    padding-top: 0.8rem;
+}
+
+.recipe-top-cards .card a {
     display: contents;
 }
 
@@ -201,7 +204,8 @@ html {
     border: none;
 }
 
-.card .card-img-container{
+.card .card-img-container {
+    min-width: 192px;
     height: 12rem;
     overflow: hidden;
     object-fit: cover;
@@ -217,7 +221,7 @@ html {
 }
 
 .recipe-tab .nav-link {
-    color: var(--color-primary)!important;
+    color: var(--color-primary) !important;
     font-size: 18px;
     font-weight: 600;
 }
@@ -232,15 +236,15 @@ html {
 }
 
 .recipe-cat-title {
-    font-family:  "Handlee", cursive;
+    font-family: "Handlee", cursive;
     font-weight: bold;
     letter-spacing: 3px;
 }
 
-.recipe-cards-center{
+.recipe-cards-center {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: center;
     width: 100%;
 }
 
@@ -265,33 +269,53 @@ html {
 .list-group-item a {
     color: #1e1e1e;
     font-weight: 500;
-    font-size: 18px;
+    /* font-size: 18px; */
 }
+
 .list-group-item a:hover,
 .list-group-item a:focus {
-  color: #fd9b3a;
-  transition: all 0.2s ease;
-  text-decoration: none;
-  /* border-bottom: 1px solid var(--color-primary); */
+    color: #fd9b3a;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    /* border-bottom: 1px solid var(--color-primary); */
 }
 
+.left-sidebar {
+    width: auto;
+    max-width: 250px;
+    margin: 0;
+    padding: 0;
+}
 
+.form-control {
+    height: 2.5rem;
+}
 
+.bg-primary {
+    background-color: #f68b21 !important; /* Change to primary orange color */
+}
 
+@media only screen and (max-width: 1399px) {
+    .right-sidebar {
+        display: none;
+    }
+}
 
-
+@media only screen and (min-width: 992px) and (max-width: 1199) {
+}
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
     .carousel-caption {
         bottom: 22%;
     }
-    .carousel-caption p{
+    .carousel-caption p {
         width: 100%;
     }
     .recipe-top-cards .card {
         width: 100%;
     }
-    .left-sidebar, .right-sidebar {
+    .left-sidebar,
+    .right-sidebar {
         display: none;
     }
     main .main-content {
@@ -302,44 +326,46 @@ html {
         /* display: block; */
         width: 100%;
     }
-    .recipe-top-cards .card{
+    .recipe-top-cards .card {
         width: 100%;
     }
-    
 }
 
 @media only screen and (max-width: 767px) {
     .carousel-caption {
         bottom: 25%;
     }
-    .carousel-caption h5{
+    .carousel-caption h5 {
         font-size: 16px;
     }
-    .carousel-caption a{
+    .carousel-caption a {
         padding: 10px 15px;
     }
-    .carousel-caption p{
+    .carousel-caption p {
         width: 100%;
         font-size: 12px;
     }
-    .left-sidebar, .right-sidebar {
+    .left-sidebar,
+    .right-sidebar {
         display: none;
     }
-    
+
     main {
         display: flex;
         justify-content: center;
         width: 100%;
+        height: 100%;
+        margin-bottom: 220px;
     }
     .recipe-top-cats .recipe-top-cards {
         display: block;
         width: 100%;
     }
-    .recipe-top-cards .card{
+    .recipe-top-cards .card {
         width: 100%;
     }
 
-    .recipe-cards-center{
+    .recipe-cards-center {
         display: block;
         width: 100%;
     }

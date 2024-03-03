@@ -21,7 +21,7 @@
         <title>My Recipe Planner</title>
     </head>
 
-    <body>
+    <body class="d-flex flex-column position-relative min-vh-100 mb-4">
         <!-- Top Menu Bar -->
         <div class="top-links-bar d-flex align-items-center">
             <div class="container d-flex align-items-center justify-content-between">
@@ -70,12 +70,6 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <!-- <li class="nav-item">
-                            <a class="nav-link fs-5" href="#">Home</a></h3>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link fs-5" href="#">Link</a>
-                        </li> -->
                     </ul>
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
@@ -189,9 +183,9 @@
         </div>
         <!-- End Featured Recipes -->
 
-        <main class="d-flex mt-5">
-            <div class="col col-xl-2 col-md-1 col-sm-0 left-sidebar ps-3">
-                <div class="card w-100 ps-3 mt-3 border border-0">
+        <main class="container vh-100 d-flex mt-5 ps-xl-0">
+            <div class="col col-xxl-2 left-sidebar">
+                <div class="card w-100  mt-3 border border-0">
                     <div class="card-body">
                       <h3 class="card-title">Top Rated</h3>
                       <div class="left-top-rated">
@@ -249,13 +243,13 @@
                   </div>
             </div>
 
-            <div class="main-content col col-xl-8 col-lg-9 col-md-10 col-sm-12">
+            <div class="main-content col col-xxl-8">
                 <!-- **** Try tab from Mazer Theme **** -->
-                <div class="col mx-md-4">
+                <div class="mx-md-2">
                     <div class="card w-100 border border-0">
                         <div class="card-body nav-pills ">
                             <!-- Recipe tabs nav bar -->
-                            <ul class="recipe-tab nav nav-tabs justify-content-center gap-md-4 mb-4 py-4 border border-top-1 border-bottom-1 border-start-0 border-end-0" id="myTab" role="tablist">
+                            <ul class="recipe-tab nav nav-tabs justify-content-center gap-md-2 mb-4 py-3 border border-top-1 border-bottom-1 border-start-0 border-end-0" id="myTab" role="tablist">
                                 <li class="nav-item" role="presentation">
                                     <a class="nav-link active" id="recipe-tab" data-bs-toggle="tab" href="#recipe" role="tab" aria-current="recipe" aria-selected="false" tabindex="1" >Recipe</a>
                                 </li>
@@ -272,51 +266,16 @@
                                 <!-- Recipe tab content -->
                                 <div class="tab-pane fade active show " id="recipe" role="tabpanel" aria-labelledby="recipe-tab">
                                     <div class="recipe-cards-center">
-                                        <div class="recipe-top-cats">
-                                            <h3 class="recipe-cat-title">Dinner</h3>
+                                        <div class="recipe-top-cats mt-2">
+                                            <h3 class="recipe-cat-title">Instant Pot</h3>
                                             <div class="recipe-top-cards">
-                                                <div class="col">
-                                                    <div class="card">
-                                                        <a href="#" >
-                                                            <img src="images/stock/stock10.jpg" class="card-img-container" alt="..." />
-                                                        </a>
-                                                        <div class="card-body">
-                                                            <h5 class="card-title">Amzing Toaste</h5>
-                                                            <div class="recipe-stats d-flex justify-content-between">
-                                                                <div class="left-stats">
-                                                                    <div class="recipe-prep-time">
-                                                                        <i class="bi bi-stopwatch"></i>
-                                                                        <span>30 Minutes</span>
-                                                                    </div>
-                                                                    <div class="recipe-likes">
-                                                                        <i class="bi bi-hand-thumbs-up"></i>
-                                                                        <span>55</span>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="right-stats">
-                                                                    <div class="recipe-level">
-                                                                        <span>Super Dry</span>
-                                                                    </div>
-                                                                    <div class="recipe-reviews">
-                                                                        <i class="bi bi-star-fill"></i>
-                                                                        <i class="bi bi-star-fill"></i>
-                                                                        <i class="bi bi-star-fill"></i>
-                                                                        <i class="bi bi-star-fill"></i>
-                                                                        <i class="bi bi-star-half d-none"></i>
-                                                                        <i class="bi bi-star"></i>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                                 <div class="col">
                                                     <div class="card">
                                                         <a href="#" >
                                                             <img src="images/stock/stock12.jpeg" class="card-img-container" alt="..." />
                                                         </a>
                                                         <div class="card-body">
-                                                            <h5 class="card-title">Card title</h5>
+                                                            <h5 class="card-title recipe-card-title">Card title</h5>
                                                             <div class="recipe-stats d-flex justify-content-between">
                                                                 <div class="left-stats">
                                                                     <div class="recipe-prep-time">
@@ -347,11 +306,11 @@
                                                 </div>
                                                 <div class="col">
                                                     <div class="card">
-                                                        <a href="#" >    
-                                                            <img src="images/stock/stock15.jpg" class="card-img-container" alt="..." />
+                                                        <a href="#" >
+                                                            <img src="images/stock/stock13.jpg" class="card-img-container" alt="..." />
                                                         </a>
                                                         <div class="card-body">
-                                                            <h5 class="card-title">Card title</h5>
+                                                            <h5 class="card-title recipe-card-title">Card title</h5>
                                                             <div class="recipe-stats d-flex justify-content-between">
                                                                 <div class="left-stats">
                                                                     <div class="recipe-prep-time">
@@ -380,19 +339,89 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                        </div>
-                                        </div>
-
-                                        <div class="recipe-top-cats mt-3">
-                                            <h3 class="recipe-cat-title">Instant Pot</h3>
-                                            <div class="recipe-top-cards">
                                                 <div class="col">
                                                     <div class="card">
                                                         <a href="#" >
                                                             <img src="images/stock/stock14.jpg" class="card-img-container" alt="..." />
                                                         </a>
                                                         <div class="card-body">
-                                                            <h5 class="card-title">Card title</h5>
+                                                            <h5 class="card-title recipe-card-title">Card title</h5>
+                                                            <div class="recipe-stats d-flex justify-content-between">
+                                                                <div class="left-stats">
+                                                                    <div class="recipe-prep-time">
+                                                                        <i class="bi bi-stopwatch"></i>
+                                                                        <span>30 Minutes</span>
+                                                                    </div>
+                                                                    <div class="recipe-likes">
+                                                                        <i class="bi bi-hand-thumbs-up"></i>
+                                                                        <span>55</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="right-stats">
+                                                                    <div class="recipe-level">
+                                                                        <span>Super Dry</span>
+                                                                    </div>
+                                                                    <div class="recipe-reviews">
+                                                                        <i class="bi bi-star-fill"></i>
+                                                                        <i class="bi bi-star-fill"></i>
+                                                                        <i class="bi bi-star-fill"></i>
+                                                                        <i class="bi bi-star-fill"></i>
+                                                                        <i class="bi bi-star-half d-none"></i>
+                                                                        <i class="bi bi-star"></i>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="recipe-top-cats mt-2">
+                                            <h3 class="recipe-cat-title">Dinner</h3>
+                                            <div class="recipe-top-cards">
+                                                <div class="col">
+                                                    <div class="card">
+                                                        <a href="#" >
+                                                            <img src="images/stock/stock15.jpg" class="card-img-container" alt="..." />
+                                                        </a>
+                                                        <div class="card-body">
+                                                            <h5 class="card-title recipe-card-title">Card title</h5>
+                                                            <div class="recipe-stats d-flex justify-content-between">
+                                                                <div class="left-stats">
+                                                                    <div class="recipe-prep-time">
+                                                                        <i class="bi bi-stopwatch"></i>
+                                                                        <span>30 Minutes</span>
+                                                                    </div>
+                                                                    <div class="recipe-likes">
+                                                                        <i class="bi bi-hand-thumbs-up"></i>
+                                                                        <span>55</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="right-stats">
+                                                                    <div class="recipe-level">
+                                                                        <span>Super Dry</span>
+                                                                    </div>
+                                                                    <div class="recipe-reviews">
+                                                                        <i class="bi bi-star-fill"></i>
+                                                                        <i class="bi bi-star-fill"></i>
+                                                                        <i class="bi bi-star-fill"></i>
+                                                                        <i class="bi bi-star-fill"></i>
+                                                                        <i class="bi bi-star-half d-none"></i>
+                                                                        <i class="bi bi-star"></i>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="card">
+                                                        <a href="#" >
+                                                            <img src="images/stock/stock8.jpg" class="card-img-container" alt="..." />
+                                                        </a>
+                                                        <div class="card-body">
+                                                            <h5 class="card-title recipe-card-title">Card title</h5>
                                                             <div class="recipe-stats d-flex justify-content-between">
                                                                 <div class="left-stats">
                                                                     <div class="recipe-prep-time">
@@ -427,7 +456,83 @@
                                                             <img src="images/stock/stock7.jpg" class="card-img-container" alt="..." />
                                                         </a>
                                                         <div class="card-body">
-                                                            <h5 class="card-title">Card title</h5>
+                                                            <h5 class="card-title recipe-card-title">Card title</h5>
+                                                            <div class="recipe-stats d-flex justify-content-between">
+                                                                <div class="left-stats">
+                                                                    <div class="recipe-prep-time">
+                                                                        <i class="bi bi-stopwatch"></i>
+                                                                        <span>30 Minutes</span>
+                                                                    </div>
+                                                                    <div class="recipe-likes">
+                                                                        <i class="bi bi-hand-thumbs-up"></i>
+                                                                        <span>55</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="right-stats">
+                                                                    <div class="recipe-level">
+                                                                        <span>Super Dry</span>
+                                                                    </div>
+                                                                    <div class="recipe-reviews">
+                                                                        <i class="bi bi-star-fill"></i>
+                                                                        <i class="bi bi-star-fill"></i>
+                                                                        <i class="bi bi-star-fill"></i>
+                                                                        <i class="bi bi-star-fill"></i>
+                                                                        <i class="bi bi-star-half d-none"></i>
+                                                                        <i class="bi bi-star"></i>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="recipe-top-cats mt-2">
+                                            <h3 class="recipe-cat-title">Healthy</h3>
+                                            <div class="recipe-top-cards">
+                                                <div class="col">
+                                                    <div class="card">
+                                                        <a href="#" >
+                                                            <img src="images/stock/stock17.jpg" class="card-img-container" alt="..." />
+                                                        </a>
+                                                        <div class="card-body">
+                                                            <h5 class="card-title recipe-card-title">Card title</h5>
+                                                            <div class="recipe-stats d-flex justify-content-between">
+                                                                <div class="left-stats">
+                                                                    <div class="recipe-prep-time">
+                                                                        <i class="bi bi-stopwatch"></i>
+                                                                        <span>30 Minutes</span>
+                                                                    </div>
+                                                                    <div class="recipe-likes">
+                                                                        <i class="bi bi-hand-thumbs-up"></i>
+                                                                        <span>55</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="right-stats">
+                                                                    <div class="recipe-level">
+                                                                        <span>Super Dry</span>
+                                                                    </div>
+                                                                    <div class="recipe-reviews">
+                                                                        <i class="bi bi-star-fill"></i>
+                                                                        <i class="bi bi-star-fill"></i>
+                                                                        <i class="bi bi-star-fill"></i>
+                                                                        <i class="bi bi-star-fill"></i>
+                                                                        <i class="bi bi-star-half d-none"></i>
+                                                                        <i class="bi bi-star"></i>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="card">
+                                                        <a href="#" >
+                                                            <img src="images/stock/stock10.jpg" class="card-img-container" alt="..." />
+                                                        </a>
+                                                        <div class="card-body">
+                                                            <h5 class="card-title recipe-card-title">Card title</h5>
                                                             <div class="recipe-stats d-flex justify-content-between">
                                                                 <div class="left-stats">
                                                                     <div class="recipe-prep-time">
@@ -462,7 +567,7 @@
                                                             <img src="images/stock/stock9.jpg" class="card-img-container" alt="..." />
                                                         </a>
                                                         <div class="card-body">
-                                                            <h5 class="card-title">Card title</h5>
+                                                            <h5 class="card-title recipe-card-title">Card title</h5>
                                                             <div class="recipe-stats d-flex justify-content-between">
                                                                 <div class="left-stats">
                                                                     <div class="recipe-prep-time">
@@ -488,51 +593,6 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="recipe-top-cats mt-3">
-                                            <h3 class="recipe-cat-title">Healthy</h3>
-                                            <div class="recipe-top-cards">
-                                                <div class="col">
-                                                    <div class="card">
-                                                        <a href="#" >
-                                                            <img src="images/stock/stock13.jpg" class="card-img-container" alt="..." />
-                                                        </a>
-                                                        <div class="card-body">
-                                                            <h5 class="card-title">Card title</h5>
-                                                            <p class="card-text">
-                                                                This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="card">
-                                                        <a href="#" >
-                                                            <img src="images/stock/stock16.jpg" class="card-img-container" alt="..." />
-                                                        </a>
-                                                        <div class="card-body">
-                                                            <h5 class="card-title">Card title</h5>
-                                                            <p class="card-text">
-                                                                This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="card">
-                                                        <a href="#" >
-                                                            <img src="images/stock/stock17.jpg" class="card-img-container" alt="..." />
-                                                        </a>
-                                                        <div class="card-body">
-                                                            <h5 class="card-title">Card title</h5>
-                                                            <p class="card-text">
-                                                                This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
-                                                            </p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -577,9 +637,8 @@
 
             </div>
 
-            <div class="col col-xl-2 col-md-1 col-sm-0 right-sidebar">right sidebar</div>
+            <div class="col col-xxl-2 right-sidebar">right sidebar</div>
         </main>
-
 
         <!-- Bootstrap Scripts-->
         <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
