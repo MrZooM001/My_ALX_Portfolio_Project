@@ -292,8 +292,17 @@ html {
 }
 
 .bg-primary {
-    background-color: #f68b21 !important; /* Change to primary orange color */
+    background-color: var(--color-primary) !important; /* Change to primary orange color */
 }
+
+.before-footer {
+}
+
+.container-footer {
+    background-color: var(--color-dark);
+}
+
+
 
 @media only screen and (max-width: 1399px) {
     .right-sidebar {
