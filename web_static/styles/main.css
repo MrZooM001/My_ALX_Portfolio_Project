@@ -1,6 +1,7 @@
 /* Colors Scheme */
 :root {
     --color-primary: #f68b21;
+    --color-orange-light: #fd9f42;
     --color-danger: #e53935;
     --color-success: #7cb342;
     --color-warning: #ffc107;
@@ -8,6 +9,7 @@
     --color-white: #fff;
     --color-dark: #363949;
     --color-light: rgb(132, 139, 200, 0.18);
+    --color-orange-light: rgb(97, 77, 64, 0.18);
     --color-dark-variant: #677483;
     --color-background: #f6f6f9;
 
@@ -18,7 +20,7 @@
     --card-padding: 1.8rem;
     --padding-1: 1.2rem;
 
-    --box-shadow: 0 1.3rem 1.5rem var(--color-light);
+    --box-shadow: 0 0.9rem 1.5rem var(--color-orange-light);
 }
 
 .dark-mode-variables {
@@ -127,15 +129,6 @@ html {
     display: block;
 }
 
-/* .carousel-item .carousel-caption {
-    background-color: rgba(25, 25, 25, 0.6);
-    overflow: hidden;
-    padding: 3.6rem;
-    width: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-} */
-
 .section-padding {
     padding: 100px 0;
 }
@@ -206,7 +199,7 @@ html {
 
 .card .card-img-container {
     min-width: 192px;
-    height: 12rem;
+    height: 14rem;
     overflow: hidden;
     object-fit: cover;
     border-radius: 8px;
@@ -261,9 +254,15 @@ html {
     width: fit-content;
 }
 
-.left-top-rated h4 {
+.card-shadow h4 {
     color: var(--color-primary);
     font-weight: 700;
+}
+
+.card-shadow:hover {
+    box-shadow: var(--box-shadow);
+    transition: all 0.3s ease;
+    border-radius: 12px;
 }
 
 .list-group-item a {
@@ -295,18 +294,76 @@ html {
     background-color: var(--color-primary) !important; /* Change to primary orange color */
 }
 
-.before-footer {
+button.btn.btn-outline-secondary.dropdown-toggle {
+    width: 160px;
 }
 
-.container-footer {
-    background-color: var(--color-dark);
+.nav-item .d-flex button {
+    height: 2.5rem;
 }
 
+.nav-link.active {
+    background-color: var(--color-primary) !important;
+}
 
+.nav-link {
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+.nav-link:hover {
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+.footer-links-ul {
+    list-style-type: none;
+}
+
+.footer-links-ul li {
+    padding-bottom: 5px;
+}
+
+.tab-content {
+    min-height: 20rem;
+}
+
+.dev-by {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
 
 @media only screen and (max-width: 1399px) {
     .right-sidebar {
         display: none;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .profile-menu-items {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 991px) {
+    .profile-menu-items {
+        display: block;
+        left: 50%;
+    }
+    .navbar-nav .profile-menu {
+        display: none;
+    }
+
+    .dev-by {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media only screen and (max-width: 391px) {
+    .navbar-brand .brand-name {
+        font-size: 22px;
     }
 }
 
@@ -337,6 +394,14 @@ html {
     }
     .recipe-top-cards .card {
         width: 100%;
+    }
+
+    .card .card-img-container {
+        min-width: 192px;
+        height: 340px;
+        overflow: hidden;
+        object-fit: cover;
+        border-radius: 8px;
     }
 }
 
@@ -378,5 +443,4 @@ html {
         display: block;
         width: 100%;
     }
-
 }

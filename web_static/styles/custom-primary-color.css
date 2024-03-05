@@ -59,6 +59,28 @@
   --bs-dropdown-item-hover-bg: #f8f9fa; /* Adjusted hover background based on Bootstrap default */
 }
 
+.text-primary {
+  color: var(--primary) !important;
+}
+
+
+.btn.btn-link {
+  color: white;
+  text-decoration: none;
+  padding: 0;
+}
+
+.btn-outline-light:hover {
+  background-color: #fd9f42;
+  border-color: transparent;
+}
+
+.btn.btn-link:hover {
+  color: #fd9f42;
+}
+
+
+
 /* Input focus */
 .form-control:focus {
   border-color: #f68b21; /* Change to primary orange color */
