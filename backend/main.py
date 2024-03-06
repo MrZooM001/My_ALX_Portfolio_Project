@@ -5,12 +5,14 @@ from extentions import db
 from flask import Flask, jsonify, request
 from flask_restx import Api, Resource, fields
 from models import Recipe
-import requests
+from flask_migrate import Migrate
 
 
 app = Flask(__name__)
 app.config.from_object(DevConfig)
 db.init_app(app)
+migrate = Migrate(app, db)
+
 api = Api(app, doc="/docs")
 
 recipe_model = api.model(
@@ -35,9 +37,21 @@ class Helo(Resource):
 # endregion Hello World
 
 
+# region Flask interactive shell
 @app.shell_context_processor
 def make_shell_context():
+    """
+    makes application objects available in the Python Flask interactive shell
+
+    Examples:
+    >>> flask shell
+    or
+    >>> flask db init
+    """
     return {"db": db, "Recipe": Recipe}
+
+
+# endregion Flask interactive shell
 
 
 # region All Recipes
