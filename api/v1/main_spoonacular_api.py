@@ -1,11 +1,12 @@
+#!/usr/bin/python3
 """ Module to configure flask application """
 
-from config import DevConfig
+from api.v1.config import DevConfig
+from models.recipe import Recipe
+from api.v1.extentions import db
 from decouple import config
-from extentions import db
 from flask import Flask, jsonify, request
 from flask_restx import Api, Resource, fields
-from models import Recipe
 import requests
 
 
@@ -39,9 +40,9 @@ class RecipesList(Resource):
         url = "https://api.spoonacular.com/recipes/complexSearch"
         params = {
             "apiKey": config("API_KEY"),
-            # "query": "burgers",
-            "type": "soup",
-            "maxReadyTime": 15,
+            "query": "pizza",
+            # "type": "soup",
+            # "maxReadyTime": 15,
             "sort": "popularity",
             "number": 5,
         }
