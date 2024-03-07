@@ -79,7 +79,7 @@
                             <form class="d-flex" role="search">
                                 <div class="dropdown" data-control="checkbox-dropdown">
                                     <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">All Categories</button>
-                                    <ul class="dropdown-menu">
+                                    <ul class="dropdown-menu border">
                                         <li>
                                             <label class="dropdown-item dropdown-option form-check-label">
                                                 <input type="checkbox" name="dropdown-group" value="Selection 1" />
@@ -122,11 +122,11 @@
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <img src="images/avatar/5.jpg" class="profile-img" />
                             </a>
-                            <ul class="dropdown-menu dropdown-menu-end">
+                            <ul class="dropdown-menu dropdown-menu-end border">
                                 <li><a class="dropdown-item" href="#">Profile</a></li>
                                 <li><a class="dropdown-item" href="#">Favorites</a></li>
                                 <li><a class="dropdown-item" href="#">Settings</a></li>
-                                <li><hr class="dropdown-divider" /></li>
+                                <li><hr class="dropdown-divider text-primary" /></li>
                                 <li><a class="dropdown-item" href="#">Logout</a></li>
                             </ul>
                         </li>
@@ -174,168 +174,146 @@
                         </a>
                     </div>
                     <div class="row mt-3 mt-xl-4">
-                        <div class="col-lg-8 col-md-7">
+                        <div class="row">
+                            <ul class="list-unstyled recipe-stats d-flex flex-row gap-4">
+                                <li>
+                                    <div class="recipe-stats-card d-flex flex-column align-items-start bg-body-tertiary shadow-sm rounded px-3 py-2">
+                                        <small class="text-body">Prep Time</small>
+                                        <h6 class="">15 minutes</h6>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="recipe-stats-card d-flex flex-column align-items-start bg-body-tertiary shadow-sm rounded px-3 py-2">
+                                        <small class="text-body">Cook Time</small>
+                                        <h6 class="">30 minutes</h6>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="recipe-stats-card d-flex flex-column align-items-start bg-body-tertiary shadow-sm rounded px-3 py-2">
+                                        <small class="text-body">Servings</small>
+                                        <h6 class="">4</h6>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="col-lg-7 col-md-6">
                             <div class="border-md-right">
-                                <ul class="list-unstyled recipe-stats d-flex flex-row gap-4">
-                                    <li>
-                                        <div class="recipe-stats-card d-flex flex-column align-items-start bg-body-tertiary shadow-sm rounded px-3 py-2 ">
-                                            <small class="text-body">Prep Time</small>
-                                            <h6 class="">15 minutes</h6>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="recipe-stats-card d-flex flex-column align-items-start bg-body-tertiary shadow-sm rounded px-3 py-2 ">
-                                            <small class="text-body">Cook Time</small>
-                                            <h6 class="">30 minutes</h6>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="recipe-stats-card d-flex flex-column align-items-start bg-body-tertiary shadow-sm rounded px-3 py-2 ">
-                                            <small class="text-body">Servings</small>
-                                            <h6 class="">4</h6>
-                                        </div>
-                                    </li>
-                                </ul>
-
-                                <div class="ingredients mt-4 mt-md-5">
-                                    <h3>Ingredients</h3>
-                                    <div class="checklist pb-2">
-                                        <strong>For the crust</strong>
-                                        <div class="form-check recipe-checkbox">
-                                            <input type="checkbox" id="crackers" name="crackers" class="form-check-input" />
-                                            <label class="form-check-label" for="crackers">400g graham crackers</label>
-                                        </div>
-                                        <div class="form-check recipe-checkbox">
-                                            <input type="checkbox" id="unsalted" name="unsalted" class="form-check-input" />
-                                            <label class="form-check-label" for="unsalted">150g unsalted butters, melted</label>
-                                        </div>
-                                    </div>
-                                    <div class="checklist pb-4">
-                                        <strong>For the cheescake</strong>
-                                        <div class="form-check recipe-checkbox">
-                                            <input type="checkbox" id="marshmallows" name="marshmallows" class="form-check-input" />
-                                            <label class="form-check-label" for="marshmallows">300g marshmallows</label>
-                                        </div>
-                                        <div class="form-check recipe-checkbox">
-                                            <input type="checkbox" id="melted" name="melted" class="form-check-input" />
-                                            <label class="form-check-label" for="melted">175g unsalted butter, melted</label>
-                                        </div>
-                                        <div class="form-check recipe-checkbox">
-                                            <input type="checkbox" id="Philadelphia" name="Philadelphia" class="form-check-input" />
-                                            <label class="form-check-label" for="Philadelphia">500g Philadelphia cream cheese, softened</label>
-                                        </div>
-                                        <div class="form-check recipe-checkbox">
-                                            <input type="checkbox" id="thickened" name="thickened" class="form-check-input" />
-                                            <label class="form-check-label" for="thickened">250ml thickened/whipping cream, warm</label>
-                                        </div>
-                                        <div class="form-check recipe-checkbox">
-                                            <input type="checkbox" id="tbsppowdered" name="tbsppowdered" class="form-check-input" />
-                                            <label class="form-check-label" for="tbsppowdered">3 tbsp powdered gelatin + 3 tbsp water</label>
-                                        </div>
-                                        <div class="form-check recipe-checkbox">
-                                            <input type="checkbox" id="dropspurple" name="dropspurple" class="form-check-input" />
-                                            <label class="form-check-label" for="dropspurple">5 drops purple food gel</label>
-                                        </div>
-                                        <div class="form-check recipe-checkbox">
-                                            <input type="checkbox" id="dropsblue" name="dropsblue" class="form-check-input" />
-                                            <label class="form-check-label" for="dropsblue">3 drops blue food gel</label>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="instructions mt-3 mt-md-5">
+                                <div class="instructions mt-3 mt-md-3">
                                     <h3>Instructions</h3>
                                     <ul class="instruction-list list-unstyled">
                                         <li class="d-flex">
                                             <h3 class="fs-1 me-3">1</h3>
-                                            <p>To prepare crust add graham crackers to a food processor and process until you reach fine crumbs. Add melted butter and pulse 3-4 times
-                                            to coat crumbs with butter.</p>
+                                            <p>
+                                                To prepare crust add graham crackers to a food processor and process until you reach fine crumbs. Add melted butter and pulse 3-4
+                                                times to coat crumbs with butter.
+                                            </p>
                                         </li>
-                                        <li>
-                                            <h4>2</h4>
-                                            Pour mixture into a 20cm (8”) tart tin. Use the back of a spoon to firmly press the mixture out across the bottom and sides of the tart
-                                            tin. Chill for 30 min.
+                                        <li class="d-flex">
+                                            <h3 class="fs-1 me-3">2</h3>
+                                            <p>
+                                                Pour mixture into a 20cm (8”) tart tin. Use the back of a spoon to firmly press the mixture out across the bottom and sides of the
+                                                tart tin. Chill for 30 min.
+                                            </p>
                                         </li>
-                                        <li>
-                                            <h4>3</h4>
-                                            Begin by adding the marshmallows and melted butter into a microwave safe bowl. Microwave for 30 seconds and mix to combine. Set aside.
+                                        <li class="d-flex">
+                                            <h3 class="fs-1 me-3">3</h3>
+                                            <p>
+                                                Begin by adding the marshmallows and melted butter into a microwave safe bowl. Microwave for 30 seconds and mix to combine. Set
+                                                aside.
+                                            </p>
                                         </li>
-                                        <li>
-                                            <h4>4</h4>
-                                            Next, add the gelatine and water to a small mixing bowl and mix to combine. Microwave for 30 seconds.
+                                        <li class="d-flex">
+                                            <h3 class="fs-1 me-3">4</h3>
+                                            <p>Next, add the gelatine and water to a small mixing bowl and mix to combine. Microwave for 30 seconds.</p>
                                         </li>
-                                        <li>
-                                            <h4>5</h4>
-                                            Add the cream cheese to the marshmallow mixture and use a hand mixer or stand mixer fitted with a paddle attachment to mix until smooth.
+                                        <li class="d-flex">
+                                            <h3 class="fs-1 me-3">5</h3>
+                                            <p>
+                                                Add the cream cheese to the marshmallow mixture and use a hand mixer or stand mixer fitted with a paddle attachment to mix until
+                                                smooth.
+                                            </p>
                                         </li>
-                                        <li>
-                                            <h4>6</h4>
-                                            Add the warm cream and melted gelatin mixture and mix until well combined.
+                                        <li class="d-flex">
+                                            <h3 class="fs-1 me-3">6</h3>
+                                            <p>Add the warm cream and melted gelatin mixture and mix until well combined.</p>
                                         </li>
-                                        <li>
-                                            <h4>7</h4>
-                                            Add 1/3 of the mixture to a mixing bowl, add purple food gel and mix until well combined. Colour 1/3 of the mixture blue. Split the
-                                            remaining mixture into two mixing bowls, colour one pink and leave the other white.
+                                        <li class="d-flex">
+                                            <h3 class="fs-1 me-3">7</h3>
+                                            <p>
+                                                Add 1/3 of the mixture to a mixing bowl, add purple food gel and mix until well combined. Colour 1/3 of the mixture blue. Split the
+                                                remaining mixture into two mixing bowls, colour one pink and leave the other white.
+                                            </p>
                                         </li>
-                                        <li>
-                                            <h4>8</h4>
-                                            Pour half the purple cheesecake mixture into the chill tart crust. Add half the blue and then add the remaining purple and blue in the
-                                            tart tin. Use a spoon to drizzle some pink cheesecake on top. Use a skewer or the end of a spoon to swirl the pink. Add some small dots
-                                            of the plain cheesecake mixture to create stars and then sprinkle some more starts on top before chilling for 2 hours.
+                                        <li class="d-flex">
+                                            <h3 class="fs-1 me-3">8</h3>
+                                            <p>
+                                                Pour half the purple cheesecake mixture into the chill tart crust. Add half the blue and then add the remaining purple and blue in
+                                                the tart tin. Use a spoon to drizzle some pink cheesecake on top. Use a skewer or the end of a spoon to swirl the pink. Add some
+                                                small dots of the plain cheesecake mixture to create stars and then sprinkle some more starts on top before chilling for 2 hours.
+                                            </p>
                                         </li>
-                                        <li>
-                                            <h4>9</h4>
-                                            Slice with a knife to serve.
+                                        <li class="d-flex">
+                                            <h3 class="fs-1 me-3">9</h3>
+                                            <p>
+                                                Slice with a knife to serve.
+                                                <br />
+                                                Bon appétit!
+                                            </p>
                                         </li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="col-lg-4 col-md-5">
-                            <div class="nutrition-col bg-light p-4">
-                                <h6>Nutrition Facts</h6>
-                                <ul class="Nutrition-list list-unstyled">
-                                    <li>
-                                        <span>Calories</span>
-                                        <span>219.9</span>
-                                    </li>
-                                    <li>
-                                        <span>Total Fat</span>
-                                        <span>10.7 g</span>
-                                    </li>
-                                    <li>
-                                        <span>Saturated Fat</span>
-                                        <span>2.2 g</span>
-                                    </li>
-                                    <li>
-                                        <span>Cholesterol</span>
-                                        <span>37.4 mg</span>
-                                    </li>
-                                    <li>
-                                        <span>Sodium</span>
-                                        <span>120.3 mg</span>
-                                    </li>
-                                    <li>
-                                        <span>Potassium</span>
-                                        <span>32.8 mg</span>
-                                    </li>
-                                    <li>
-                                        <span>Total Carbohydrate</span>
-                                        <span>22.3 g</span>
-                                    </li>
-                                    <li>
-                                        <span>Sugars</span>
-                                        <span>8.4 g</span>
-                                    </li>
-                                    <li>
-                                        <span>Protein</span>
-                                        <span>7.9 g</span>
-                                    </li>
-                                </ul>
+                        <div class="col-lg-5 col-md-6">
+                            <div class="ingredients mt-3 mt-md-3 bg-light ps-3 pt-3 rounded">
+                                <h3>Ingredients</h3>
+                                <div class="checklist pb-2">
+                                    <strong>For the crust</strong>
+                                    <div class="form-check recipe-checkbox">
+                                        <input type="checkbox" id="crackers" name="crackers" class="form-check-input" />
+                                        <label class="form-check-label" for="crackers">400g graham crackers</label>
+                                    </div>
+                                    <div class="form-check recipe-checkbox">
+                                        <input type="checkbox" id="unsalted" name="unsalted" class="form-check-input" />
+                                        <label class="form-check-label" for="unsalted">150g unsalted butters, melted</label>
+                                    </div>
+                                </div>
+                                <div class="checklist pb-4">
+                                    <strong>For the cheescake</strong>
+                                    <div class="form-check recipe-checkbox">
+                                        <input type="checkbox" id="marshmallows" name="marshmallows" class="form-check-input" />
+                                        <label class="form-check-label" for="marshmallows">300g marshmallows</label>
+                                    </div>
+                                    <div class="form-check recipe-checkbox">
+                                        <input type="checkbox" id="melted" name="melted" class="form-check-input" />
+                                        <label class="form-check-label" for="melted">175g unsalted butter, melted</label>
+                                    </div>
+                                    <div class="form-check recipe-checkbox">
+                                        <input type="checkbox" id="Philadelphia" name="Philadelphia" class="form-check-input" />
+                                        <label class="form-check-label" for="Philadelphia">500g Philadelphia cream cheese, softened</label>
+                                    </div>
+                                    <div class="form-check recipe-checkbox">
+                                        <input type="checkbox" id="thickened" name="thickened" class="form-check-input" />
+                                        <label class="form-check-label" for="thickened">250ml thickened/whipping cream, warm</label>
+                                    </div>
+                                    <div class="form-check recipe-checkbox">
+                                        <input type="checkbox" id="tbsppowdered" name="tbsppowdered" class="form-check-input" />
+                                        <label class="form-check-label" for="tbsppowdered">3 tbsp powdered gelatin + 3 tbsp water</label>
+                                    </div>
+                                    <div class="form-check recipe-checkbox">
+                                        <input type="checkbox" id="dropspurple" name="dropspurple" class="form-check-input" />
+                                        <label class="form-check-label" for="dropspurple">5 drops purple food gel</label>
+                                    </div>
+                                    <div class="form-check recipe-checkbox">
+                                        <input type="checkbox" id="dropsblue" name="dropsblue" class="form-check-input" />
+                                        <label class="form-check-label" for="dropsblue">3 drops blue food gel</label>
+                                    </div>
+                                </div>
                             </div>
 
-                            <div class="fresh-recipes mt-4 mt-md-5 pt-3 pt-md-5">
+                            <div class="fresh-recipes mt-2 mt-md-4 pt-3 pt-md-4">
                                 <h6>Fresh Recipes</h6>
                                 <div class="mt-4 pb-2 d-flex align-items-center recipe-card">
                                     <div class="">
@@ -472,19 +450,17 @@
                     </div>
                 </div>
 
-                <div class="my-4 my-md-5 pt-5 pb-4 py-md-5">
+                <div class="mt-2 mt-md-3 pt-3 pb-1 pt-md-3">
                     <h2 class="mb-3">Already made this?</h2>
-                    <a href="#" class="btn btn-outline-dark px-5">Share your feedback</a>
-                    <br />
-                    <br />
-                    <hr class="orange hr-11" />
+                    <a href="#" class="btn btn-outline-primary px-5">Share your feedback</a>
+                    <hr class="text-primary" />
                 </div>
 
                 <div class="write-comment">
-                    <form class="leave-comment bg-light  d-flex flex-wrap p-4">
-                        <textarea class="form-control h-auto"></textarea>
+                    <form class="leave-comment bg-light d-flex flex-wrap p-4">
+                        <textarea placeholder="Leave a comment..." class="form-control h-auto"></textarea>
                         <div class="">
-                            <button type="button" class="btn btn-primary px-5">Leave a comment</button>
+                            <button type="button" class="btn btn-primary px-5">Post comment</button>
                         </div>
                     </form>
                 </div>
@@ -502,9 +478,12 @@
                                         <img src="images/avatar/2.jpg" class="rounded-circle" style="width: 48px !important" alt="Avatar" />
                                     </a>
                                     <div class="media-body">
-                                        <div class="pb-1">
-                                            <h6 class="big inter-font font-weight-semibold">Salli</h6>
-                                            <div class="text-gray-300">41min</div>
+                                        <div class="mb-1 d-flex align-items-top">
+                                            <div class="me-3">
+                                                <h6 class="fw-bold mb-0">Salli</h6>
+                                                <div class="text-gray-300">41min</div>
+                                            </div>
+                                            <a href="#" class="comment-reply"><i class="bi bi-reply-fill"></i> Reply</a>
                                         </div>
                                         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
                                     </div>
@@ -519,9 +498,12 @@
                                         <img src="images/avatar/4.jpg" class="rounded-circle" style="width: 48px !important" alt="Avatar" />
                                     </a>
                                     <div class="media-body">
-                                        <div class="pb-1">
-                                            <h6 class="big inter-font font-weight-semibold">Juwairiya</h6>
-                                            <div class="text-gray-300">3h</div>
+                                        <div class="mb-1 d-flex align-items-top">
+                                            <div class="me-3">
+                                                <h6 class="fw-bold mb-0">Juwairiya</h6>
+                                                <div class="text-gray-300">3h</div>
+                                            </div>
+                                            <a href="#" class="comment-reply"><i class="bi bi-reply-fill"></i> Reply</a>
                                         </div>
                                         <p>Aut minima animi commodi excepturi quas autem perferendis repellat praesentium recusandae maxime tenetur officia ex 🔥</p>
                                     </div>
@@ -536,9 +518,12 @@
                                         <img src="images/avatar/1.jpg" class="rounded-circle" style="width: 48px !important" alt="Avatar" />
                                     </a>
                                     <div class="media-body">
-                                        <div class="pb-1">
-                                            <h6 class="big inter-font font-weight-semibold">Farida</h6>
-                                            <div class="text-gray-300">1d</div>
+                                        <div class="mb-1 d-flex align-items-top">
+                                            <div class="me-3">
+                                                <h6 class="fw-bold mb-0">Farida</h6>
+                                                <div class="text-gray-300">1d</div>
+                                            </div>
+                                            <a href="#" class="comment-reply"><i class="bi bi-reply-fill"></i> Reply</a>
                                         </div>
                                         <p>
                                             Hic commodi adipisci eos nulla magnam, repellendus recusandae qui eius fuga vitae voluptatem unde rem pariatur at tenetur labore!
@@ -552,7 +537,7 @@
                 </div>
             </section>
 
-            <hr />
+            <hr class="text-primary" />
 
             <section class="recipe-might-like my-4 my-md-5">
                 <h5 class="py-3 mb-0">You might also like</h5>
