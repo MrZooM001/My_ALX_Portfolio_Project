@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Handlee&display=swap" rel="stylesheet" />
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Material+Icons+Sharp" />
+        <link rel="stylesheet" href="../static/node_modules/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="../static/node_modules/bootstrap/dist/css/bootstrap-utilities.min.css" />
+        <link rel="stylesheet" href="../static/node_modules/bootstrap-icons/font/bootstrap-icons.min.css" />
+        <link rel="stylesheet" href="../static/styles/custom-primary-color.css" />
+        <link rel="stylesheet" href="../static/styles/main.css" />
+
+        <title>My Recipe Planner</title>
+
+        <script src="../static/node_modules/jquery/dist/jquery.js"></script>
+    </head>
+
+<body>
+    <div class="position-sticky sticky-top">
+
+        <!-- Nav Bar with Search -->
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container d-flex">
+                <a class="navbar-brand d-flex align-items-center" href="{{ url_for('home') }}">
+                    <img src="../static/images/logos/recipe_planner_orange.png" alt="" class="me-2" />
+                    <span class="brand-name fw-bold pb-0">My Recipe Planner</span>
+                </a>
+                <ul class="navbar-nav nav-underline landing-links d-flex flex-row gap-4 mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('home') }}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('popular') }}">Popular</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('recipes_breakfast') }}">Recipe Index</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('login') }}">Login / Register</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <!-- End Nav Bar with Search -->
+
+          <div class="d-none d-lg-flex align-items-center">
+            <ul class="d-flex  align-items-center list-unstyled m-0">
+              <li>
+                <a href="account.html" class="ms-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22px" height="22px">
+                    <use href="#user-circle" />
+                  </svg> </a>
+              </li>
+              <li>
+                <a href="wishlist.html" class="ms-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22px" height="22px">
+                    <use href="#heart" />
+                  </svg> </a>
+                </a>
+              </li>
+
+              <li class="">
+                <a href="#" class="ms-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart"
+                  aria-controls="offcanvasCart">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22px" height="22px">
+                    <use href="#shopping-bag" />
+                  </svg> </a>
+                </a>
+              </li>
+
+              <li>
+                <a href="#" class="ms-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSearch"
+                  aria-controls="offcanvasSearch">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22px" height="22px">
+                    <use href="#search" />
+                  </svg> </a>
+                </a>
+              </li>
+
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+    <div class="container-fluid d-lg-none">
+      <div class="d-flex  align-items-end mt-3">
+        <ul class="d-flex  align-items-center list-unstyled m-0">
+          <li>
+            <a href="account.html" class="me-3">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22px" height="22px">
+                <use href="#user-circle" />
+              </svg> </a>
+          </li>
+          <li>
+            <a href="wishlist.html" class="me-3">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22px" height="22px">
+                <use href="#heart" />
+              </svg> </a>
+            </a>
+          </li>
+
+          <li class="">
+            <a href="#" class="me-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart"
+              aria-controls="offcanvasCart">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22px" height="22px">
+                <use href="#shopping-bag" />
+              </svg> </a>
+            </a>
+          </li>
+
+          <li>
+            <a href="#" class="me-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSearch"
+              aria-controls="offcanvasSearch">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22px" height="22px">
+                <use href="#search" />
+              </svg> </a>
+            </a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <section id="hero" style="background-image:url(../static/images/billboard-bg.png); background-repeat: no-repeat; ">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-6 pe-5 mt-5 mt-md-0">
+          <h2 class="display-1 text-capitalize">Unleash Your Inner Chef</h2>
+          <p class="fs-4 my-4 pb-2">Prepare yourself for a cooking advanture!</p>
+          <div>
+
+          </div>
+        </div>
+        <div class="col-md-6 mt-5">
+          <img src="https://fabrx.co/preview/tastebite/assets/images/menus/menu1.jpg" alt="img" class="img-fluid rounded-5">
+        </div>
+    </div>
+</div>
+  </section>
+  
+  <section id="features">
+      <div class="feature-box container">
+      <div class="row ">
+          <div class="col-md-3 col-sm-6 mb-5 mb-md-0">
+              <div class="feature-item py-5  rounded-4">
+                  <div class="feature-detail text-center">
+                      <img src="https://spoonacular.com/application/frontend/images/food-api/landing/vegetarian-food.svg" alt="img" class="mb-3">
+                      <h2 class="feature-title">2,600+</h2>
+                      <h6 class="feature-info text-uppercase">Ingredients</h6>
+
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6 mb-5 mb-md-0">
+          <div class="feature-item py-5  rounded-4">
+            <div class="feature-detail text-center">
+                <img src="https://spoonacular.com/application/frontend/images/food-api/landing/kitchen.svg" alt="img" class="mb-3">
+                <h2 class="feature-title">5,000+</h2>
+              <h6 class="feature-info text-uppercase">Recipes</h6>
+
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6 mb-5 mb-md-0">
+          <div class="feature-item py-5  rounded-4">
+            <div class="feature-detail text-center">
+                <img src="https://spoonacular.com/application/frontend/images/food-api/landing/shopping-basket.svg" alt="img" class="mb-3">
+              <h2 class="feature-title">600K+</h2>
+              <h6 class="feature-info text-uppercase">Products</h6>
+              
+
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6 mb-5 mb-md-0">
+          <div class="feature-item py-5  rounded-4">
+            <div class="feature-detail text-center">
+                <img src="https://spoonacular.com/application/frontend/images/food-api/landing/hamburger.svg" alt="img" class="mb-3">
+              <h2 class="feature-title">115K+</h2>
+              <h6 class="feature-info text-uppercase">Menu Items</h6>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="padding-medium mt-xl-5">
+    <div class="container">
+      <div class="row align-items-center mt-xl-5">
+        <div class="offset-md-1 col-md-5">
+          <img src="../static/images/Screenshot2.png" alt="img" class="img-fluid rounded-4">
+        </div>
+        <div class="col-md-5 mt-5 mt-md-0">
+          <div class="mb-3">
+            <p class="text-secondary ">Learn more about us</p>
+            <h2 class="display-6 fw-semibold">About Us</h2>
+          </div>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem molestiae nam commodi dolore vitae?
+            Numquam minima cum asperiores deleniti possimus provident, officia itaque esse eius, delectus incidunt
+            laudantium adipisci laboriosam!</p>
+          <div class="d-flex">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22px" height="22px">
+              <use href="#tick-circle" class="text-secondary" />
+            </svg>
+            <p class="ps-4">Engage with a worldwide community of inquisitive and imaginative cooking masters.</p>
+          </div>
+          <div class="d-flex">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22px" height="22px">
+              <use href="#tick-circle" class="text-secondary" />
+            </svg>
+            <p class="ps-4">Learn a skill of your choice from the experts around the world from various Kitchens</p>
+          </div>
+          <div class="d-flex">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22px" height="22px">
+              <use href="#tick-circle" class="text-secondary" />
+            </svg>
+            <p class="ps-4">Learn a skill of your choice from the experts around the world from various professionals</p>
+          </div>
+          <a href="{{ url_for('login') }}" class="btn btn-primary px-5 py-3 mt-4">Learn more</a>
+
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="courses" class="padding-medium">
+    <div class="container">
+      <div class="text-center my-5">
+        <h2 class="display-6 fw-semibold">Explore Delicious Recipes</h2>
+      </div>
+
+      <div class="row">
+        <div class="tab-content">
+    
+    
+          <!-- Tab 1 -->
+          <div id="tab-1" class="tab-pane fade show p-0 active">
+              <div class="row">
+                  <div class="recipe-cards-center">
+                      <div class="recipe-top-cats align-items-center">
+                          <h1 class="recipe-cat-title mb-5 ms-3">Most Popular</h1>
+                          <div class="recipe-top-cards">
+                                      <div class="col card-shadow">
+                                      <div class="card">
+                                              <a href="#">
+                                              <img src="https://spoonacular.com/recipeImages/716410-312x231.jpg" class="card-img-container" alt="">
+                                              </a>
+                                              <div class="card-body px-3">
+                                              <h5 class="card-title recipe-card-title">Cannoli Ice Cream w. Pistachios &amp; Dark Chocolate</h5>
+                                              </div>
+                                      </div>
+                                      </div>
+                              
+                                      <div class="col card-shadow">
+                                      <div class="card">
+                                              <a href="#">
+                                              <img src="https://spoonacular.com/recipeImages/715455-312x231.jpg" class="card-img-container" alt="">
+                                              </a>
+                                              <div class="card-body px-3">
+                                              <h5 class="card-title recipe-card-title">Homemade Pecan Pie</h5>
+                                              </div>
+                                      </div>
+                                      </div>
+                              
+                                      <div class="col card-shadow">
+                                      <div class="card">
+                                              <a href="#">
+                                              <img src="https://spoonacular.com/recipeImages/715541-312x231.jpg" class="card-img-container" alt="">
+                                              </a>
+                                              <div class="card-body px-3">
+                                              <h5 class="card-title recipe-card-title">Pink Lemonade Crinkle Cookies</h5>
+                                              </div>
+                                      </div>
+                                      </div>
+                              
+                                      <div class="col card-shadow">
+                                      <div class="card">
+                                              <a href="#">
+                                              <img src="https://spoonacular.com/recipeImages/715569-312x231.jpg" class="card-img-container" alt="">
+                                              </a>
+                                              <div class="card-body px-3">
+                                              <h5 class="card-title recipe-card-title">Strawberry Cheesecake Chocolate Crepes</h5>
+                                              </div>
+                                      </div>
+                                      </div>
+                              
+                                      <div class="col card-shadow">
+                                      <div class="card">
+                                              <a href="#">
+                                              <img src="https://spoonacular.com/recipeImages/715381-312x231.jpg" class="card-img-container" alt="">
+                                              </a>
+                                              <div class="card-body px-3">
+                                              <h5 class="card-title recipe-card-title">Creamy Lime Pie Square Bites</h5>
+                                              </div>
+                                      </div>
+                                      </div>
+                              
+                                      <div class="col card-shadow">
+                                      <div class="card">
+                                              <a href="#">
+                                              <img src="https://spoonacular.com/recipeImages/715452-312x231.jpg" class="card-img-container" alt="">
+                                              </a>
+                                              <div class="card-body px-3">
+                                              <h5 class="card-title recipe-card-title">Delicious Triple Chocolate Bundt Cake</h5>
+                                              </div>
+                                      </div>
+                                      </div>
+                              
+                                      <div class="col card-shadow">
+                                      <div class="card">
+                                              <a href="#">
+                                              <img src="https://spoonacular.com/recipeImages/715439-312x231.jpg" class="card-img-container" alt="">
+                                              </a>
+                                              <div class="card-body px-3">
+                                              <h5 class="card-title recipe-card-title">OREO Cookie Balls – Snowman</h5>
+                                              </div>
+                                      </div>
+                                      </div>
+                              
+                                      <div class="col card-shadow">
+                                      <div class="card">
+                                              <a href="#">
+                                              <img src="https://spoonacular.com/recipeImages/715477-312x231.jpg" class="card-img-container" alt="">
+                                              </a>
+                                              <div class="card-body px-3">
+                                              <h5 class="card-title recipe-card-title">The BEST Lemon Bars</h5>
+                                              </div>
+                                      </div>
+                                      </div>
+      
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <!-- End Tab 1 -->
+      </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="tstbite-components bg-warning-subtle my-5 py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-6 col-lg-8 offset-xl-3 offset-lg-2 text-center py-4 py-md-5">
+          <h2 class="mb-3 h1">Add deliciousness to your life</h2>
+          <p class="fs-5 font-weight-regular">Enjoy most taste picked recipes <br>and many more</p>
+          <div class="input-group custom-input-group mt-4 d-flex justify-content-center align-items-center">
+              <button href="{{ url_for('login') }}" class="btn btn-primary px-5 py-3 mt-4 fs-3" type="button">Try it now</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+   <!-- Footer Start -->
+   <div class="container-fluid bg-dark text-light footer px-0 pt-5 mt-5">
+    <div class="container pt-5 pb-2">
+        <div class="row g-5">
+            <div class="col-lg-3 col-md-6">
+                <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">My Recipe Planner</h4>
+                <ul class="footer-links-ul ps-0">
+                    <li><a class="btn btn-link" href="">About Us</a></li>
+                    <li><a class="btn btn-link" href="">Contact Us</a></li>
+                    <li><a class="btn btn-link" href="">Privacy Policy</a></li>
+                    <li><a class="btn btn-link" href="">Terms & Condition</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Contact</h4>
+                <p class="mb-2"><i class="bi bi-geo-alt-fill me-3"></i>6th of October, Giza, Egypt</p>
+                <p class="mb-2"><i class="bi bi-whatsapp me-3"></i>+2 010 1114 1721</p>
+                <p class="mb-2"><i class="bi bi-envelope-at-fill me-3"></i>info@hazemit.tech</p>
+                <div class="d-flex pt-2">
+                    <a class="btn btn-outline-light btn-social me-3" href=""><i class="bi bi-twitter-x"></i></a>
+                    <a class="btn btn-outline-light btn-social me-3" href=""><i class="bi bi-facebook"></i></a>
+                    <a class="btn btn-outline-light btn-social me-3" href=""><i class="bi bi-linkedin"></i></a>
+                    <a class="btn btn-outline-light btn-social" href=""><i class="bi bi-github"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-5">
+                <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">API Docs</h4>
+                <ul class="footer-links-ul ps-0">
+                    <li><a class="btn btn-link" href="">Recipes</a></li>
+                    <li><a class="btn btn-link" href="">Favorites</a></li>
+                    <li><a class="btn btn-link" href="">Ingredients</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Newsletter!</h4>
+                <p>Get latest recipes updates on your email</p>
+                <div class="position-relative mx-auto">
+                    <input class="form-control border-primary w-100 py-3 ps-3 pe-5" type="text" placeholder="Enter Your email" aria-label="newsletter" />
+                    <button type="button" class="btn btn-primary pt-2 position-absolute top-0 end-0">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr class="text-primary" />
+    <div class="copyright pb-4 pt-2">
+        <div class="container">
+            <div class="row">
+                <div class="dev-by">
+                    <div>&copy; <a class="text-primary text-decoration-none" href="#">My Recipe Planner</a> - All Rights Reserved 2024.</div>
+                    <div>Designed & Developed with <i class="bi bi-heart-fill text-danger"></i> By <a class="btn btn-link text-primary" href="#">Hazem Magdy</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Footer End -->
+
+
+
+
+  <script src="../static/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+
+</body>
+
+</html>
