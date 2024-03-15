@@ -9,8 +9,6 @@ from flask import (
     session,
     jsonify,
 )
-import asyncio
-from time import sleep
 from extensions import db
 from config import DevConfig
 from flask_migrate import Migrate
@@ -77,9 +75,12 @@ def all_recipes():
     }
     spoonac_api = requests.get(url, params)
     data = json.loads(spoonac_api.content)
-    recipes = data["results"]
-    for item in recipes:
-        api_result.append(item)
+    try:
+        recipes = data["results"]
+        for item in recipes:
+                api_result.append(item)
+    except Exception as e:
+        print(e)
         
 
     return render_template("search_recipes.html", data=api_result)
@@ -101,9 +102,12 @@ def recipes_dessert():
     }
     spoonac_api = requests.get(url, params)
     data = json.loads(spoonac_api.content)
-    recipes = data["results"]
-    for item in recipes:
-        api_result.append(item)
+    try:
+        recipes = data["results"]
+        for item in recipes:
+            api_result.append(item)
+    except Exception as e:
+        print(e)
 
     return render_template("recipes_dessert.html", data=api_result)
 
@@ -124,9 +128,12 @@ def popular():
     }
     spoonac_api = requests.get(url, params)
     data = json.loads(spoonac_api.content)
-    recipes = data["results"]
-    for item in recipes:
-        api_result.append(item)
+    try:
+        recipes = data["results"]
+        for item in recipes:
+            api_result.append(item)
+    except Exception as e:
+        print(e)
 
     return render_template("popular.html", data=api_result)
 
@@ -147,9 +154,12 @@ def recipes_main():
     }
     spoonac_api = requests.get(url, params)
     data = json.loads(spoonac_api.content)
-    recipes = data["results"]
-    for item in recipes:
-        api_result.append(item)
+    try:
+        recipes = data["results"]
+        for item in recipes:
+            api_result.append(item)
+    except Exception as e:
+        print(e)
 
     return render_template("recipes_main_course.html", data=api_result)
 
@@ -170,9 +180,12 @@ def recipes_breakfast():
     }
     spoonac_api = requests.get(url, params)
     data = json.loads(spoonac_api.content)
-    recipes = data["results"]
-    for item in recipes:
-        api_result.append(item)
+    try:
+        recipes = data["results"]
+        for item in recipes:
+            api_result.append(item)
+    except Exception as e:
+        print(e)
         
 
     return render_template("recipes_breakfast.html", data=api_result)
@@ -193,9 +206,12 @@ def recipes_bread():
     }
     spoonac_api = requests.get(url, params)
     data = json.loads(spoonac_api.content)
-    recipes = data["results"]
-    for item in recipes:
-        api_result.append(item)
+    try:
+        recipes = data["results"]
+        for item in recipes:
+            api_result.append(item)
+    except Exception as e:
+        print(e)
         
 
     return render_template("recipes_breakfast.html", data=api_result)
@@ -328,7 +344,10 @@ def recipe_details():
     # url = "https://api.spoonacular.com/recipes/complexSearch"
     # spoonac_api = requests.get(url)
     # data = json.loads(spoonac_api.content)
-    # recipes = data["results"]
+    # try:
+    #     recipes = data["results"]
+    # except Exception as e:
+    #     print(e)
     # for item in recipes:
     #     api_result.append(item)
 
@@ -350,16 +369,19 @@ def landing_page():
     }
     spoonac_api = requests.get(url, params)
     data = json.loads(spoonac_api.content)
-    recipes = data["results"]
-    for item in recipes:
-        api_result.append(item)
+    try:
+        recipes = data["results"]
+        for item in recipes:
+            api_result.append(item)
+    except Exception as e:
+        print(e)
     return render_template("landing.html", data=api_result)
 
 
 
 @app.route("/home")
 @login_required
-async def home():
+def home():
     api_bft = []
     url = "https://api.spoonacular.com/recipes/complexSearch"
     bf_params = {
@@ -372,10 +394,12 @@ async def home():
     }
     spoonac_api = requests.get(url, bf_params)
     data = json.loads(spoonac_api.content)
-    bf_recipes = data["results"]
-    for item in bf_recipes:
-        api_bft.append(item)
-    await asyncio.sleep(0.9)
+    try:
+        bf_recipes = data["results"]
+        for item in bf_recipes:
+            api_bft.append(item)
+    except Exception as e:
+        print(e)
 
     api_apz = []
     apz_params = {
@@ -388,10 +412,11 @@ async def home():
     }
     spoonac_api = requests.get(url, apz_params)
     data = json.loads(spoonac_api.content)
-    apz_recipes = data["results"]
-    for item in apz_recipes:
-        api_apz.append(item)
-    await asyncio.sleep(1) 
+    try:
+        apz_recipes = data["results"]
+        for item in apz_recipes:
+            api_apz.append(item)
+    except Exception as e:print(e)
 
     api_sld = []
     sld_params = {
@@ -404,9 +429,12 @@ async def home():
     }
     spoonac_api = requests.get(url, sld_params)
     data = json.loads(spoonac_api.content)
-    sld_recipes = data["results"]
-    for item in sld_recipes:
-        api_sld.append(item)
+    try:
+        sld_recipes = data["results"]
+        for item in sld_recipes:
+            api_sld.append(item)
+    except Exception as e:
+        print(e)
         
         
     api_sld = []
@@ -420,9 +448,12 @@ async def home():
     }
     spoonac_api = requests.get(url, sld_params)
     data = json.loads(spoonac_api.content)
-    sld_recipes = data["results"]
-    for item in sld_recipes:
-        api_sld.append(item)
+    try:
+        sld_recipes = data["results"]
+        for item in sld_recipes:
+            api_sld.append(item)
+    except Exception as e:
+        print(e)
 
     return render_template("index.html", brkfst=api_bft, sld=api_sld, aptz=api_apz)
 
@@ -446,9 +477,12 @@ def profile():
     }
     spoonac_api = requests.get(url, favo_params)
     data = json.loads(spoonac_api.content)
-    bf_recipes = data["results"]
-    for item in bf_recipes:
-        api_favo.append(item)
+    try:
+        bf_recipes = data["results"]
+        for item in bf_recipes:
+            api_favo.append(item)
+    except Exception as e:
+        print(e)
 
     return render_template("profile.html", user=user, data=api_favo)
 
@@ -523,4 +557,3 @@ if __name__ == "__main__":
     dotenv_file = os.path.join(os.getcwd(), ".env")
     load_dotenv(dotenv_file)
     app.run(debug=True)
-    asyncio.run(home())
