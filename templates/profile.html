@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Handlee&display=swap" rel="stylesheet" />
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Material+Icons+Sharp" />
+        <link rel="stylesheet" href="../static/node_modules/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="../static/node_modules/bootstrap/dist/css/bootstrap-utilities.min.css" />
+        <link rel="stylesheet" href="../static/node_modules/bootstrap-icons/font/bootstrap-icons.min.css" />
+        <link rel="stylesheet" href="../static/styles/custom-primary-color.css" />
+        <link rel="stylesheet" href="../static/styles/main.css" />
+
+        <title>My Recipe Planner</title>
+    </head>
+
+    <body class="d-flex flex-column min-vh-100 mb-4">
+        <div class="position-sticky sticky-top">
+            <!-- Top Menu Bar -->
+            <div class="top-links-bar">
+                <div class="container d-flex align-items-center justify-content-between">
+                    <nav id="navbar" class="navbar w-100">
+                        <ul class="navbar-nav nav-underline left-links d-flex flex-row gap-lg-4 me-xl-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('home') }}">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('popular') }}"">Popular</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('popular') }}">Recipe Index</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Docs</a>
+                            </li>
+                        </ul>
+                        <ul class="navbar-nav nav-underline left-links d-flex flex-row gap-4 mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a href="{{ url_for('login') }}" class="nav-link">Sign up / Login</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <!-- End Top Menu Bar -->
+
+            <!-- Nav Bar with Search -->
+            <nav class="navbar navbar-expand-lg bg-body-tertiary">
+                <div class="container d-flex">
+                    <a class="navbar-brand d-flex align-items-center" href="{{ url_for('home') }}">
+                        <img src="../static/images/logos/recipe_planner_orange.png" alt="" class="me-2" />
+                        <span class="brand-name fw-bold pb-0">My Recipe Planner</span>
+                    </a>
+                    <button
+                        class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                    >
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse mt-1" id="navbarSupportedContent">
+                        <div class="profile-menu-items list-group mb-3">
+                            <a class="dropdown-item list-group-item list-group-item-action" href="{{ url_for('profile') }}">Profile</a>
+                            <a class="dropdown-item list-group-item list-group-item-action" href="#">Favorites</a>
+                            <a class="dropdown-item list-group-item list-group-item-action" href="#">Settings</a>
+                            <a class="dropdown-item list-group-item list-group-item-action" href="{{ url_for('logout') }}">Logout</a>
+                        </div>
+                        <ul class="navbar-nav ms-auto me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <form class="d-flex" role="search">
+                                    <div class="dropdown" data-control="checkbox-dropdown">
+                                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            All Categories
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <label class="dropdown-item dropdown-option form-check-label">
+                                                    <input type="checkbox" name="dropdown-group" value="Selection 1" />
+                                                    Instant Pot
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label class="dropdown-item dropdown-option">
+                                                    <input type="checkbox" name="dropdown-group" value="Selection 2" />
+                                                    Vegetarian
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label class="dropdown-item dropdown-option">
+                                                    <input type="checkbox" name="dropdown-group" value="Selection 3" />
+                                                    Healthy
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label class="dropdown-item dropdown-option">
+                                                    <input type="checkbox" name="dropdown-group" value="Selection 4" />
+                                                    Salad
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label class="dropdown-item dropdown-option">
+                                                    <input type="checkbox" name="dropdown-group" value="Selection 5" />
+                                                    Bakery
+                                                </label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+                                    <button class="btn btn-primary" type="submit">Search</button>
+                                </form>
+                            </li>
+                        </ul>
+                        <ul class="navbar-nav mb-lg-0">
+                            <li class="profile-menu nav-item dropdown z-3">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="../static/images/avatar/5.jpg" class="profile-img" />
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><a class="dropdown-item" href="{{ url_for('profile') }}">Profile</a></li>
+                                    <li><a class="dropdown-item" href="#">Favorites</a></li>
+                                    <li><a class="dropdown-item" href="#">Settings</a></li>
+                                    <li><hr class="dropdown-divider" /></li>
+                                    <li><a class="dropdown-item" href="{{ url_for('logout') }}">Logout</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <!-- End Nav Bar with Search -->
+
+        <!-- Main Content Start -->
+        <div class="container-xxl py-5">
+            <!-- Recipe Popular Start -->
+            <div class="container">
+                <div class="main-body">
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="profile-card">
+                                <div class="card-body">
+                                    <div class="d-flex flex-column align-items-center text-center">
+                                        <img src="../static/images/avatar/5.jpg" alt="user-avatar" class="rounded-circle mt-3" width="120" />
+                                        <div class="mt-3">
+                                            <h4 class="fs-5">{{ user.first_name }} {{ user.last_name }}</h4>
+                                            <p class="text-secondary mb-1">{{ user.email }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-8">
+                            <div class="row mb-1">
+                                <div class="d-flex justify-content-end">
+                                    <a href="{{ url_for('add_recipe') }}" class="btn btn-primary">Add Recipe</a>
+                                </div>
+                            </div>
+                            <div class="row my-recipes">
+                                <section class="tstbite-components mt-0 mb-4 mb-md-5 desserts-box">
+                                    <div class="divider">
+                                        <div class="divider-text my-2">
+                                            <h4 class="mb-0"><i class="bi bi-heart-fill text-danger"></i> My Recipes</h4>
+                                        </div>
+                                    </div>
+
+                                    <div class="row my-favorites">
+                                        <div class="col-lg-3 col-md-4 col-6">
+                                            <figure class="my-3 my-md-4 tstbite-card">
+                                                <a href="#0" class="tstbite-animation">
+                                                    <img src="../static/images/stock/stock18.jpg" class="w-100 rounded-4" alt="Menu" />
+                                                </a>
+                                                <figcaption class="mt-2">
+                                                    <a href="#0" class="text-black d-block mt-1 text-decoration-none font-weight-semibold big">Caramel Strawberry Milkshake</a>
+                                                </figcaption>
+                                            </figure>
+                                        </div>
+                                        <div class="col-lg-3 col-md-4 col-6">
+                                            <figure class="my-3 my-md-4 tstbite-card">
+                                                <a href="#0" class="tstbite-animation">
+                                                    <img src="../static/images/stock/stock17.jpg" class="w-100 rounded-4" alt="Menu" />
+                                                </a>
+                                                <figcaption class="mt-2">
+                                                    <a href="#0" class="text-black d-block mt-1 text-decoration-none font-weight-semibold big">Caramel Strawberry Milkshake</a>
+                                                </figcaption>
+                                            </figure>
+                                        </div>
+                                        <div class="col-lg-3 col-md-4 col-6">
+                                            <figure class="my-3 my-md-4 tstbite-card">
+                                                <a href="#0" class="tstbite-animation rounded-6">
+                                                    <img src="../static/images/stock/stock21.jpg" class="w-100 rounded-4" alt="Menu" />
+                                                </a>
+                                                <figcaption class="mt-2">
+                                                    <a href="#0" class="text-black d-block mt-1 text-decoration-none font-weight-semibold big">Smoked Salmon Salad Sandwich</a>
+                                                </figcaption>
+                                            </figure>
+                                        </div>
+                                        <div class="col-lg-3 col-md-4 col-6">
+                                            <figure class="my-3 my-md-4 tstbite-card">
+                                                <a href="#0" class="tstbite-animation rounded-6">
+                                                    <img src="../static/images/stock/stock15.jpg" class="w-100 rounded-4" alt="Menu" />
+                                                </a>
+                                                <figcaption class="mt-2">
+                                                    <a href="#0" class="text-black d-block mt-1 text-decoration-none font-weight-semibold big"
+                                                        >Salmon in Creamy Sun Dried Tomato Sauce</a
+                                                    >
+                                                </figcaption>
+                                            </figure>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+
+                            <div class="row">
+                                <section class="tstbite-components mt-0 mb-4 mb-md-5 desserts-box">
+                                    <div class="divider">
+                                        <div class="divider-text my-2"><h4 class="mb-0"><i class="bi bi-heart-fill text-danger"></i> My Favorites</h4></div>
+                                    </div>
+                                    <div class="row">
+                                        {% for recipe in data %}
+                                        <div class="col-lg-3 col-md-4 col-6">
+                                            <figure class="my-3 my-md-4 tstbite-card">
+                                                <a href="#0" class="tstbite-animation">
+                                                    <img src="{{ recipe['image'] }}" class="w-100 rounded-4" alt="Menu" />
+                                                </a>
+                                                <figcaption class="mt-2">
+                                                    <a href="#0" class="text-black d-block mt-1 text-decoration-none font-weight-semibold big">{{ recipe['title'] }}</a>
+                                                </figcaption>
+                                            </figure>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Recipe Popular End -->
+        </div>
+        <!-- Main Cntent End -->
+
+        <!-- Footer Start -->
+        <div class="container-fluid bg-dark text-light footer px-0 pt-5 mt-5">
+            <div class="container pt-5 pb-2">
+                <div class="row g-5">
+                    <div class="col-lg-3 col-md-6">
+                        <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">My Recipe Planner</h4>
+                        <ul class="footer-links-ul ps-0">
+                            <li><a class="btn btn-link" href="">About Us</a></li>
+                            <li><a class="btn btn-link" href="">Contact Us</a></li>
+                            <li><a class="btn btn-link" href="">Privacy Policy</a></li>
+                            <li><a class="btn btn-link" href="">Terms & Condition</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Contact</h4>
+                        <p class="mb-2"><i class="bi bi-geo-alt-fill me-3"></i>6th of October, Giza, Egypt</p>
+                        <p class="mb-2"><i class="bi bi-whatsapp me-3"></i>+2 010 1114 1721</p>
+                        <p class="mb-2"><i class="bi bi-envelope-at-fill me-3"></i>info@hazemit.tech</p>
+                        <div class="d-flex pt-2">
+                            <a class="btn btn-outline-light btn-social me-3" href=""><i class="bi bi-twitter-x"></i></a>
+                            <a class="btn btn-outline-light btn-social me-3" href=""><i class="bi bi-facebook"></i></a>
+                            <a class="btn btn-outline-light btn-social me-3" href=""><i class="bi bi-linkedin"></i></a>
+                            <a class="btn btn-outline-light btn-social" href=""><i class="bi bi-github"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-5">
+                        <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">API Docs</h4>
+                        <ul class="footer-links-ul ps-0">
+                            <li><a class="btn btn-link" href="">Recipes</a></li>
+                            <li><a class="btn btn-link" href="">Favorites</a></li>
+                            <li><a class="btn btn-link" href="">Ingredients</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Newsletter!</h4>
+                        <p>Get latest recipes updates on your email</p>
+                        <div class="position-relative mx-auto">
+                            <input class="form-control border-primary w-100 py-3 ps-3 pe-5" type="text" placeholder="Enter Your email" aria-label="newsletter" />
+                            <button type="button" class="btn btn-primary pt-2 position-absolute top-0 end-0">Sign Up</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="text-primary" />
+            <div class="copyright pb-4 pt-2">
+                <div class="container">
+                    <div class="row">
+                        <div class="dev-by">
+                            <div>&copy; <a class="text-primary text-decoration-none" href="#">My Recipe Planner</a> - All Rights Reserved 2024.</div>
+                            <div>Designed & Developed with <i class="bi bi-heart-fill text-danger"></i> By <a class="btn btn-link text-primary" href="#">Hazem Magdy</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer End -->
+
+        <!-- Bootstrap Scripts-->
+        <script src="../static/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+        <script src="../static/scripts/main.js"></script>
+    </body>
+</html>

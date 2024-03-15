@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Handlee&display=swap" rel="stylesheet" />
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Material+Icons+Sharp" />
+        <link rel="stylesheet" href="../static/node_modules/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="../static/node_modules/bootstrap/dist/css/bootstrap-utilities.min.css" />
+        <link rel="stylesheet" href="../static/node_modules/bootstrap-icons/font/bootstrap-icons.min.css" />
+        <link rel="stylesheet" href="../static/styles/custom-primary-color.css" />
+        <link rel="stylesheet" href="../static/styles/main.css" />
+
+        <script src="../static/node_modules/jquery/dist/jquery.js"></script>
+        <title>My Recipe Planner</title>
+    </head>
+
+    <body class="d-flex flex-column min-vh-100 mb-4">
+        <div class="position-sticky sticky-top">
+            <!-- Top Menu Bar -->
+            <div class="top-links-bar">
+                <div class="container d-flex align-items-center justify-content-between">
+                    <nav id="navbar" class="navbar w-100">
+                        <ul class="navbar-nav nav-underline left-links d-flex flex-row gap-lg-4 me-xl-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('home') }}">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Popular</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('all_recipes')}}">Recipe Index</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Docs</a>
+                            </li>
+                        </ul>
+                        <ul class="navbar-nav nav-underline left-links d-flex flex-row gap-4 mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a href="{{ url_for('login') }}" class="nav-link">Sign up / Login</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <!-- End Top Menu Bar -->
+
+            <!-- Nav Bar with Search -->
+            <nav class="navbar navbar-expand-lg bg-body-tertiary">
+                <div class="container d-flex">
+                    <a class="navbar-brand d-flex align-items-center" href="{{ url_for('home') }}">
+                        <img src="../static/images/logos/recipe_planner_orange.png" alt="" class="me-2" />
+                        <span class="brand-name fw-bold pb-0">My Recipe Planner</span>
+                    </a>
+                    <button
+                        class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                    >
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse mt-1" id="navbarSupportedContent">
+                        <div class="profile-menu-items list-group mb-3">
+                            <a class="dropdown-item list-group-item list-group-item-action" href="#">Profile</a>
+                            <a class="dropdown-item list-group-item list-group-item-action" href="#">Favorites</a>
+                            <a class="dropdown-item list-group-item list-group-item-action" href="#">Settings</a>
+                            <a class="dropdown-item list-group-item list-group-item-action" href="{{ url_for('logout') }}">Logout</a>
+                        </div>
+                        <ul class="navbar-nav ms-auto me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <form class="d-flex" role="search">
+                                    <div class="dropdown" data-control="checkbox-dropdown">
+                                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            All Categories
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <label class="dropdown-item dropdown-option form-check-label">
+                                                    <input type="checkbox" name="dropdown-group" value="Selection 1" />
+                                                    Instant Pot
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label class="dropdown-item dropdown-option">
+                                                    <input type="checkbox" name="dropdown-group" value="Selection 2" />
+                                                    Vegetarian
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label class="dropdown-item dropdown-option">
+                                                    <input type="checkbox" name="dropdown-group" value="Selection 3" />
+                                                    Healthy
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label class="dropdown-item dropdown-option">
+                                                    <input type="checkbox" name="dropdown-group" value="Selection 4" />
+                                                    Salad
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label class="dropdown-item dropdown-option">
+                                                    <input type="checkbox" name="dropdown-group" value="Selection 5" />
+                                                    Bakery
+                                                </label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+                                    <button class="btn btn-primary" type="submit">Search</button>
+                                </form>
+                            </li>
+                        </ul>
+                        <ul class="navbar-nav mb-lg-0">
+                            <li class="profile-menu nav-item dropdown z-3">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="../static/images/avatar/5.jpg" class="profile-img" />
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><a class="dropdown-item" href="#">Profile</a></li>
+                                    <li><a class="dropdown-item" href="#">Favorites</a></li>
+                                    <li><a class="dropdown-item" href="#">Settings</a></li>
+                                    <li><hr class="dropdown-divider" /></li>
+                                    <li><a class="dropdown-item" href="{{ url_for('logout') }}">Logout</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <!-- End Nav Bar with Search -->
+
+        <!-- Main Content Start -->
+        <div class="container-xxl py-5">
+            <div class="container d-flex justify-content-center py-4">
+                <main class="form-recipe m-auto">
+                    <form method="POST" action="">
+                        {{ form.hidden_tag() }}
+
+                        <h1 class="h3 mb-3">{{ form.form_label.label }}</h1>
+
+                        <div class="form-floating mb-3">
+                            {{ form.title(class_="form-control w-100", id_="floatingInput") }}
+                            <label for="floatingInput">{{ form.title.label.text }}</label>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            {{ form.imgUrl(class_="form-control", id_="floatingInput") }}
+                            <label for="floatingInput">{{ form.imgUrl.label.text }}</label>
+                        </div>
+
+                        <div class="d-flex flex-wrap">
+                            <div class="form-floating mb-3">
+                                {{ form.servings(class_="form-control", id_="floatingInput") }}
+                                <label for="floatingInput">{{ form.servings.label.text }}</label>
+                            </div>
+                            <div class="form-floating mb-3 ms-1">
+                                {{ form.readyInMinutes(class_="form-control", id_="floatingInput") }}
+                                <label for="floatingInput">{{ form.readyInMinutes.label.text }}</label>
+                            </div>
+
+                            <div class="form-floating mb-3 ms-1">
+                                {{ form.preparationMinutes(class_="form-control", id_="floatingInput") }}
+                                <label for="floatingInput">{{ form.preparationMinutes.label.text }}</label>
+                            </div>
+                            <div class="form-floating mb-3 ms-1">
+                                {{ form.cookingMinutes(class_="form-control", id_="floatingInput") }}
+                                <label for="floatingInput">{{ form.cookingMinutes.label.text }}</label>
+                            </div>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            {{ form.description(class_="form-control", id_="floatingInput") }}
+                            <label for="floatingInput">{{ form.description.label.text }}</label>
+                        </div>
+
+                        <h4 class="mb-3">{{ form.ingredient_label.label }}</h4>
+                        <div class="d-flex flex-wrap align-items-center position-relative">
+                            {% for field in form.ingredients %}
+                            <div class="d-flex flex-wrap align-items-center position-relative" id="ingredient-fields">
+                                <div class="pb-3 pe-2 fs-6 fw-medium">{{ field.label(class_="ingredient-row-label") }}</div>
+                                <div class="form-floating mb-3">
+                                    {{ field['name'](class_="form-control", id_="floatingInput") }}
+                                    <label for="floatingInput">{{ field['name'].label.text }}</label>
+                                </div>
+
+                                <div class="form-floating mb-3 me-1">
+                                    {{ field['quantity'](class_="form-control", id_="floatingInput") }}
+                                    <label for="floatingInput">{{ field['quantity'].label.text }}</label>
+                                </div>
+
+                                <div class="form-floating mb-3 me-1">
+                                    {{ field['unit'](class_="form-control", id_="floatingInput") }}
+                                    <label for="floatingInput">{{ field['unit'].label.text }}</label>
+                                </div>
+                                <div class="form-floating mb-3 me-2">
+                                    {{ field['imgUrl'](class_="form-control", id_="floatingInput") }}
+                                    <label for="floatingInput">{{ field['imgUrl'].label.text }}</label>
+                                </div>
+                                <!-- <div id="ingredient-rows-placeholder"></div> -->
+                            </div>
+                            {% endfor %}
+                            <button class="btn-add-ingredient btn btn-success sticky-right me-2" type="button" id="add-ingredient">+</button>
+                            <button class="btn-remove-ingredient btn btn-danger sticky-right" type="button" id="remove-ingredient">-</button>
+                        </div>
+
+                        {% for field in form.steps %} {{ field.label }}
+                        <div class="form-floating mb-3 ms-1">
+                            <div class="d-flex flex-wrap position-relative" id="steps-fields">
+                                <div class="form-floating mb-3 w-100">
+                                    {{ field['instruction'](class_="form-control", id_="floatingInput") }}
+                                    <label for="floatingInput">{{ field['instruction'].label.text }}</label>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+
+                        <div class="form-check signin-div-btn my-3 d-flex justify-content-center">{{ form.submit(class_="btn btn-primary w-50 py-2 fs-5") }}</div>
+                        <a class="btn btn-outline-primary fw-medium fs-5 px-3" href="{{ url_for('profile') }}">Cancel</a>
+                    </form>
+                </main>
+            </div>
+        </div>
+        <!-- Main Cntent End -->
+
+        <!-- Footer Start -->
+        <div class="container-fluid bg-dark text-light footer px-0 pt-5 mt-5">
+            <div class="container pt-5 pb-2">
+                <div class="row g-5">
+                    <div class="col-lg-3 col-md-6">
+                        <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">My Recipe Planner</h4>
+                        <ul class="footer-links-ul ps-0">
+                            <li><a class="btn btn-link" href="">About Us</a></li>
+                            <li><a class="btn btn-link" href="">Contact Us</a></li>
+                            <li><a class="btn btn-link" href="">Privacy Policy</a></li>
+                            <li><a class="btn btn-link" href="">Terms & Condition</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Contact</h4>
+                        <p class="mb-2"><i class="bi bi-geo-alt-fill me-3"></i>6th of October, Giza, Egypt</p>
+                        <p class="mb-2"><i class="bi bi-whatsapp me-3"></i>+2 010 1114 1721</p>
+                        <p class="mb-2"><i class="bi bi-envelope-at-fill me-3"></i>info@hazemit.tech</p>
+                        <div class="d-flex pt-2">
+                            <a class="btn btn-outline-light btn-social me-3" href=""><i class="bi bi-twitter-x"></i></a>
+                            <a class="btn btn-outline-light btn-social me-3" href=""><i class="bi bi-facebook"></i></a>
+                            <a class="btn btn-outline-light btn-social me-3" href=""><i class="bi bi-linkedin"></i></a>
+                            <a class="btn btn-outline-light btn-social" href=""><i class="bi bi-github"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-5">
+                        <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">API Docs</h4>
+                        <ul class="footer-links-ul ps-0">
+                            <li><a class="btn btn-link" href="">Recipes</a></li>
+                            <li><a class="btn btn-link" href="">Favorites</a></li>
+                            <li><a class="btn btn-link" href="">Ingredients</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Newsletter!</h4>
+                        <p>Get latest recipes updates on your email</p>
+                        <div class="position-relative mx-auto">
+                            <input class="form-control border-primary w-100 py-3 ps-3 pe-5" type="text" placeholder="Enter Your email" aria-label="newsletter" />
+                            <button type="button" class="btn btn-primary pt-2 position-absolute top-0 end-0">Sign Up</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="text-primary" />
+            <div class="copyright pb-4 pt-2">
+                <div class="container">
+                    <div class="row">
+                        <div class="dev-by">
+                            <div>&copy; <a class="text-primary text-decoration-none" href="#">My Recipe Planner</a> - All Rights Reserved 2024.</div>
+                            <div>Designed & Developed with <i class="bi bi-heart-fill text-danger"></i> By <a class="btn btn-link text-primary" href="#">Hazem Magdy</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer End -->
+
+        <!-- Bootstrap Scripts-->
+        <script src="../static/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+        <script src="../static/scripts/main.js"></script>
+
+        <script>
+            // $(document).ready(function () {
+            //         var counter = 1;
+            //         var labelText = ""
+            //         var field_label = document.querySelector('label[for="ingredients-0"]') !== null;
+            //         if (field_label) {
+            //             var label = document.querySelector('label[for="ingredients-0"]');
+            //             label.textContent = "ingredients " + counter;
+            //             labelText = label.textContent
+            //         }
+            //         // Target the parent container of the ingredient fields
+            //         $("#ingredient-fields")
+            //             .parent()
+            //             .on("click", ".btn-add-ingredient", function () {
+            //                 counter += 1;
+            //                 console.log(labelText)
+            //                 var new_field_label = document.querySelector('label[for="' + labelText + '"]') !== null;
+            //                 if (new_field_label) {
+            //                     var label = document.querySelector('label[for="' + labelText + '"]');
+            //                     label.textContent = "ingredients " + counter;
+            //                 }
+            //                 // Clone the existing ingredient field container
+            //                 var newIngredientField = $("#ingredient-fields").clone();
+            //                 // Clear the input values in the cloned fields
+            //                 newIngredientField.find("input").val("");
+
+            //                 // Increment a counter or use a unique ID generation approach
+            //                 var fieldCount = $(this).closest("#ingredient-fields").find(".form-control.ingredient").length; // Adjust based on your ID naming convention
+
+            //                 // Update IDs and names within the cloned fields
+            //                 newIngredientField.find("input").each(function () {
+            //                     var originalId = $(this).attr("id");
+            //                     var originalName = $(this).attr("name");
+
+            //                     $(this).attr("id", originalId + "-" + counter);
+            //                     $(this).attr("name", originalName + "-" + counter);
+            //                 });
+
+            //                 // Append the cloned ingredient field to the container
+            //                 $(this).parent().append(newIngredientField);
+            //             });
+            //     });
+
+            $(document).ready(function () {
+                var counter = 1;
+
+                // Event handler for adding new ingredient fields
+                $("#ingredient-fields")
+                    .parent()
+                    .on("click", ".btn-add-ingredient", function () {
+                        // Increment counter for each new ingredient field
+                        counter++;
+
+                        // Clone the existing ingredient field container
+                        var newIngredientField = $("#ingredient-fields").clone();
+
+                        // Clear the input values in the cloned fields
+                        newIngredientField.find("input").val("");
+
+                        // Update IDs and names within the cloned fields
+                        newIngredientField.find("input").each(function () {
+                            var originalId = $(this).attr("id");
+                            var originalName = $(this).attr("name");
+
+                            $(this).attr("id", originalId + "-" + counter);
+                            $(this).attr("name", originalName + "-" + counter);
+                        });
+
+                        // Update the label text for the newly added ingredient field
+                        newIngredientField.find(".ingredient-row-label").text("ingredients " + counter);
+
+                        // Append the cloned ingredient field to the container
+                        $(this).parent().append(newIngredientField);
+                    });
+
+                $("#ingredient-fields").on("click", ".btn-remove-ingredient", function () {
+                    $(this).closest("#ingredient-fields").remove();
+                    counter -= 1;
+                });
+            });
+        </script>
+    </body>
+</html>

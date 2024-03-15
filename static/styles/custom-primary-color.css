@@ -1,0 +1,157 @@
+/* Override Bootstrap's primary color */
+:root {
+  --primary: #f68b21;
+}
+
+/* Navbar links */
+
+
+.navbar .navbar-nav .nav-link.active,
+.navbar .navbar-nav .nav-link:hover,
+.navbar .navbar-nav .nav-link:focus {
+  color: #fd9b3a;
+}
+
+/* Regular buttons */
+.btn-primary {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: #f68b21; 
+  --bs-btn-border-color: #f68b21; 
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #e57300; 
+  --bs-btn-hover-border-color: #e57300;
+  --bs-btn-focus-shadow-rgb: 246, 139, 33;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #e57300; 
+  --bs-btn-active-border-color: #e57300;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #fff;
+  --bs-btn-disabled-bg: #f68b21; 
+  --bs-btn-disabled-border-color: #f68b21; 
+}
+
+/* Dropdown */
+.btn-primary.dropdown-toggle {
+  --bs-dropdown-toggle-bg: #f68b21; 
+  --bs-dropdown-toggle-border-color: #f68b21; 
+}
+
+.dropdown-menu {
+  --bs-dropdown-bg: #fff;
+  --bs-dropdown-border-color: #fff; 
+  --bs-dropdown-link-active-bg: #e57300;
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+  --bs-dropdown-item-active-color: #fff;
+  --bs-dropdown-item-active-bg: #e57300; 
+}
+
+.dropdown-item.disabled,
+.dropdown-item:disabled {
+  --bs-dropdown-item-disabled-color: #6c757d; 
+  --bs-dropdown-item-disabled-bg: #fff;
+}
+
+.dropdown-item {
+  --bs-dropdown-item-color: #212529; 
+  --bs-dropdown-item-bg: #fff; 
+  --bs-dropdown-item-hover-color: #212529;
+  --bs-dropdown-item-hover-bg: #f8f9fa;
+}
+
+.text-primary {
+  color: var(--primary) !important;
+}
+
+
+.btn.btn-link {
+  color: white;
+  text-decoration: none;
+  padding: 0;
+}
+
+.btn-outline-light:hover {
+  background-color: #fd9f42;
+  border-color: transparent;
+}
+
+.btn.btn-link:hover {
+  color: #fd9f42;
+}
+
+.bg-light {
+  /* background-color: rgb(199, 194, 191, 0.27) !important; */
+}
+
+
+/* Input focus */
+.form-control:focus {
+  border-color: #f68b21; 
+  box-shadow: 0 0 0 0.25rem rgba(246, 139, 33, 0.25); 
+}
+
+
+
+.form-select {
+  border-color: #ced4da; 
+}
+
+
+.form-select:focus {
+  border-color: #f68b21; 
+  box-shadow: 0 0 0 0.25rem rgba(246, 139, 33, 0.25);
+}
+
+/* Style the option elements */
+.form-select option {
+  background-color: #fff; 
+  color: #212529;
+}
+
+
+.form-select option:hover::before {
+  background-color: #f68b21 !important; 
+}
+
+
+
+.btn-primary:hover {
+  background-color: #e57300; 
+  border-color: #e57300; 
+}
+
+.btn-primary:focus,
+.btn-primary.focus {
+  box-shadow: 0 0 0 0.25rem rgba(246, 139, 33, 0.5);
+}
+
+.btn-primary.disabled,
+.btn-primary:disabled {
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+
+/* Outline buttons */
+.btn-outline-primary {
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
+.btn-outline-primary:hover {
+  color: #fff;
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+
+.btn-outline-primary:focus,
+.btn-outline-primary.focus {
+  box-shadow: 0 0 0 0.25rem rgba(246, 139, 33, 0.5);
+}
+
+.btn-outline-primary.disabled,
+.btn-outline-primary:disabled {
+  color: var(--primary);
+  border-color: var(--primary);
+}

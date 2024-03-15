@@ -1,0 +1,22 @@
+virtualenv -p python3 venv
+source venv/bin/activate
+
+pip3 install Flask flask_sqlalchemy flask_login flask_bcrypt email_validator
+
+# generate secret key for the application
+pytho3
+>>> import secrets
+>>> secrets.token_hex(16)
+
+pipenv install python_decouple
+
+# Install MySQLdb.
+pip3 install mysql-connector-python
+pip3 install mysqlclient
+sudo apt-get install python-mysqldb
+
+pipenv install flask_migrate
+
+pip3 install python_dotenv
+pip3 install WTForms
+pip3 install -U Flask-WTF

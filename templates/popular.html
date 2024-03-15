@@ -1,0 +1,32 @@
+{% extends 'layout.html'%} {% block content %}
+<div class="tab-content">
+    
+    
+    <!-- Tab 1 -->
+    <div id="tab-1" class="tab-pane fade show p-0 active">
+        <div class="row">
+            <div class="recipe-cards-center">
+                <div class="recipe-top-cats align-items-center">
+                    <h1 class="recipe-cat-title mb-5 ms-3">Most Popular</h1>
+                    <div class="recipe-top-cards">
+                        {% for recipe in data %}
+                                <div class="col card-shadow">
+                                <div class="card">
+                                        <a href="#">
+                                        <img src="{{ recipe['image'] }}" class="card-img-container" alt="" />
+                                        </a>
+                                        <div class="card-body px-3">
+                                        <h5 class="card-title recipe-card-title">{{ recipe['title'] }}</h5>
+                                        </div>
+                                </div>
+                                </div>
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Tab 1 -->
+</div>
+{% endblock content %}

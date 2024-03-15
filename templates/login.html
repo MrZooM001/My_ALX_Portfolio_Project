@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Material+Icons+Sharp" />
+        <link rel="stylesheet" href="../static/node_modules/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="../static/node_modules/bootstrap/dist/css/bootstrap-utilities.min.css" />
+        <link rel="stylesheet" href="../static/node_modules/bootstrap-icons/font/bootstrap-icons.min.css" />
+        <link rel="stylesheet" href="../static/styles/custom-primary-color.css" />
+        <link rel="stylesheet" href="../static/styles/main.css" />
+
+        <title>Login</title>
+    </head>
+
+    <body class="">
+        <div class="container d-flex justify-content-center w-50 py-4">
+            <main class="form-signin w-75 m-auto">
+                <form method="POST" action="">
+                    {{ form.hidden_tag() }}
+                    <!-- {{ form.username }} -->
+                    <!-- {{ form.password }} -->
+                    <!-- {{ form.submit }} -->
+                    <a class="navbar-brand my-4 d-flex align-items-center justify-content-center" href="{{ url_for('landing_page') }}">
+                        <img src="../static/images/logos/recipe_planner_orange.png" alt="" class="me-2" />
+                        <span class="brand-name fw-bold fs-3 pb-0">My Recipe Planner</span>
+                    </a>
+                    <h1 class="h3 mb-3 fw-normal">Login</h1>
+
+                    <div class="form-floating mb-3">
+                        {{ form.username(class_="form-control w-100", id_="floatingInput") }}
+                        <label for="floatingInput">Username</label>
+                    </div>
+                    <div class="form-floating">
+                        {{ form.password(class_="form-control w-100", id_="floatingPassword") }}
+                        <!-- <input type="password" class="form-control" id="floatingPassword" placeholder="Password" /> -->
+                        <label for="floatingPassword">Password</label>
+                    </div>
+
+                    <div class="form-check my-3 ms-2">
+                        <input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault" />
+                        <label class="form-check-label" for="flexCheckDefault"> Remember me </label>
+                    </div>
+                    <div class="form-check signin-div-btn my-3 d-flex justify-content-center">
+                        {{ form.submit(class_="btn btn-primary w-50 py-2 fs-5") }}
+                        <!-- <button class="btn btn-primary w-50 py-2 fs-5" type="submit">Login</button> -->
+                    </div>
+                </form>
+                <div class="divider">
+                    <div class="divider-text my-2">OR</div>
+                </div>
+                <div class="form-check my-3 d-flex justify-content-center">
+                    <div class="d-flex align-items-center">
+                        <label class="me-2">Don't have an account? </label>
+                        <a class="btn btn-outline-primary fs-5 px-3" href="{{ url_for('register') }}">Register</a>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <script src="../static/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="../static/scripts/main.js"></script>
+    </body>
+</html>
