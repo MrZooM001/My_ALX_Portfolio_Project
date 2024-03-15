@@ -12,7 +12,7 @@ class BaseConfig:
 
 
 class DevConfig(BaseConfig):
-    SQLALCHEMY_DATABASE_URI = getenv("JAWSDB_URL")
+    SQLALCHEMY_DATABASE_URI = getenv("DATABASE_URL")
     DEBUG = getenv("DEBUG")
     SQLALCHEMY_ECHO = True
     TEMPLATES_AUTO_RELOAD = getenv("TEMPLATES_AUTO_RELOAD")
