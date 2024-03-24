@@ -4,11 +4,10 @@ from extensions import db
 
 class Ingredient(BaseModel, db.Model):
     __tablename__ = "ingredients"
-    name = db.Column(db.String(120), nullable=False, unique=True)
-    imgUrl = db.Column(db.Text(), nullable=False)
-    # many to many relationship between Recipe & Ingredient
-    recipes = db.relationship("RecipeIngredient", back_populates="ingredients")
+    ingredient_name = db.Column(db.String(120), nullable=False)
+    quantity = db.Column(db.Float(), nullable=False)
+    unit = db.Column(db.String(20), nullable=False)
 
 
     def __repr__(self):
-        return "<Ingredient {}>".format(self.name)
+        return "<Ingredient {}>".format(self.ingredient_name)

@@ -1,494 +1,479 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+{% extends 'layout.html' %}
+{% block header %}
+{% block page_title %}<title>Main &nbsp;—&nbsp; My Recipe Planner</title>{% endblock %}
+{% endblock %}
+{% block content %}
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link href="https://fonts.googleapis.com/css2?family=Handlee&display=swap" rel="stylesheet" />
-
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Material+Icons+Sharp" />
-        <link rel="stylesheet" href="../static/node_modules/bootstrap/dist/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="../static/node_modules/bootstrap/dist/css/bootstrap-utilities.min.css" />
-        <link rel="stylesheet" href="../static/node_modules/bootstrap-icons/font/bootstrap-icons.min.css" />
-        <link rel="stylesheet" href="../static/styles/custom-primary-color.css" />
-        <link rel="stylesheet" href="../static/styles/main.css" />
-        <title>My Recipe Planner</title>
-        <link rel="ico" type="image/x-icon" href="/static/images/logos/favicon.ico"
-    </head>
-
-    <body class="d-flex flex-column min-vh-100 mb-4">
-        <div class="position-sticky sticky-top">
-            <!-- Top Menu Bar -->
-            <div class="top-links-bar">
-                <div class="container d-flex align-items-center justify-content-between">
-                    <nav id="navbar" class="navbar w-100">
-                        <ul class="navbar-nav nav-underline left-links d-flex flex-row gap-lg-4 me-xl-auto mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url_for('home') }}">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url_for('popular') }}">Popular</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url_for('popular') }}">Recipe Index</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Docs</a>
-                            </li>
-                        </ul>
-                        <ul class="navbar-nav nav-underline left-links d-flex flex-row gap-4 mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <a href="{{ url_for('login') }}" class="nav-link">Sign up / Login</a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-            <!-- End Top Menu Bar -->
-
-            <!-- Nav Bar with Search -->
-            <nav class="navbar navbar-expand-lg bg-body-tertiary">
-                <div class="container d-flex">
-                    <a class="navbar-brand d-flex align-items-center" href="{{ url_for('home') }}">
-                        <img src="../static/images/logos/recipe_planner_orange.png" alt="" class="me-2" />
-                        <span class="brand-name fw-bold pb-0">My Recipe Planner</span>
+<!-- Recipes tabs Start -->
+<div class="container-xxl py-5">
+    <!-- Recipe Popular Start -->
+    <div class="container">
+        <div class="text-center">
+            <h1 class="mb-5">Most Popular Recipes</h1>
+        </div>
+        <div class="tab-class text-center">
+            <ul class="nav nav-pills d-inline-flex justify-content-center border-bottom pb-3 mb-4">
+                <li class="nav-item">
+                    <a class="d-flex align-items-center text-start mx-md-3 mx-sm-0 ms-0 nav-link active"
+                        data-bs-toggle="pill" href="#tab-1">
+                        <div>
+                            <small class="text-body">Popular</small>
+                            <h6 class="mt-n1 mb-0">Instant Pot</h6>
+                        </div>
                     </a>
-                    <button
-                        class="navbar-toggler"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#navbarSupportedContent"
-                        aria-controls="navbarSupportedContent"
-                        aria-expanded="false"
-                        aria-label="Toggle navigation"
-                    >
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse mt-1" id="navbarSupportedContent">
-                        <div class="profile-menu-items list-group mb-3">
-                            <a class="dropdown-item list-group-item list-group-item-action" href="{{ url_for('profile') }}">Profile</a>
-                            <a class="dropdown-item list-group-item list-group-item-action" href="#">Favorites</a>
-                            <a class="dropdown-item list-group-item list-group-item-action" href="#">Settings</a>
-                            <a class="dropdown-item list-group-item list-group-item-action" href="{{ url_for('logout') }}">Logout</a>
-                        </div>
-                        <ul class="navbar-nav ms-auto me-auto mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <form class="d-flex" role="search">
-                                    <div class="dropdown" data-control="checkbox-dropdown">
-                                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                            All Categories
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                            <li>
-                                                <label class="dropdown-item dropdown-option form-check-label">
-                                                    <input type="checkbox" name="dropdown-group" value="Selection 1" />
-                                                    Instant Pot
-                                                </label>
-                                            </li>
-                                            <li>
-                                                <label class="dropdown-item dropdown-option">
-                                                    <input type="checkbox" name="dropdown-group" value="Selection 2" />
-                                                    Vegetarian
-                                                </label>
-                                            </li>
-                                            <li>
-                                                <label class="dropdown-item dropdown-option">
-                                                    <input type="checkbox" name="dropdown-group" value="Selection 3" />
-                                                    Healthy
-                                                </label>
-                                            </li>
-                                            <li>
-                                                <label class="dropdown-item dropdown-option">
-                                                    <input type="checkbox" name="dropdown-group" value="Selection 4" />
-                                                    Salad
-                                                </label>
-                                            </li>
-                                            <li>
-                                                <label class="dropdown-item dropdown-option">
-                                                    <input type="checkbox" name="dropdown-group" value="Selection 5" />
-                                                    Bakery
-                                                </label>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                                    <button class="btn btn-primary" type="submit">Search</button>
-                                </form>
-                            </li>
-                        </ul>
-                        <ul class="navbar-nav mb-lg-0">
-                            <li class="profile-menu nav-item dropdown z-3">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="../static/images/avatar/5.jpg" class="profile-img" />
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-end">
-                                    <li><a class="dropdown-item" href="{{ url_for('profile') }}">Profile</a></li>
-                                    <li><a class="dropdown-item" href="#">Favorites</a></li>
-                                    <li><a class="dropdown-item" href="#">Settings</a></li>
-                                    <li><hr class="dropdown-divider" /></li>
-                                    <li><a class="dropdown-item" href="{{ url_for('logout') }}">Logout</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        </div>
-        <!-- End Nav Bar with Search -->
+                </li>
 
-        <!-- Featured Recipes Carousel-->
-        <div id="myCarousel" class="top-featured-recipes-carousel carousel slide mb-6" data-bs-ride="carousel">
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" aria-label="Slide 1" class="active" aria-current="true"></button>
-                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-            </div>
-            <div class="carousel-inner">
-                <div class="carousel-item active" data-bs-interval="7500">
-                    <img src="../static/images/stock/stock2.jpg" />
-                    <div class="container">
-                        <div class="carousel-caption">
-                            <h1>Example headline.</h1>
-                            <p>Some representative placeholder content for the first slide of the carousel.</p>
-                            <p><a class="btn btn-lg btn-primary" href="#">Sign up today</a></p>
+                <li class="nav-item">
+                    <a class="d-flex align-items-center text-start mx-md-3 mx-sm-0 nav-link" data-bs-toggle="pill"
+                        href="#tab-2">
+                        <!-- <i class="fa fa-hamburger fa-2x text-primary"></i> -->
+                        <div class="">
+                            <small class="text-body">Top</small>
+                            <h6 class="mt-n1 mb-0">Healthy</h6>
                         </div>
-                    </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="7500">
-                    <img src="../static/images/stock/stock3.jpg" />
-                    <div class="container">
-                        <div class="carousel-caption">
-                            <h1>Another example headline.</h1>
-                            <p>Some representative placeholder content for the second slide of the carousel.</p>
-                            <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="7500">
-                    <img src="../static/images/stock/stock6.jpg" />
-                    <div class="container">
-                        <div class="carousel-caption">
-                            <h1>One more for good measure.</h1>
-                            <p>Some representative placeholder content for the third slide of this carousel.</p>
-                            <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
-        <!-- End Featured Recipes -->
+                    </a>
+                </li>
 
-        <!-- Main Content Start -->
-        <div class="container-xxl py-5">
-            <!-- Recipe Popular Start -->
-            <div class="container">
-                <div class="text-center">
-                    <h1 class="mb-5">Most Popular Recipes</h1>
-                </div>
-                <div class="tab-class text-center">
-                    <ul class="nav nav-pills d-inline-flex justify-content-center border-bottom pb-3 mb-4">
-                        <li class="nav-item">
-                            <a class="d-flex align-items-center text-start mx-md-3 mx-sm-0 ms-0 nav-link active" data-bs-toggle="pill" href="#tab-1">
-                                <div class="">
-                                    <small class="text-body">Popular</small>
-                                    <h6 class="mt-n1 mb-0">Breakfast</h6>
-                                </div>
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="d-flex align-items-center text-start mx-md-3 mx-sm-0 nav-link" data-bs-toggle="pill" href="#tab-2">
-                                <!-- <i class="fa fa-hamburger fa-2x text-primary"></i> -->
-                                <div class="">
-                                    <small class="text-body">Top</small>
-                                    <h6 class="mt-n1 mb-0">Healthy</h6>
-                                </div>
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="d-flex align-items-center text-start mx-md-3 mx-sm-0 me-0 nav-link" data-bs-toggle="pill" href="#tab-3">
-                                <!-- <i class="fa fa-utensils fa-2x text-primary"></i> -->
-                                <div class="">
-                                    <small class="text-body">New</small>
-                                    <h6 class="mt-n1 mb-0">Appetizer</h6>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
-                    <div class="tab-content">
-                        <!-- Tab 1 -->
-                        <div id="tab-1" class="tab-pane fade show p-0 active">
-                            <div class="row">
-                                <div class="recipe-cards-center">
-                                    <div class="recipe-top-cats align-items-start">
-                                        <h3 class="recipe-cat-title ms-3">Breakfast</h3>
-                                        <div class="recipe-top-cards">
-                                            {% for recipe in brkfst %}
-                                            <div class="col">
-                                                <div class="card">
-                                                    <a href="#">
-                                                        <img src="{{ recipe['image'] }}" class="card-img-container" alt="" />
-                                                    </a>
-                                                    <div class="card-body px-3">
-                                                        <h5 class="card-title recipe-card-title">{{ recipe['title'] }}</h5>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            {% endfor %}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                <li class="nav-item">
+                    <a class="d-flex align-items-center text-start mx-md-3 mx-sm-0 me-0 nav-link" data-bs-toggle="pill"
+                        href="#tab-3">
+                        <!-- <i class="fa fa-utensils fa-2x text-primary"></i> -->
+                        <div class="">
+                            <small class="text-body">New</small>
+                            <h6 class="mt-n1 mb-0">Dinner</h6>
                         </div>
-                        <!-- End Tab 1 -->
-                        
-                        <div id="tab-2" class="tab-pane fade show p-0">
-                            <div class="row g-4">
-                                <div class="recipe-cards-center mt-4">
-                                    <div class="recipe-top-cats align-items-start">
-                                        <h3 class="recipe-cat-title ms-3">Healthy</h3>
-                                        <div class="recipe-top-cards">
-                                            {% for recipe in sld %}
-                                            <div class="col">
-                                                <div class="card">
-                                                    <a href="#">
-                                                        <img src="{{ recipe['image'] }}" class="card-img-container" alt="" />
-                                                    </a>
-                                                    <div class="card-body">
-                                                        <h5 class="card-title recipe-card-title">{{ recipe['title'] }}</h5>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            {% endfor %}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div id="tab-3" class="tab-pane fade show p-0">
-                            <div class="row g-4">
-                                <div class="recipe-cards-center mt-4">
-                                    <div class="recipe-top-cats align-items-start">
-                                        <h3 class="recipe-cat-title ms-3">Appetizer</h3>
-                                        <div class="recipe-top-cards">
-                                            {% for recipe in aptz %}
-                                            <div class="col">
-                                                <div class="card">
-                                                    <a href="#">
-                                                        <img src="{{ recipe['image'] }}" class="card-img-container" alt="" />
-                                                    </a>
-                                                    <div class="card-body">
-                                                        <h5 class="card-title recipe-card-title">{{ recipe['title'] }}</h5>
-                                                        
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            {% endfor %}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Recipe Popular End -->
-
-            <div class="container mt-5">
-                <div class="text-center">
-                    <h1 class="mb-5">Most Popular Recipes</h1>
-                </div>
-                <div class="row g-4">
-                    <div class="col-lg-3">
-                        <div class="card-shadow d-flex flex-column align-items-center pt-2 pb-4">
-                            <h4 class="mt-3 mb-1">Quick & Easy</h4>
-                            <ul class="list-group">
-                                <li class="list-group-item border border-0 pb-1">
-                                    <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="#"
-                                        >5 Ingredient Tomato Soup</a
-                                    >
-                                </li>
-                                <li class="list-group-item border border-0 pb-1">
-                                    <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="#"
-                                        >Chili Crunch Tofu</a
-                                    >
-                                </li>
-                                <li class="list-group-item border border-0 pb-1">
-                                    <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="#"
-                                        >Salmon Tacos With Corn</a
-                                    >
-                                </li>
-                                <li class="list-group-item border border-0 pb-1">
-                                    <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="#"
-                                        >Butter Chicken Meatballs</a
-                                    >
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3">
-                        <div class="card-shadow d-flex flex-column align-items-center pt-2 pb-4">
-                            <h4 class="mt-3 mb-1">Dinner</h4>
-                            <ul class="list-group">
-                                <li class="list-group-item border border-0 pb-1">
-                                    <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="#"
-                                        >5 Ingredient Tomato Soup</a
-                                    >
-                                </li>
-                                <li class="list-group-item border border-0 pb-1">
-                                    <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="#"
-                                        >Chili Crunch Tofu</a
-                                    >
-                                </li>
-                                <li class="list-group-item border border-0 pb-1">
-                                    <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="#"
-                                        >Salmon Tacos With Corn</a
-                                    >
-                                </li>
-                                <li class="list-group-item border border-0 pb-1">
-                                    <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="#"
-                                        >Butter Chicken Meatballs</a
-                                    >
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3">
-                        <div class="card-shadow d-flex flex-column align-items-center pt-2 pb-4">
-                            <h4 class="mt-3 mb-1">Vegetarian</h4>
-                            <ul class="list-group">
-                                <li class="list-group-item border border-0 pb-1">
-                                    <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="#"
-                                        >5 Ingredient Tomato Soup</a
-                                    >
-                                </li>
-                                <li class="list-group-item border border-0 pb-1">
-                                    <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="#"
-                                        >Chili Crunch Tofu</a
-                                    >
-                                </li>
-                                <li class="list-group-item border border-0 pb-1">
-                                    <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="#"
-                                        >Salmon Tacos With Corn</a
-                                    >
-                                </li>
-                                <li class="list-group-item border border-0 pb-1">
-                                    <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="#"
-                                        >Butter Chicken Meatballs</a
-                                    >
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3">
-                        <div class="card-shadow d-flex flex-column align-items-center pt-2 pb-4">
-                            <h4 class="mt-3 mb-1">Salad</h4>
-                            <ul class="list-group">
-                                <li class="list-group-item border border-0 pb-1">
-                                    <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="#"
-                                        >5 Ingredient Tomato Soup</a
-                                    >
-                                </li>
-                                <li class="list-group-item border border-0 pb-1">
-                                    <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="#"
-                                        >Chili Crunch Tofu</a
-                                    >
-                                </li>
-                                <li class="list-group-item border border-0 pb-1">
-                                    <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="#"
-                                        >Salmon Tacos With Corn</a
-                                    >
-                                </li>
-                                <li class="list-group-item border border-0 pb-1">
-                                    <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="#"
-                                        >Butter Chicken Meatballs</a
-                                    >
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Main Cntent End -->
-
-        <!-- Footer Start -->
-        <div class="container-fluid bg-dark text-light footer px-0 pt-5 mt-5">
-            <div class="container pt-5 pb-2">
-                <div class="row g-5">
-                    <div class="col-lg-3 col-md-6">
-                        <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">My Recipe Planner</h4>
-                        <ul class="footer-links-ul ps-0">
-                            <li><a class="btn btn-link" href="">About Us</a></li>
-                            <li><a class="btn btn-link" href="">Contact Us</a></li>
-                            <li><a class="btn btn-link" href="">Privacy Policy</a></li>
-                            <li><a class="btn btn-link" href="">Terms & Condition</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Contact</h4>
-                        <p class="mb-2"><i class="bi bi-geo-alt-fill me-3"></i>6th of October, Giza, Egypt</p>
-                        <p class="mb-2"><i class="bi bi-whatsapp me-3"></i>+2 010 1114 1721</p>
-                        <p class="mb-2"><i class="bi bi-envelope-at-fill me-3"></i>info@hazemit.tech</p>
-                        <div class="d-flex pt-2">
-                            <a class="btn btn-outline-light btn-social me-3" href=""><i class="bi bi-twitter-x"></i></a>
-                            <a class="btn btn-outline-light btn-social me-3" href=""><i class="bi bi-facebook"></i></a>
-                            <a class="btn btn-outline-light btn-social me-3" href=""><i class="bi bi-linkedin"></i></a>
-                            <a class="btn btn-outline-light btn-social" href=""><i class="bi bi-github"></i></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-5">
-                        <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">API Docs</h4>
-                        <ul class="footer-links-ul ps-0">
-                            <li><a class="btn btn-link" href="">Recipes</a></li>
-                            <li><a class="btn btn-link" href="">Favorites</a></li>
-                            <li><a class="btn btn-link" href="">Ingredients</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Newsletter!</h4>
-                        <p>Get latest recipes updates on your email</p>
-                        <div class="position-relative mx-auto">
-                            <input class="form-control border-primary w-100 py-3 ps-3 pe-5" type="text" placeholder="Enter Your email" aria-label="newsletter" />
-                            <button type="button" class="btn btn-primary pt-2 position-absolute top-0 end-0">Sign Up</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <hr class="text-primary" />
-            <div class="copyright pb-4 pt-2">
-                <div class="container">
+                    </a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <!-- Tab 1 -->
+                <div id="tab-1" class="tab-pane fade show p-0 active">
                     <div class="row">
-                        <div class="dev-by">
-                            <div>&copy; <a class="text-primary text-decoration-none" href="#">My Recipe Planner</a> - All Rights Reserved 2024.</div>
-                            <div>Designed & Developed with <i class="bi bi-heart-fill text-danger"></i> By <a class="btn btn-link text-primary" href="#">Hazem Magdy</a></div>
+                        <div class="recipe-cards-center">
+                            <div class="recipe-top-cats align-items-start">
+                                <h3 class="recipe-cat-title ms-3">Instant Pot</h3>
+                                <div class="recipe-top-cards">
+                                    <div class="col card-shadow">
+                                        <div class="card">
+                                            <a href="#">
+                                                <img src="../static/images/stock/stock12.jpeg"
+                                                    class="card-img-container" alt="" />
+                                            </a>
+                                            <div class="card-body px-3">
+                                                <h5 class="card-title recipe-card-title">Card title</h5>
+                                                <div class="recipe-stats d-flex justify-content-between">
+                                                    <div class="left-stats d-flex flex-column align-items-start">
+                                                        <div class="recipe-prep-time mb-2">
+                                                            <i class="bi bi-stopwatch"></i>
+                                                            <span>30 Minutes</span>
+                                                        </div>
+                                                        <div class="recipe-likes">
+                                                            <i class="bi bi-hand-thumbs-up"></i>
+                                                            <span>55</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="right-stats d-flex flex-column align-items-end">
+                                                        <div class="recipe-level mb-2">
+                                                            <span>Super Dry</span>
+                                                        </div>
+                                                        <div class="recipe-reviews">
+                                                            <i class="bi bi-star-fill"></i>
+                                                            <i class="bi bi-star-fill"></i>
+                                                            <i class="bi bi-star-fill"></i>
+                                                            <i class="bi bi-star-fill"></i>
+                                                            <i class="bi bi-star-half d-none"></i>
+                                                            <i class="bi bi-star"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col">
+                                        <div class="card">
+                                            <a href="#">
+                                                <img src="../static/images/stock/stock13.jpg" class="card-img-container"
+                                                    alt="" />
+                                            </a>
+                                            <div class="card-body">
+                                                <h5 class="card-title recipe-card-title">Card title</h5>
+                                                <div class="recipe-stats d-flex justify-content-between">
+                                                    <div class="left-stats d-flex flex-column align-items-start">
+                                                        <div class="recipe-prep-time mb-2">
+                                                            <i class="bi bi-stopwatch"></i>
+                                                            <span>30 Minutes</span>
+                                                        </div>
+                                                        <div class="recipe-likes">
+                                                            <i class="bi bi-hand-thumbs-up"></i>
+                                                            <span>55</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="right-stats d-flex flex-column align-items-end">
+                                                        <div class="recipe-level mb-2">
+                                                            <span>Super Dry</span>
+                                                        </div>
+                                                        <div class="recipe-reviews">
+                                                            <i class="bi bi-star-fill"></i>
+                                                            <i class="bi bi-star-fill"></i>
+                                                            <i class="bi bi-star-fill"></i>
+                                                            <i class="bi bi-star-fill"></i>
+                                                            <i class="bi bi-star-half d-none"></i>
+                                                            <i class="bi bi-star"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col">
+                                        <div class="card">
+                                            <a href="#">
+                                                <img src="../static/images/stock/stock14.jpg" class="card-img-container"
+                                                    alt="" />
+                                            </a>
+                                            <div class="card-body">
+                                                <h5 class="card-title recipe-card-title">Card title</h5>
+                                                <div class="recipe-stats d-flex justify-content-between">
+                                                    <div class="left-stats d-flex flex-column align-items-start">
+                                                        <div class="recipe-prep-time mb-2">
+                                                            <i class="bi bi-stopwatch"></i>
+                                                            <span>30 Minutes</span>
+                                                        </div>
+                                                        <div class="recipe-likes">
+                                                            <i class="bi bi-hand-thumbs-up"></i>
+                                                            <span>55</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="right-stats d-flex flex-column align-items-end">
+                                                        <div class="recipe-level mb-2">
+                                                            <span>Super Dry</span>
+                                                        </div>
+                                                        <div class="recipe-reviews">
+                                                            <i class="bi bi-star-fill"></i>
+                                                            <i class="bi bi-star-fill"></i>
+                                                            <i class="bi bi-star-fill"></i>
+                                                            <i class="bi bi-star-fill"></i>
+                                                            <i class="bi bi-star-half d-none"></i>
+                                                            <i class="bi bi-star"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Tab 1 -->
+
+                <div id="tab-2" class="tab-pane fade show p-0">
+                    <div class="row g-4">
+                        <div class="recipe-cards-center mt-4">
+                            <div class="recipe-top-cats align-items-start">
+                                <h3 class="recipe-cat-title ms-3">Healthy</h3>
+                                <div class="recipe-top-cards">
+                                    <div class="col">
+                                        <div class="card">
+                                            <a href="#">
+                                                <img src="../static/images/stock/stock17.jpg" class="card-img-container"
+                                                    alt="" />
+                                            </a>
+                                            <div class="card-body">
+                                                <h5 class="card-title recipe-card-title">Card title</h5>
+                                                <div class="recipe-stats d-flex justify-content-between">
+                                                    <div class="left-stats d-flex flex-column align-items-start">
+                                                        <div class="recipe-prep-time mb-2">
+                                                            <i class="bi bi-stopwatch"></i>
+                                                            <span>30 Minutes</span>
+                                                        </div>
+                                                        <div class="recipe-likes">
+                                                            <i class="bi bi-hand-thumbs-up"></i>
+                                                            <span>55</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="right-stats d-flex flex-column align-items-end">
+                                                        <div class="recipe-level mb-2">
+                                                            <span>Super Dry</span>
+                                                        </div>
+                                                        <div class="recipe-reviews">
+                                                            <i class="bi bi-star-fill"></i>
+                                                            <i class="bi bi-star-fill"></i>
+                                                            <i class="bi bi-star-fill"></i>
+                                                            <i class="bi bi-star-fill"></i>
+                                                            <i class="bi bi-star-half d-none"></i>
+                                                            <i class="bi bi-star"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="card">
+                                            <a href="#">
+                                                <img src="../static/images/stock/stock10.jpg" class="card-img-container"
+                                                    alt="" />
+                                            </a>
+                                            <div class="card-body">
+                                                <h5 class="card-title recipe-card-title">Card title</h5>
+                                                <div class="recipe-stats d-flex justify-content-between">
+                                                    <div class="left-stats d-flex flex-column align-items-start">
+                                                        <div class="recipe-prep-time mb-2">
+                                                            <i class="bi bi-stopwatch"></i>
+                                                            <span>30 Minutes</span>
+                                                        </div>
+                                                        <div class="recipe-likes">
+                                                            <i class="bi bi-hand-thumbs-up"></i>
+                                                            <span>55</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="right-stats d-flex flex-column align-items-end">
+                                                        <div class="recipe-level mb-2">
+                                                            <span>Super Dry</span>
+                                                        </div>
+                                                        <div class="recipe-reviews">
+                                                            <i class="bi bi-star-fill"></i>
+                                                            <i class="bi bi-star-fill"></i>
+                                                            <i class="bi bi-star-fill"></i>
+                                                            <i class="bi bi-star-fill"></i>
+                                                            <i class="bi bi-star-half d-none"></i>
+                                                            <i class="bi bi-star"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="card">
+                                            <a href="#">
+                                                <img src="../static/images/stock/stock9.jpg" class="card-img-container"
+                                                    alt="" />
+                                            </a>
+                                            <div class="card-body">
+                                                <h5 class="card-title recipe-card-title">Card title</h5>
+                                                <div class="recipe-stats d-flex justify-content-between">
+                                                    <div class="left-stats d-flex flex-column align-items-start">
+                                                        <div class="recipe-prep-time mb-2">
+                                                            <i class="bi bi-stopwatch"></i>
+                                                            <span>30 Minutes</span>
+                                                        </div>
+                                                        <div class="recipe-likes">
+                                                            <i class="bi bi-hand-thumbs-up"></i>
+                                                            <span>55</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="right-stats d-flex flex-column align-items-end">
+                                                        <div class="recipe-level mb-2">
+                                                            <span>Super Dry</span>
+                                                        </div>
+                                                        <div class="recipe-reviews">
+                                                            <i class="bi bi-star-fill"></i>
+                                                            <i class="bi bi-star-fill"></i>
+                                                            <i class="bi bi-star-fill"></i>
+                                                            <i class="bi bi-star-fill"></i>
+                                                            <i class="bi bi-star-half d-none"></i>
+                                                            <i class="bi bi-star"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tab-3" class="tab-pane fade show p-0">
+                    <div class="row g-4">
+                        <div class="recipe-cards-center mt-4">
+                            <div class="recipe-top-cats align-items-start">
+                                <h3 class="recipe-cat-title ms-3">Dinner</h3>
+                                <div class="recipe-top-cards">
+                                    <div class="col">
+                                        <div class="card">
+                                            <a href="#">
+                                                <img src="../static/images/stock/stock15.jpg" class="card-img-container"
+                                                    alt="" />
+                                            </a>
+                                            <div class="card-body">
+                                                <h5 class="card-title recipe-card-title">Card title</h5>
+                                                <div class="recipe-stats d-flex justify-content-between">
+                                                    <div class="left-stats d-flex flex-column align-items-start">
+                                                        <div class="recipe-prep-time mb-2">
+                                                            <i class="bi bi-stopwatch"></i>
+                                                            <span>30 Minutes</span>
+                                                        </div>
+                                                        <div class="recipe-likes">
+                                                            <i class="bi bi-hand-thumbs-up"></i>
+                                                            <span>55</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="right-stats d-flex flex-column align-items-end">
+                                                        <div class="recipe-level mb-2">
+                                                            <span>Super Dry</span>
+                                                        </div>
+                                                        <div class="recipe-reviews">
+                                                            <i class="bi bi-star-fill"></i>
+                                                            <i class="bi bi-star-fill"></i>
+                                                            <i class="bi bi-star-fill"></i>
+                                                            <i class="bi bi-star-fill"></i>
+                                                            <i class="bi bi-star-half d-none"></i>
+                                                            <i class="bi bi-star"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="card">
+                                            <a href="#">
+                                                <img src="../static/images/stock/stock8.jpg" class="card-img-container"
+                                                    alt="" />
+                                            </a>
+                                            <div class="card-body">
+                                                <h5 class="card-title recipe-card-title">Card title</h5>
+                                                <div class="recipe-stats d-flex justify-content-between">
+                                                    <div class="left-stats d-flex flex-column align-items-start">
+                                                        <div class="recipe-prep-time mb-2">
+                                                            <i class="bi bi-stopwatch"></i>
+                                                            <span>30 Minutes</span>
+                                                        </div>
+                                                        <div class="recipe-likes">
+                                                            <i class="bi bi-hand-thumbs-up"></i>
+                                                            <span>55</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="right-stats d-flex flex-column align-items-end">
+                                                        <div class="recipe-level mb-2">
+                                                            <span>Super Dry</span>
+                                                        </div>
+                                                        <div class="recipe-reviews">
+                                                            <i class="bi bi-star-fill"></i>
+                                                            <i class="bi bi-star-fill"></i>
+                                                            <i class="bi bi-star-fill"></i>
+                                                            <i class="bi bi-star-fill"></i>
+                                                            <i class="bi bi-star-half d-none"></i>
+                                                            <i class="bi bi-star"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="card">
+                                            <a href="#">
+                                                <img src="../static/images/stock/stock7.jpg" class="card-img-container"
+                                                    alt="" />
+                                            </a>
+                                            <div class="card-body">
+                                                <h5 class="card-title recipe-card-title">Card title</h5>
+                                                <div class="recipe-stats d-flex justify-content-between">
+                                                    <div class="left-stats d-flex flex-column align-items-start">
+                                                        <div class="recipe-prep-time mb-2">
+                                                            <i class="bi bi-stopwatch"></i>
+                                                            <span>30 Minutes</span>
+                                                        </div>
+                                                        <div class="recipe-likes">
+                                                            <i class="bi bi-hand-thumbs-up"></i>
+                                                            <span>55</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="right-stats d-flex flex-column align-items-end">
+                                                        <div class="recipe-level mb-2">
+                                                            <span>Super Dry</span>
+                                                        </div>
+                                                        <div class="recipe-reviews">
+                                                            <i class="bi bi-star-fill"></i>
+                                                            <i class="bi bi-star-fill"></i>
+                                                            <i class="bi bi-star-fill"></i>
+                                                            <i class="bi bi-star-fill"></i>
+                                                            <i class="bi bi-star-half d-none"></i>
+                                                            <i class="bi bi-star"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Footer End -->
+    </div>
+    <!-- Recipe Popular End -->
 
-        <!-- Bootstrap Scripts-->
-        <script src="../static/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <div class="container mt-5">
+        <div class="text-center">
+            <h1 class="mb-5">Recipes from database</h1>
+        </div>
 
-        <script src="../static/scripts/main.js"></script>
-    </body>
-</html>
+        <div class="row my-recipes">
+            <section class="mt-0 mb-4 mb-md-5 desserts-box">
+                <div class="divider">
+                    <div class="divider-text my-2">
+                        <h4 class="mb-0"><i class="bi bi-heart-fill text-danger"></i> My Recipes</h4>
+                    </div>
+                </div>
+
+                <div class="row my-favorites">
+                    {% for recipe in recipes %}
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm col-8  w-sm-100">
+                        <div class="recipe-top-cards">
+                            <div class="card-shadow ">
+                                <div class="card">
+                                    <a href="{{ url_for('recipes_bp.recipe', recipe_title=recipe.title.replace(" ", "_")) }}">
+                                        <img src="{{ recipe.imgUrl }}" class="card-img-container " alt=""/>
+                                    </a>
+                                    <div class="card-body px-3">
+                                        <h5 class="card-title recipe-card-title">{{ recipe.title }}</h5>
+                                        <div class="recipe-stats d-flex justify-content-between">
+                                            <div class="left-stats d-flex flex-column align-items-start">
+                                                <div class="recipe-prep-time mb-2">
+                                                    <i class="bi bi-stopwatch"></i>
+                                                    <span>{{ recipe.readyInMinutes }}</span>
+                                                </div>
+                                                <div class="recipe-likes">
+                                                    <i class="bi bi-hand-thumbs-up"></i>
+                                                    <span>{{ recipe.cookingMinutes }}</span>
+                                                </div>
+                                            </div>
+                                            <div class="right-stats d-flex flex-column align-items-end">
+                                                <div class="recipe-level mb-2">
+                                                    <span>{{ recipe.servings }}</span>
+                                                </div>
+                                                <div class="recipe-reviews">
+                                                    <i class="bi bi-star-fill"></i>
+                                                    <i class="bi bi-star-fill"></i>
+                                                    <i class="bi bi-star-fill"></i>
+                                                    <i class="bi bi-star-fill"></i>
+                                                    <i class="bi bi-star-half d-none"></i>
+                                                    <i class="bi bi-star"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+<!-- Recipes tabs End -->
+
+{% endblock %}

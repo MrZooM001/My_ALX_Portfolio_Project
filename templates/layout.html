@@ -16,26 +16,30 @@
         <link rel="stylesheet" href="../static/node_modules/bootstrap-icons/font/bootstrap-icons.min.css" />
         <link rel="stylesheet" href="../static/styles/custom-primary-color.css" />
         <link rel="stylesheet" href="../static/styles/main.css" />
-
-        <script src="../static/node_modules/jquery/dist/jquery.js"></script>
-        <title>My Recipe Planner</title>
+        <link rel="ico" type="image/x-icon" href="/static/images/logos/favicon.ico" />
+        {% block header %}
+        <title>{% block page_title %}My Recipe Planner{% endblock %}</title>
+        {% endblock %}
+        <script src="../static/node_modules/jquery/dist/jquery.min.js"></script>
     </head>
 
     <body class="d-flex flex-column min-vh-100 mb-4">
+        {% block page_header_bar %}
+        <!-- Page Header -->
         <div class="position-sticky sticky-top">
             <!-- Top Menu Bar -->
-            <div class="top-links-bar">
+            <div class="top-links-bar position-relative">
                 <div class="container d-flex align-items-center justify-content-between">
                     <nav id="navbar" class="navbar w-100">
                         <ul class="navbar-nav nav-underline left-links d-flex flex-row gap-lg-4 me-xl-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url_for('home') }}">Home</a>
+                                <a class="nav-link" href="{{ url_for('main_bp.main') }}">Home</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Popular</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url_for('all_recipes')}}">Recipe Index</a>
+                                <a class="nav-link" href="#">Recipe Index</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Docs</a>
@@ -43,7 +47,7 @@
                         </ul>
                         <ul class="navbar-nav nav-underline left-links d-flex flex-row gap-4 mb-2 mb-lg-0">
                             <li class="nav-item">
-                                <a href="{{ url_for('login') }}" class="nav-link">Sign up / Login</a>
+                                <a href="{{ url_for('auth_bp.login') }}" class="nav-link {% if current_user %}d-none{% endif %}">Register / Login</a>
                             </li>
                         </ul>
                     </nav>
@@ -52,9 +56,9 @@
             <!-- End Top Menu Bar -->
 
             <!-- Nav Bar with Search -->
-            <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
                 <div class="container d-flex">
-                    <a class="navbar-brand d-flex align-items-center" href="{{ url_for('home') }}">
+                    <a class="navbar-brand d-flex align-items-center" href="{{ url_for('main_bp.main') }}">
                         <img src="../static/images/logos/recipe_planner_orange.png" alt="" class="me-2" />
                         <span class="brand-name fw-bold pb-0">My Recipe Planner</span>
                     </a>
@@ -69,12 +73,12 @@
                     >
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <div class="collapse navbar-collapse mt-1" id="navbarSupportedContent">
+                    <div class="collapse navbar-collapse mt-3" id="navbarSupportedContent">
                         <div class="profile-menu-items list-group mb-3">
-                            <a class="dropdown-item list-group-item list-group-item-action" href="#">Profile</a>
+                            <a class="dropdown-item list-group-item list-group-item-action" href="{{ url_for('main_bp.profile') }}">Profile</a>
                             <a class="dropdown-item list-group-item list-group-item-action" href="#">Favorites</a>
                             <a class="dropdown-item list-group-item list-group-item-action" href="#">Settings</a>
-                            <a class="dropdown-item list-group-item list-group-item-action" href="{{ url_for('logout') }}">Logout</a>
+                            <a class="dropdown-item list-group-item list-group-item-action" href="{{ url_for('auth_bp.logout') }}">Logout</a>
                         </div>
                         <ul class="navbar-nav ms-auto me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
@@ -123,39 +127,43 @@
                         </ul>
                         <ul class="navbar-nav mb-lg-0">
                             <li class="profile-menu nav-item dropdown z-3">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="../static/images/avatar/5.jpg" class="profile-img" />
+                                <a class="nav-link dropdown-toggle" href="{{ url_for('main_bp.profile') }}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img
+                                        src="{% if current_user %}../static/images/avatar/default-avatar-female.png{% else %}{{ current_user.profile_img }}{% endif %}"
+                                        class="profile-img"
+                                    />
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end">
-                                    <li><a class="dropdown-item" href="#">Profile</a></li>
+                                    <li><a class="dropdown-item" href="{{ url_for('main_bp.profile') }}">Profile</a></li>
                                     <li><a class="dropdown-item" href="#">Favorites</a></li>
                                     <li><a class="dropdown-item" href="#">Settings</a></li>
-                                    <li><hr class="dropdown-divider" /></li>
-                                    <li><a class="dropdown-item" href="{{ url_for('logout') }}">Logout</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider" />
+                                    </li>
+                                    <li><a class="dropdown-item" href="{{ url_for('auth_bp.logout') }}">Logout</a></li>
                                 </ul>
                             </li>
                         </ul>
                     </div>
                 </div>
             </nav>
+            <!-- End Nav Bar with Search -->
         </div>
-        <!-- End Nav Bar with Search -->
+        <!-- End Page Header -->
+        {% endblock %}
 
-        <!-- Main Content Start -->
-        <div class="container-xxl py-5">
-            {% block content %}
+        <!-- Main Contents -->
+        {% block content %} {% endblock content %}
+        <!-- Main Contents -->
 
-            {% endblock content %}
-        </div>
-        <!-- Main Cntent End -->
-
+        {% block page_footer %}
         <!-- Footer Start -->
         <div class="container-fluid bg-dark text-light footer px-0 pt-5 mt-5">
             <div class="container pt-5 pb-2">
                 <div class="row g-5">
                     <div class="col-lg-3 col-md-6">
-                        <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">My Recipe Planner</h4>
-                        <ul class="footer-links-ul ps-0">
+                        <h4 class="section-title ff-secondary text-primary fw-normal mb-4 footer-section-title">My Recipe Planner</h4>
+                        <ul class="footer-links-ul footer-content-margin ps-0">
                             <li><a class="btn btn-link" href="">About Us</a></li>
                             <li><a class="btn btn-link" href="">Contact Us</a></li>
                             <li><a class="btn btn-link" href="">Privacy Policy</a></li>
@@ -163,29 +171,31 @@
                         </ul>
                     </div>
                     <div class="col-lg-3 col-md-6">
-                        <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Contact</h4>
-                        <p class="mb-2"><i class="bi bi-geo-alt-fill me-3"></i>6th of October, Giza, Egypt</p>
-                        <p class="mb-2"><i class="bi bi-whatsapp me-3"></i>+2 010 1114 1721</p>
-                        <p class="mb-2"><i class="bi bi-envelope-at-fill me-3"></i>info@hazemit.tech</p>
-                        <div class="d-flex pt-2">
-                            <a class="btn btn-outline-light btn-social me-3" href=""><i class="bi bi-twitter-x"></i></a>
-                            <a class="btn btn-outline-light btn-social me-3" href=""><i class="bi bi-facebook"></i></a>
-                            <a class="btn btn-outline-light btn-social me-3" href=""><i class="bi bi-linkedin"></i></a>
-                            <a class="btn btn-outline-light btn-social" href=""><i class="bi bi-github"></i></a>
+                        <h4 class="section-title ff-secondary text-primary fw-normal mb-4 footer-section-title">Contact</h4>
+                        <div class="footer-content-margin">
+                            <p class="mb-2"><i class="bi bi-geo-alt-fill me-3"></i>6th of October, Giza, Egypt</p>
+                            <p class="mb-2"><i class="bi bi-whatsapp me-3"></i>+2 010 1114 1721</p>
+                            <p class="mb-2"><i class="bi bi-envelope-at-fill me-3"></i>info@hazemit.tech</p>
+                            <div class="d-flex pt-2">
+                                <a class="btn btn-outline-light btn-social me-3" href=""><i class="bi bi-twitter-x"></i></a>
+                                <a class="btn btn-outline-light btn-social me-3" href=""><i class="bi bi-facebook"></i></a>
+                                <a class="btn btn-outline-light btn-social me-3" href=""><i class="bi bi-linkedin"></i></a>
+                                <a class="btn btn-outline-light btn-social" href=""><i class="bi bi-github"></i></a>
+                            </div>
                         </div>
                     </div>
                     <div class="col-lg-2 col-md-5">
-                        <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">API Docs</h4>
-                        <ul class="footer-links-ul ps-0">
+                        <h4 class="section-title text-primary fw-normal mb-4 footer-section-title">API Docs</h4>
+                        <ul class="footer-links-ul ps-0 footer-content-margin">
                             <li><a class="btn btn-link" href="">Recipes</a></li>
-                            <li><a class="btn btn-link" href="">Favorites</a></li>
                             <li><a class="btn btn-link" href="">Ingredients</a></li>
+                            <li><a class="btn btn-link" href="">Favorites</a></li>
                         </ul>
                     </div>
                     <div class="col-lg-4 col-md-6">
-                        <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Newsletter!</h4>
-                        <p>Get latest recipes updates on your email</p>
-                        <div class="position-relative mx-auto">
+                        <h4 class="section-title text-primary fw-normal mb-4 footer-section-title">Newsletter!</h4>
+                        <p class="footer-section-title">Get latest recipes updates on your email</p>
+                        <div class="position-relative d-flex flex-grow-1">
                             <input class="form-control border-primary w-100 py-3 ps-3 pe-5" type="text" placeholder="Enter Your email" aria-label="newsletter" />
                             <button type="button" class="btn btn-primary pt-2 position-absolute top-0 end-0">Sign Up</button>
                         </div>
@@ -194,18 +204,19 @@
             </div>
             <hr class="text-primary" />
             <div class="copyright pb-4 pt-2">
-                <div class="container">
-                    <div class="row">
-                        <div class="dev-by">
-                            <div>&copy; <a class="text-primary text-decoration-none" href="#">My Recipe Planner</a> - All Rights Reserved 2024.</div>
-                            <div>Designed & Developed with <i class="bi bi-heart-fill text-danger"></i> By <a class="btn btn-link text-primary" href="#">Hazem Magdy</a></div>
+                    <div class="container dev-by">
+                        <div class="mb-2">
+                            &copy; <a class="text-primary text-decoration-none" href="{{ url_for('main_bp.landing_page')}}">My Recipe Planner</a> - All Rights Reserved 2024.
+                        </div>
+                        <div class="">
+                            Designed & Developed with <i class="bi bi-heart-fill text-danger"></i> By
+                            <a class="btn btn-link text-primary" href="https://github.com/MrZooM001">Hazem Magdy</a>
                         </div>
                     </div>
-                </div>
             </div>
         </div>
         <!-- Footer End -->
-
+        {% endblock %}
         <!-- Bootstrap Scripts-->
         <script src="../static/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 

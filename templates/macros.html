@@ -1,0 +1,32 @@
+{% macro render_ingredients_form(ingredients_subform, index) %}
+<div id="ingredients-{{ index }}-form" class="d-flex flex-wrap mb-3 {% if index != '_' %}ingredients-subform{% else %}is-hidden{% endif %}" data-index="{{ index }}">
+    <div class="form-floating mb-2 ms-1 ingredient-name">
+        {{ ingredients_subform.ingredient_name(class_="form-control") }}
+        <label for="floatingInput">{{ ingredients_subform.ingredient_name.label.text }}</label>
+    </div>
+    <div class="form-floating mb-2 ms-1 ingredient-quantity">
+        {{ ingredients_subform.quantity(class_="form-control") }}
+        <label for="floatingInput">{{ ingredients_subform.quantity.label.text }}</label>
+    </div>
+    <div class="form-floating mb-2 ms-1 ingredient-unit">
+        {{ ingredients_subform.unit(class_="form-control") }}
+        <label for="floatingInput">{{ ingredients_subform.unit.label.text }}</label>
+    </div>
+    <div class="form-floating mb-2 ms-1 rm-ingredient-div">
+        <a class="remove-ingredient-item btn btn-danger rounded-6 fw-medium" href="#">&#10005;</a>
+    </div>
+</div>
+{% endmacro %}
+
+
+{% macro render_steps_form(steps_subform, index) %}
+<div id="steps-{{ index }}-form" class="d-flex align-items-center mb-3 {% if index != '_' %}steps-subform{% else %}is-hidden{% endif %}" data-index="{{ index }}">
+    <div class="form-floating mb-2 ms-1 step-instruction w-100">
+        {{ steps_subform.instruction(class_="form-control h-auto") }}
+        <label for="floatingInput">{{ steps_subform.instruction.label.text }}</label>
+    </div>
+    <div class="form-floating mb-2 ms-1 rm-step-div">
+        <a class="remove-step-item btn btn-danger rounded-6 fw-medium" href="#">&#10005;</a>
+    </div>
+</div>
+{% endmacro %}

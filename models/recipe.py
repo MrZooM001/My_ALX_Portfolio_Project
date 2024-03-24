@@ -2,6 +2,7 @@
 from .base_model import BaseModel
 from extensions import db
 
+
 class Recipe(BaseModel, db.Model):
     __tablename__ ='recipes'
     title = db.Column(db.String(120), nullable=False, unique=True)
@@ -11,21 +12,15 @@ class Recipe(BaseModel, db.Model):
     preparationMinutes = db.Column(db.Integer(), nullable=False)
     cookingMinutes = db.Column(db.Integer(), nullable=False)
     description = db.Column(db.Text(), nullable=False)
+    is_approved = db.Column(db.Boolean(), default=False)
 
+    ingredients = db.relationship("Ingredient", secondary="recipes_ingredients", backref=db.backref('recipes', lazy='dynamic', collection_class=list))
 
-    # many to many relationship between Recipe & Ingredient
-    ingredients = db.relationship("RecipeIngredient", back_populates="recipes")
+    user_id = db.Column(db.String(60), db.ForeignKey('users.id'))
+    user = db.relationship("User", backref=db.backref("recipes", lazy="dynamic"))
 
-    # one to one relationship between Recipe & Description
-    steps = db.relationship("Step", backref='recipes', uselist=False)
-
-    users = db.relationship("UserFavorite", back_populates="recipes")
-
-
+    category_id = db.Column(db.String(60), db.ForeignKey('categories.id'))
+    category = db.relationship("Category", backref="recipes")
 
     def __repr__(self):
         return "<Recipe {}\nDescription {}>".format(self.title, self.description)
-
-    def save(self):
-        db.session.add(self)
-        db.session.commit()
