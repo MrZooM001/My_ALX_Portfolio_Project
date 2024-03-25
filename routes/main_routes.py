@@ -90,7 +90,7 @@ def get_recipe_by_category(category_name):
         recipes = Recipe.query.filter_by(category_id=category.id).all()
         return recipes
     else:
-        return None
+        return []
 
 
 # endregion Helper Methods

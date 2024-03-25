@@ -9,8 +9,6 @@ from flask_migrate import Migrate
 from dotenv import load_dotenv
 import os
 
-
-
 app = Flask(__name__)
 app.config.from_object(DevConfig)
 db.init_app(app)
@@ -18,14 +16,14 @@ db.init_app(app)
 app.register_blueprint(auth_bp)
 app.register_blueprint(main_bp)
 app.register_blueprint(recipes_bp)
+app.app_context()
 
 init_login_manager(app)
-app.app_context()
 
 migrate = Migrate(app, db)
 
 
 if __name__ == "__main__":
-    dotenv_file = os.path.join(os.getcwd(), ".env")
-    load_dotenv(dotenv_file)
-    app.run(debug=True)
+    # dotenv_file = os.path.join(os.getcwd(), ".env")
+    # load_dotenv(dotenv_file)
+    app.run()

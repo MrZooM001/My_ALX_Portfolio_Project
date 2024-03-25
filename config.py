@@ -12,8 +12,8 @@ class BaseConfig:
 
 
 class DevConfig(BaseConfig):
-    SQLALCHEMY_DATABASE_URI = getenv("SQLALCHEMY_DATABASE_URI")
-    DEBUG = getenv("DEBUG")
+    SQLALCHEMY_DATABASE_URI = getenv("DATABASE_URL")
+    DEBUG = True
     SQLALCHEMY_ECHO = True
     TEMPLATES_AUTO_RELOAD = getenv("TEMPLATES_AUTO_RELOAD")
     SESSION_COOKIE_HTTPONLY = False
