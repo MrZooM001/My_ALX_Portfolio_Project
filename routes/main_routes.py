@@ -7,90 +7,27 @@ from flask_login import (
     login_required,
     current_user,
 )
-from models import Recipe, FavoriteRecipe
+from models import Recipe, FavoriteRecipe, Category
 
-main_bp = Blueprint('main_bp', __name__)
-
+main_bp = Blueprint("main_bp", __name__)
 
 
 # region Main Page
 @main_bp.route("/main")
 @login_required
 def main():
-    api_bft = []
-    url = "https://api.spoonacular.com/recipes/complexSearch"
-    bf_params = {
-        "apiKey": config("API_KEY"),
-        "query": "*",
-        "type": "breakfast",
-        # "maxReadyTime": 15,
-        "sort": "popularity",
-        "number": 3,
-    }
-    spoonac_api = requests.get(url, bf_params)
-    data = json.loads(spoonac_api.content)
-    try:
-        bf_recipes = data["results"]
-        for item in bf_recipes:
-            api_bft.append(item)
-    except Exception as e:
-        print(e)
+    main_recipes = get_recipe_by_category("Main Course")
+    bakery_recipes = get_recipe_by_category("Bakery")
+    dessert_recipes = get_recipe_by_category("Dessert")
+    sides_recipes = get_recipe_by_category("Side Dish")
 
-    api_apz = []
-    apz_params = {
-        "apiKey": config("API_KEY"),
-        "query": "*",
-        "type": "appetizer",
-        # "maxReadyTime": 15,
-        "sort": "popularity",
-        "number": 3,
-    }
-    spoonac_api = requests.get(url, apz_params)
-    data = json.loads(spoonac_api.content)
-    try:
-        apz_recipes = data["results"]
-        for item in apz_recipes:
-            api_apz.append(item)
-    except Exception as e:
-        print(e)
-
-    api_sld = []
-    sld_params = {
-        "apiKey": config("API_KEY"),
-        "query": "*",
-        "type": "salad",
-        # "maxReadyTime": 15,
-        "sort": "time",
-        "number": 3,
-    }
-    spoonac_api = requests.get(url, sld_params)
-    data = json.loads(spoonac_api.content)
-    try:
-        sld_recipes = data["results"]
-        for item in sld_recipes:
-            api_sld.append(item)
-    except Exception as e:
-        print(e)
-
-    api_sld = []
-    sld_params = {
-        "apiKey": config("API_KEY"),
-        "query": "*",
-        "type": "salad",
-        # "maxReadyTime": 15,
-        "sort": "time",
-        "number": 3,
-    }
-    spoonac_api = requests.get(url, sld_params)
-    data = json.loads(spoonac_api.content)
-    try:
-        sld_recipes = data["results"]
-        for item in sld_recipes:
-            api_sld.append(item)
-    except Exception as e:
-        print(e)
-
-    return render_template("index.html", brkfst=api_bft, sld=api_sld, aptz=api_apz)
+    return render_template(
+        "index.html",
+        recipes=main_recipes,
+        bakery=bakery_recipes,
+        dessert=dessert_recipes,
+        sides=sides_recipes,
+    )
 
 
 # endregion Main Page
@@ -100,7 +37,7 @@ def main():
 @main_bp.route("/")
 def landing_page():
     if current_user.is_authenticated:
-        return redirect(url_for('main_bp.main'))
+        return redirect(url_for("main_bp.main"))
     else:
         api_result = []
         url = "https://api.spoonacular.com/recipes/complexSearch"
@@ -144,3 +81,16 @@ def profile():
 
 
 # endregion Profile Page
+
+
+# region Helper Methods
+def get_recipe_by_category(category_name):
+    category = Category.query.filter_by(name=category_name).first()
+    if category:
+        recipes = Recipe.query.filter_by(category_id=category.id).all()
+        return recipes
+    else:
+        return None
+
+
+# endregion Helper Methods

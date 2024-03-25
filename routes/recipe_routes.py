@@ -24,6 +24,10 @@ def recipe(recipe_title):
 @recipes_bp.route("/add-recipe", methods=["GET", "POST"], strict_slashes=False)
 @login_required
 def add_recipe():
+    categories = Category.query.all()
+    if not categories:
+        add_categories()
+
     page_title = "Add Recipe"
     form = RecipeForm()
     ingredients_template_form = IngredientForm(prefix="ingredients-_-")
@@ -74,12 +78,13 @@ def add_recipe():
 
 
 # region Add Categories
-def add_cats():
+def add_categories():
     db.session.add_all(
         [
             Category(name="Main Course"),
             Category(name="Side Dish"),
             Category(name="Breakfast"),
+            Category(name="Dinner"),
             Category(name="Dessert"),
             Category(name="Appetizer"),
             Category(name="Salad"),

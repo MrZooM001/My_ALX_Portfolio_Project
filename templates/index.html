@@ -8,8 +8,10 @@
 <div class="container-xxl py-5">
     <!-- Recipe Popular Start -->
     <div class="container">
-        <div class="text-center">
-            <h1 class="mb-5">Most Popular Recipes</h1>
+        <div class="divider my-4">
+            <div class="divider-text my-2">
+                <h3 class="mb-0">Most Popular Recipes</h3>
+            </div>
         </div>
         <div class="tab-class text-center">
             <ul class="nav nav-pills d-inline-flex justify-content-center border-bottom pb-3 mb-4">
@@ -29,7 +31,7 @@
                         <!-- <i class="fa fa-hamburger fa-2x text-primary"></i> -->
                         <div class="">
                             <small class="text-body">Top</small>
-                            <h6 class="mt-n1 mb-0">Healthy</h6>
+                            <h6 class="mt-n1 mb-0">Bakery</h6>
                         </div>
                     </a>
                 </li>
@@ -37,10 +39,9 @@
                 <li class="nav-item">
                     <a class="d-flex align-items-center text-start mx-md-3 mx-sm-0 me-0 nav-link" data-bs-toggle="pill"
                         href="#tab-3">
-                        <!-- <i class="fa fa-utensils fa-2x text-primary"></i> -->
                         <div class="">
                             <small class="text-body">New</small>
-                            <h6 class="mt-n1 mb-0">Dinner</h6>
+                            <h6 class="mt-n1 mb-0">Dessert</h6>
                         </div>
                     </a>
                 </li>
@@ -49,120 +50,48 @@
                 <!-- Tab 1 -->
                 <div id="tab-1" class="tab-pane fade show p-0 active">
                     <div class="row">
-                        <div class="recipe-cards-center">
+                        <div class="recipe-cards-index">
                             <div class="recipe-top-cats align-items-start">
-                                <h3 class="recipe-cat-title ms-3">Instant Pot</h3>
+                                <h3 class="recipe-cat-title ms-3">Main Course</h3>
                                 <div class="recipe-top-cards">
-                                    <div class="col card-shadow">
-                                        <div class="card">
-                                            <a href="#">
-                                                <img src="../static/images/stock/stock12.jpeg"
-                                                    class="card-img-container" alt="" />
-                                            </a>
-                                            <div class="card-body px-3">
-                                                <h5 class="card-title recipe-card-title">Card title</h5>
-                                                <div class="recipe-stats d-flex justify-content-between">
-                                                    <div class="left-stats d-flex flex-column align-items-start">
-                                                        <div class="recipe-prep-time mb-2">
-                                                            <i class="bi bi-stopwatch"></i>
-                                                            <span>30 Minutes</span>
-                                                        </div>
-                                                        <div class="recipe-likes">
-                                                            <i class="bi bi-hand-thumbs-up"></i>
-                                                            <span>55</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="right-stats d-flex flex-column align-items-end">
-                                                        <div class="recipe-level mb-2">
-                                                            <span>Super Dry</span>
-                                                        </div>
-                                                        <div class="recipe-reviews">
-                                                            <i class="bi bi-star-fill"></i>
-                                                            <i class="bi bi-star-fill"></i>
-                                                            <i class="bi bi-star-fill"></i>
-                                                            <i class="bi bi-star-fill"></i>
-                                                            <i class="bi bi-star-half d-none"></i>
-                                                            <i class="bi bi-star"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                    {% for recipe in recipes %}
+                                <div class="card position-relative">
+                                    <a href="{{ url_for('recipes_bp.recipe', recipe_title=recipe.title.replace(" ", "_")) }}" class="">
+                                        <img src="{{ recipe['imgUrl'] }}" class="rounded-4 card-img-container" alt="Menu" />
+                                    </a>
+                                    <button type="button" class="favorite-btn btn btn-secondary position-absolute border border-2 end-0 mt-1 me-1 rounded-circle">♥</button>
+                                    <div class="card-body">
+                                        <a href="{{ url_for('recipes_bp.recipe', recipe_title=recipe.title.replace(" ", "_")) }}"
+                                        class="text-black mt-1 text-decoration-none card-title recipe-card-title d-flex justify-content-center"><h5>{{ recipe['title'] }}</h5></a>
+                                    </div>
+                                    <div class="recipe-stats d-flex justify-content-between">
+                                        <div class="left-stats d-flex flex-column align-items-start">
+                                            <div class="recipe-prep-time mb-2">
+                                                <i class="bi bi-stopwatch"></i>
+                                                <span>{{ recipe.readyInMinutes }}</span>
+                                            </div>
+                                            <div class="recipe-likes">
+                                                <i class="bi bi-hand-thumbs-up"></i>
+                                                <span>{{ recipe.cookingMinutes }}</span>
+                                            </div>
+                                        </div>
+                                        <div class="right-stats d-flex flex-column align-items-end">
+                                            <div class="recipe-level mb-2">
+                                                <span>{{ recipe.servings }}</span>
+                                            </div>
+                                            <div class="recipe-reviews">
+                                                <i class="bi bi-star-fill"></i>
+                                                <i class="bi bi-star-fill"></i>
+                                                <i class="bi bi-star-fill"></i>
+                                                <i class="bi bi-star-fill"></i>
+                                                <i class="bi bi-star-half d-none"></i>
+                                                <i class="bi bi-star"></i>
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                                {% endfor %}
 
-                                    <div class="col">
-                                        <div class="card">
-                                            <a href="#">
-                                                <img src="../static/images/stock/stock13.jpg" class="card-img-container"
-                                                    alt="" />
-                                            </a>
-                                            <div class="card-body">
-                                                <h5 class="card-title recipe-card-title">Card title</h5>
-                                                <div class="recipe-stats d-flex justify-content-between">
-                                                    <div class="left-stats d-flex flex-column align-items-start">
-                                                        <div class="recipe-prep-time mb-2">
-                                                            <i class="bi bi-stopwatch"></i>
-                                                            <span>30 Minutes</span>
-                                                        </div>
-                                                        <div class="recipe-likes">
-                                                            <i class="bi bi-hand-thumbs-up"></i>
-                                                            <span>55</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="right-stats d-flex flex-column align-items-end">
-                                                        <div class="recipe-level mb-2">
-                                                            <span>Super Dry</span>
-                                                        </div>
-                                                        <div class="recipe-reviews">
-                                                            <i class="bi bi-star-fill"></i>
-                                                            <i class="bi bi-star-fill"></i>
-                                                            <i class="bi bi-star-fill"></i>
-                                                            <i class="bi bi-star-fill"></i>
-                                                            <i class="bi bi-star-half d-none"></i>
-                                                            <i class="bi bi-star"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col">
-                                        <div class="card">
-                                            <a href="#">
-                                                <img src="../static/images/stock/stock14.jpg" class="card-img-container"
-                                                    alt="" />
-                                            </a>
-                                            <div class="card-body">
-                                                <h5 class="card-title recipe-card-title">Card title</h5>
-                                                <div class="recipe-stats d-flex justify-content-between">
-                                                    <div class="left-stats d-flex flex-column align-items-start">
-                                                        <div class="recipe-prep-time mb-2">
-                                                            <i class="bi bi-stopwatch"></i>
-                                                            <span>30 Minutes</span>
-                                                        </div>
-                                                        <div class="recipe-likes">
-                                                            <i class="bi bi-hand-thumbs-up"></i>
-                                                            <span>55</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="right-stats d-flex flex-column align-items-end">
-                                                        <div class="recipe-level mb-2">
-                                                            <span>Super Dry</span>
-                                                        </div>
-                                                        <div class="recipe-reviews">
-                                                            <i class="bi bi-star-fill"></i>
-                                                            <i class="bi bi-star-fill"></i>
-                                                            <i class="bi bi-star-fill"></i>
-                                                            <i class="bi bi-star-fill"></i>
-                                                            <i class="bi bi-star-half d-none"></i>
-                                                            <i class="bi bi-star"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -172,118 +101,47 @@
 
                 <div id="tab-2" class="tab-pane fade show p-0">
                     <div class="row g-4">
-                        <div class="recipe-cards-center mt-4">
+                        <div class="recipe-cards-index mt-4">
                             <div class="recipe-top-cats align-items-start">
-                                <h3 class="recipe-cat-title ms-3">Healthy</h3>
+                                <h3 class="recipe-cat-title ms-3">Bakery</h3>
                                 <div class="recipe-top-cards">
-                                    <div class="col">
-                                        <div class="card">
-                                            <a href="#">
-                                                <img src="../static/images/stock/stock17.jpg" class="card-img-container"
-                                                    alt="" />
-                                            </a>
-                                            <div class="card-body">
-                                                <h5 class="card-title recipe-card-title">Card title</h5>
-                                                <div class="recipe-stats d-flex justify-content-between">
-                                                    <div class="left-stats d-flex flex-column align-items-start">
-                                                        <div class="recipe-prep-time mb-2">
-                                                            <i class="bi bi-stopwatch"></i>
-                                                            <span>30 Minutes</span>
-                                                        </div>
-                                                        <div class="recipe-likes">
-                                                            <i class="bi bi-hand-thumbs-up"></i>
-                                                            <span>55</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="right-stats d-flex flex-column align-items-end">
-                                                        <div class="recipe-level mb-2">
-                                                            <span>Super Dry</span>
-                                                        </div>
-                                                        <div class="recipe-reviews">
-                                                            <i class="bi bi-star-fill"></i>
-                                                            <i class="bi bi-star-fill"></i>
-                                                            <i class="bi bi-star-fill"></i>
-                                                            <i class="bi bi-star-fill"></i>
-                                                            <i class="bi bi-star-half d-none"></i>
-                                                            <i class="bi bi-star"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                    {% for recipe in bakery %}
+                                <div class="card position-relative">
+                                    <a href="{{ url_for('recipes_bp.recipe', recipe_title=recipe.title.replace(" ", "_")) }}" class="">
+                                        <img src="{{ recipe['imgUrl'] }}" class="rounded-4 card-img-container" alt="Menu" />
+                                    </a>
+                                    <button type="button" class="favorite-btn btn btn-secondary position-absolute border border-2 end-0 mt-1 me-1 rounded-circle">♥</button>
+                                    <div class="card-body">
+                                        <a href="{{ url_for('recipes_bp.recipe', recipe_title=recipe.title.replace(" ", "_")) }}"
+                                        class="text-black mt-1 text-decoration-none card-title recipe-card-title d-flex justify-content-center"><h5>{{ recipe['title'] }}</h5></a>
+                                    </div>
+                                    <div class="recipe-stats d-flex justify-content-between">
+                                        <div class="left-stats d-flex flex-column align-items-start">
+                                            <div class="recipe-prep-time mb-2">
+                                                <i class="bi bi-stopwatch"></i>
+                                                <span>{{ recipe.readyInMinutes }}</span>
+                                            </div>
+                                            <div class="recipe-likes">
+                                                <i class="bi bi-hand-thumbs-up"></i>
+                                                <span>{{ recipe.cookingMinutes }}</span>
+                                            </div>
+                                        </div>
+                                        <div class="right-stats d-flex flex-column align-items-end">
+                                            <div class="recipe-level mb-2">
+                                                <span>{{ recipe.servings }}</span>
+                                            </div>
+                                            <div class="recipe-reviews">
+                                                <i class="bi bi-star-fill"></i>
+                                                <i class="bi bi-star-fill"></i>
+                                                <i class="bi bi-star-fill"></i>
+                                                <i class="bi bi-star-fill"></i>
+                                                <i class="bi bi-star-half d-none"></i>
+                                                <i class="bi bi-star"></i>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col">
-                                        <div class="card">
-                                            <a href="#">
-                                                <img src="../static/images/stock/stock10.jpg" class="card-img-container"
-                                                    alt="" />
-                                            </a>
-                                            <div class="card-body">
-                                                <h5 class="card-title recipe-card-title">Card title</h5>
-                                                <div class="recipe-stats d-flex justify-content-between">
-                                                    <div class="left-stats d-flex flex-column align-items-start">
-                                                        <div class="recipe-prep-time mb-2">
-                                                            <i class="bi bi-stopwatch"></i>
-                                                            <span>30 Minutes</span>
-                                                        </div>
-                                                        <div class="recipe-likes">
-                                                            <i class="bi bi-hand-thumbs-up"></i>
-                                                            <span>55</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="right-stats d-flex flex-column align-items-end">
-                                                        <div class="recipe-level mb-2">
-                                                            <span>Super Dry</span>
-                                                        </div>
-                                                        <div class="recipe-reviews">
-                                                            <i class="bi bi-star-fill"></i>
-                                                            <i class="bi bi-star-fill"></i>
-                                                            <i class="bi bi-star-fill"></i>
-                                                            <i class="bi bi-star-fill"></i>
-                                                            <i class="bi bi-star-half d-none"></i>
-                                                            <i class="bi bi-star"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="card">
-                                            <a href="#">
-                                                <img src="../static/images/stock/stock9.jpg" class="card-img-container"
-                                                    alt="" />
-                                            </a>
-                                            <div class="card-body">
-                                                <h5 class="card-title recipe-card-title">Card title</h5>
-                                                <div class="recipe-stats d-flex justify-content-between">
-                                                    <div class="left-stats d-flex flex-column align-items-start">
-                                                        <div class="recipe-prep-time mb-2">
-                                                            <i class="bi bi-stopwatch"></i>
-                                                            <span>30 Minutes</span>
-                                                        </div>
-                                                        <div class="recipe-likes">
-                                                            <i class="bi bi-hand-thumbs-up"></i>
-                                                            <span>55</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="right-stats d-flex flex-column align-items-end">
-                                                        <div class="recipe-level mb-2">
-                                                            <span>Super Dry</span>
-                                                        </div>
-                                                        <div class="recipe-reviews">
-                                                            <i class="bi bi-star-fill"></i>
-                                                            <i class="bi bi-star-fill"></i>
-                                                            <i class="bi bi-star-fill"></i>
-                                                            <i class="bi bi-star-fill"></i>
-                                                            <i class="bi bi-star-half d-none"></i>
-                                                            <i class="bi bi-star"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                </div>
+                                {% endfor %}
                                 </div>
                             </div>
                         </div>
@@ -292,118 +150,47 @@
 
                 <div id="tab-3" class="tab-pane fade show p-0">
                     <div class="row g-4">
-                        <div class="recipe-cards-center mt-4">
+                        <div class="recipe-cards-index mt-4">
                             <div class="recipe-top-cats align-items-start">
-                                <h3 class="recipe-cat-title ms-3">Dinner</h3>
+                                <h3 class="recipe-cat-title ms-3">Dessert</h3>
                                 <div class="recipe-top-cards">
-                                    <div class="col">
-                                        <div class="card">
-                                            <a href="#">
-                                                <img src="../static/images/stock/stock15.jpg" class="card-img-container"
-                                                    alt="" />
-                                            </a>
-                                            <div class="card-body">
-                                                <h5 class="card-title recipe-card-title">Card title</h5>
-                                                <div class="recipe-stats d-flex justify-content-between">
-                                                    <div class="left-stats d-flex flex-column align-items-start">
-                                                        <div class="recipe-prep-time mb-2">
-                                                            <i class="bi bi-stopwatch"></i>
-                                                            <span>30 Minutes</span>
-                                                        </div>
-                                                        <div class="recipe-likes">
-                                                            <i class="bi bi-hand-thumbs-up"></i>
-                                                            <span>55</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="right-stats d-flex flex-column align-items-end">
-                                                        <div class="recipe-level mb-2">
-                                                            <span>Super Dry</span>
-                                                        </div>
-                                                        <div class="recipe-reviews">
-                                                            <i class="bi bi-star-fill"></i>
-                                                            <i class="bi bi-star-fill"></i>
-                                                            <i class="bi bi-star-fill"></i>
-                                                            <i class="bi bi-star-fill"></i>
-                                                            <i class="bi bi-star-half d-none"></i>
-                                                            <i class="bi bi-star"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                    {% for recipe in dessert %}
+                                <div class="card position-relative">
+                                    <a href="{{ url_for('recipes_bp.recipe', recipe_title=recipe.title.replace(" ", "_")) }}" class="">
+                                        <img src="{{ recipe['imgUrl'] }}" class="rounded-4 card-img-container" alt="Menu" />
+                                    </a>
+                                    <button type="button" class="favorite-btn btn btn-secondary position-absolute border border-2 end-0 mt-1 me-1 rounded-circle">♥</button>
+                                    <div class="card-body">
+                                        <a href="{{ url_for('recipes_bp.recipe', recipe_title=recipe.title.replace(" ", "_")) }}"
+                                        class="text-black mt-1 text-decoration-none card-title recipe-card-title d-flex justify-content-center"><h5>{{ recipe['title'] }}</h5></a>
+                                    </div>
+                                    <div class="recipe-stats d-flex justify-content-between">
+                                        <div class="left-stats d-flex flex-column align-items-start">
+                                            <div class="recipe-prep-time mb-2">
+                                                <i class="bi bi-stopwatch"></i>
+                                                <span>{{ recipe.readyInMinutes }}</span>
+                                            </div>
+                                            <div class="recipe-likes">
+                                                <i class="bi bi-hand-thumbs-up"></i>
+                                                <span>{{ recipe.cookingMinutes }}</span>
+                                            </div>
+                                        </div>
+                                        <div class="right-stats d-flex flex-column align-items-end">
+                                            <div class="recipe-level mb-2">
+                                                <span>{{ recipe.servings }}</span>
+                                            </div>
+                                            <div class="recipe-reviews">
+                                                <i class="bi bi-star-fill"></i>
+                                                <i class="bi bi-star-fill"></i>
+                                                <i class="bi bi-star-fill"></i>
+                                                <i class="bi bi-star-fill"></i>
+                                                <i class="bi bi-star-half d-none"></i>
+                                                <i class="bi bi-star"></i>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col">
-                                        <div class="card">
-                                            <a href="#">
-                                                <img src="../static/images/stock/stock8.jpg" class="card-img-container"
-                                                    alt="" />
-                                            </a>
-                                            <div class="card-body">
-                                                <h5 class="card-title recipe-card-title">Card title</h5>
-                                                <div class="recipe-stats d-flex justify-content-between">
-                                                    <div class="left-stats d-flex flex-column align-items-start">
-                                                        <div class="recipe-prep-time mb-2">
-                                                            <i class="bi bi-stopwatch"></i>
-                                                            <span>30 Minutes</span>
-                                                        </div>
-                                                        <div class="recipe-likes">
-                                                            <i class="bi bi-hand-thumbs-up"></i>
-                                                            <span>55</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="right-stats d-flex flex-column align-items-end">
-                                                        <div class="recipe-level mb-2">
-                                                            <span>Super Dry</span>
-                                                        </div>
-                                                        <div class="recipe-reviews">
-                                                            <i class="bi bi-star-fill"></i>
-                                                            <i class="bi bi-star-fill"></i>
-                                                            <i class="bi bi-star-fill"></i>
-                                                            <i class="bi bi-star-fill"></i>
-                                                            <i class="bi bi-star-half d-none"></i>
-                                                            <i class="bi bi-star"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="card">
-                                            <a href="#">
-                                                <img src="../static/images/stock/stock7.jpg" class="card-img-container"
-                                                    alt="" />
-                                            </a>
-                                            <div class="card-body">
-                                                <h5 class="card-title recipe-card-title">Card title</h5>
-                                                <div class="recipe-stats d-flex justify-content-between">
-                                                    <div class="left-stats d-flex flex-column align-items-start">
-                                                        <div class="recipe-prep-time mb-2">
-                                                            <i class="bi bi-stopwatch"></i>
-                                                            <span>30 Minutes</span>
-                                                        </div>
-                                                        <div class="recipe-likes">
-                                                            <i class="bi bi-hand-thumbs-up"></i>
-                                                            <span>55</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="right-stats d-flex flex-column align-items-end">
-                                                        <div class="recipe-level mb-2">
-                                                            <span>Super Dry</span>
-                                                        </div>
-                                                        <div class="recipe-reviews">
-                                                            <i class="bi bi-star-fill"></i>
-                                                            <i class="bi bi-star-fill"></i>
-                                                            <i class="bi bi-star-fill"></i>
-                                                            <i class="bi bi-star-fill"></i>
-                                                            <i class="bi bi-star-half d-none"></i>
-                                                            <i class="bi bi-star"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                </div>
+                                {% endfor %}
                                 </div>
                             </div>
                         </div>
@@ -415,60 +202,58 @@
     <!-- Recipe Popular End -->
 
     <div class="container mt-5">
-        <div class="text-center">
-            <h1 class="mb-5">Recipes from database</h1>
-        </div>
-
         <div class="row my-recipes">
             <section class="mt-0 mb-4 mb-md-5 desserts-box">
-                <div class="divider">
+                <div class="divider my-4">
                     <div class="divider-text my-2">
-                        <h4 class="mb-0"><i class="bi bi-heart-fill text-danger"></i> My Recipes</h4>
+                        <h3 class="mb-0">Chicken Recipes</h3>
                     </div>
                 </div>
 
                 <div class="row my-favorites">
-                    {% for recipe in recipes %}
-                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm col-8  w-sm-100">
-                        <div class="recipe-top-cards">
-                            <div class="card-shadow ">
-                                <div class="card">
-                                    <a href="{{ url_for('recipes_bp.recipe', recipe_title=recipe.title.replace(" ", "_")) }}">
-                                        <img src="{{ recipe.imgUrl }}" class="card-img-container " alt=""/>
+                    <div class="recipe-cards-center mt-4">
+                        <div class="recipe-top-cats align-items-start">
+                            <div class="recipe-top-cards">
+                                {% for recipe in sides %}
+                                <div class="card position-relative">
+                                    <a href="{{ url_for('recipes_bp.recipe', recipe_title=recipe.title.replace(" ", "_")) }}" class="">
+                                        <img src="{{ recipe['imgUrl'] }}" class="rounded-4 card-img-container" alt="Menu" />
                                     </a>
-                                    <div class="card-body px-3">
-                                        <h5 class="card-title recipe-card-title">{{ recipe.title }}</h5>
-                                        <div class="recipe-stats d-flex justify-content-between">
-                                            <div class="left-stats d-flex flex-column align-items-start">
-                                                <div class="recipe-prep-time mb-2">
-                                                    <i class="bi bi-stopwatch"></i>
-                                                    <span>{{ recipe.readyInMinutes }}</span>
-                                                </div>
-                                                <div class="recipe-likes">
-                                                    <i class="bi bi-hand-thumbs-up"></i>
-                                                    <span>{{ recipe.cookingMinutes }}</span>
-                                                </div>
+                                    <button type="button" class="favorite-btn btn btn-secondary position-absolute border border-2 end-0 mt-1 me-1 rounded-circle">♥</button>
+                                    <div class="card-body">
+                                        <a href="{{ url_for('recipes_bp.recipe', recipe_title=recipe.title.replace(" ", "_")) }}"
+                                        class="text-black mt-1 text-decoration-none card-title recipe-card-title d-flex justify-content-center"><h5>{{ recipe['title'] }}</h5></a>
+                                    </div>
+                                    <div class="recipe-stats d-flex justify-content-between">
+                                        <div class="left-stats d-flex flex-column align-items-start">
+                                            <div class="recipe-prep-time mb-2">
+                                                <i class="bi bi-stopwatch"></i>
+                                                <span>{{ recipe.readyInMinutes }}</span>
                                             </div>
-                                            <div class="right-stats d-flex flex-column align-items-end">
-                                                <div class="recipe-level mb-2">
-                                                    <span>{{ recipe.servings }}</span>
-                                                </div>
-                                                <div class="recipe-reviews">
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-half d-none"></i>
-                                                    <i class="bi bi-star"></i>
-                                                </div>
+                                            <div class="recipe-likes">
+                                                <i class="bi bi-hand-thumbs-up"></i>
+                                                <span>{{ recipe.cookingMinutes }}</span>
+                                            </div>
+                                        </div>
+                                        <div class="right-stats d-flex flex-column align-items-end">
+                                            <div class="recipe-level mb-2">
+                                                <span>{{ recipe.servings }}</span>
+                                            </div>
+                                            <div class="recipe-reviews">
+                                                <i class="bi bi-star-fill"></i>
+                                                <i class="bi bi-star-fill"></i>
+                                                <i class="bi bi-star-fill"></i>
+                                                <i class="bi bi-star-fill"></i>
+                                                <i class="bi bi-star-half d-none"></i>
+                                                <i class="bi bi-star"></i>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                {% endfor %}
                             </div>
                         </div>
                     </div>
-                    {% endfor %}
                 </div>
             </section>
         </div>

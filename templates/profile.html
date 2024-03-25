@@ -38,14 +38,14 @@
 
                                     <div class="row">
                                         <div class="recipe-cards-center mt-4">
-                                            <div class="recipe-top-cats align-items-start">
+                                            <div class="recipe-top-cats align-items-start justify-content-start">
                                                 <div class="recipe-top-cards">
                                                     {% for recipe in my_recipes %}
                                                     <div class="card position-relative">
                                                         <a href="{{ url_for('recipes_bp.recipe', recipe_title=recipe.title.replace(" ", "_")) }}" class="">
                                                             <img src="{{ recipe['imgUrl'] }}" class="rounded-4 card-img-container" alt="Menu" />
                                                         </a>
-                                                        <button type="button" class="favorite-btn btn btn-danger position-absolute border border-1 end-0 mt-1 me-1 rounded-circle">♥</button>
+                                                        <button type="button" class="favorite-btn btn btn-secondary position-absolute border border-2 end-0 mt-1 me-1 rounded-circle">♥</button>
                                                         <div class="card-body">
                                                             <a href="{{ url_for('recipes_bp.recipe', recipe_title=recipe.title.replace(" ", "_")) }}"
                                                             class="text-black mt-1 text-decoration-none card-title recipe-card-title d-flex justify-content-center"><h5>{{ recipe['title'] }}</h5></a>
@@ -75,7 +75,7 @@
                                                         <a href="{{ url_for('recipes_bp.recipe', recipe_title=recipe.title.replace(" ", "_")) }}" class="">
                                                             <img src="{{ recipe['imgUrl'] }}" class="rounded-4 card-img-container" alt="Menu" />
                                                         </a>
-                                                        <button type="button" class="">♥</button>
+                                                        <button type="button" class="favorite-btn btn btn-secondary position-absolute border border-2 end-0 mt-1 me-1 rounded-circle">♥</button>
                                                         <div class="card-body">
                                                             <a href="{{ url_for('recipes_bp.recipe', recipe_title=recipe.title.replace(" ", "_")) }}"
                                                             class="text-black mt-1 text-decoration-none card-title recipe-card-title d-flex justify-content-center"><h5>{{ recipe['title'] }}</h5></a>
