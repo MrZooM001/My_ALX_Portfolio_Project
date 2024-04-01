@@ -225,16 +225,32 @@ function addStepsForm() {
     $newForm.find('.remove-step-item').click(removeStepForm);
 }
 
+function toggleFavoriteRecipe() {
+    var button = $(this);
+    var recipeId = button.attr('data-recipe-id');
+    var icon = button.find('i');
+    $.ajax({
+        url: '/toggle-favorite/' + recipeId,
+        type: 'POST',
+        success: function () {
+            icon.toggleClass('text-danger text-body-tertiary');
+        }
+    });
+}
+
 $(document).ready(function () {
     $('.add-new-ingredient').click(addIngredientsForm);
     $('.remove-ingredient-item').click(removeIngredientForm);
 
     $('.add-new-step').click(addStepsForm);
     $('.remove-step-item').click(removeStepForm);
-    
-    document.addEventListener('DOMContentLoaded', function() {
+
+    document.addEventListener('DOMContentLoaded', function () {
         let pageTitle = document.querySelector('title').getAttribute('title');
         document.title = pageTitle;
     });
+
+    // toggle favorite recipes
+    $('.toggle-favorite-btn').on('click', toggleFavoriteRecipe);
 });
 

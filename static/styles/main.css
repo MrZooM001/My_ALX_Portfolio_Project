@@ -627,6 +627,18 @@ button.btn.btn-outline-secondary.dropdown-toggle {
     max-width: 16rem;
 }
 
+.edit-recipe-btn {
+    top: 42px;
+}
+
+#gender {
+    list-style: none;
+    display: flex;
+}
+
+#gender li {
+    margin-right: 12px;
+}
 
 
 /* ************************************* Media Queries ************************************ */

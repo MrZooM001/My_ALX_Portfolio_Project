@@ -11,7 +11,7 @@ content %}
 
         <div class="d-flex align-items-center flex-wrap m-auto">
             <div class="me-4 d-flex align-items-center gap-1">
-                <img src="../static/images/avatar/2.jpg" class="rounded-circle" style="width: 48px !important" alt="Avatar" />
+                <img src="{% if current_user.is_authenticated %}{% if current_user.profile_img %}{{ current_user.profile_img }}{% else %}../static/images/avatar/{% if current_user.gender.value == 1 %}default-avatar-female.png{% else %}5.jpg{% endif %}{% endif %}{% endif %}" class="rounded-circle" style="width: 48px !important" alt="Avatar" />
                 {% if recipe_data.user %}
                 <small class="pl-1">{{ recipe_data.user.first_name }}</small>
                 {% else %}
@@ -20,9 +20,18 @@ content %}
             </div>
 
             <div class="me-4 d-flex align-items-center gap-1">
-                <i class="bi bi-calendar-week"></i>
+                <i class="bi bi-calendar2-plus"></i>
                 {% if recipe_data.created_at %}
                 <small> {{ recipe_data.created_at.strftime('%B %d, %Y') }} </small>
+                {% else %}
+                <small class="pl-1">Unknown Date</small>
+                {% endif %}
+            </div>
+            
+            <div class="me-4 d-flex align-items-center gap-1">
+                <i class="bi bi-calendar2-week"></i>
+                {% if recipe_data.updated_at %}
+                <small> {{ recipe_data.updated_at.strftime('%B %d, %Y') }} </small>
                 {% else %}
                 <small class="pl-1">Unknown Date</small>
                 {% endif %}
@@ -41,6 +50,16 @@ content %}
                     <i class="bi bi-star-half text-primary"></i>
                     <i class="bi bi-star text-primary"></i>
                 </div>
+            </div>
+
+            <div class="me-4 d-flex align-items-center gap-1">
+                {% if recipe_data.user == current_user %}
+                <form method="post" action="{{ url_for('recipes_bp.edit_recipe', recipe_id=recipe_data.id) }}">
+                    <button type="submit" data-recipe-id="{{ recipe.id }}" class="edit-recipe-btn btn btn-warning text-dark py-1 px-3 mt-1 me-1">
+                        <i class="bi bi-pencil-square text-dark pe-2"></i>Edit
+                    </button>
+                </form>
+                {% endif %}
             </div>
         </div>
 
@@ -74,16 +93,10 @@ content %}
                         <div class="checklist pb-4">
                             {% for ingredient in recipe_data.ingredients %}
                             <div class="form-check recipe-checkbox my-2">
-                                <input type="checkbox" id="crackers{{ loop.index }}" name="crackers{{ loop.index }}" class="form-check-input" />
-                                <label class="form-check-label" for="crackers{{ loop.index }}">
-                                    <span class="fw-medium">
-                                        {% if ingredient.quantity == 0.25 %}
-                                        <span style="font-size: 22px">&#x00BC;</span>
-                                        {% elif ingredient.quantity == 0.5 %}
-                                        <span style="font-size: 22px">&#x00BD;</span>
-                                        {% elif ingredient.quantity == 0.75 %}
-                                        <span style="font-size: 22px">&#x00BE;</span>
-                                        {% else %} {{ "{:.3f}".format(ingredient.quantity).rstrip('0').rstrip('.') }} {% endif %}
+                                <input type="checkbox" id="ingredients{{ loop.index }}" name="ingredients{{ loop.index }}" class="form-check-input" />
+                                <label class="form-check-label" for="ingredients{{ loop.index }}">
+                                    <span class="fw-medium" style="font-size: 16px">
+                                        {{ convert_point_fraction(ingredient.quantity) }}
                                     </span>
                                     <span class="fw-medium">{{ ingredient.unit }}</span>
                                     <span class="fw-medium">{{ ingredient.ingredient_name }}</span>

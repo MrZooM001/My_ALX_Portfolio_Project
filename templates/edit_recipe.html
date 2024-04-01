@@ -1,7 +1,7 @@
 {% extends 'layout.html'%}
 {% import "macros.html" as macros %}
 {% block header %}
-{% block page_title %}<title>Add Recipe &nbsp;—&nbsp; My Recipe Planner</title>{% endblock %}
+{% block page_title %}<title>Edit {{recipe.title}} &nbsp;—&nbsp; My Recipe Planner</title>{% endblock %}
 {% endblock %}
 {% block content %}
 
@@ -82,17 +82,14 @@
             </div>
 
             <div class="form-check signin-div-btn my-3 d-flex justify-content-center">
-                <button type="submit" class="btn btn-primary px-4 py-2 fs-5 me-3">Add Recipe</button>
+                <button type="submit" class="btn btn-primary px-4 py-2 fs-5 me-3">Save Changes</button>
                 <a class="btn btn-outline-secondary fw-medium fs-5 px-4" href="{{ url_back }}">Cancel</a>
             </div>
         </form>
-        {% if form.errors %}
-        {{ form.errors }}
-        {% endif %}
         
     </main>
 </div>
-{{ macros.render_ingredients_form(_template, '_') }}
+{{ macros.render_ingredients_form(ingredients_template, '_') }}
 {{ macros.render_steps_form(steps_template, '_') }}
 <!-- Main Cntent End -->
 {% endblock content %}

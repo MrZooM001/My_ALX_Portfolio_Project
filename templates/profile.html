@@ -4,94 +4,97 @@
 {% endblock %}
 
 {% block content %}
-        <!-- Main Content Start -->
-        <div class="container-xxl py-5">
-            <!-- Recipe Popular Start -->
-            <div class="container">
-                <div class="main-body">
-                    <div class="row">
-                            <div class="profile-card">
-                                <div class="card-body">
-                                    <div class="d-flex flex-column align-items-center text-center">
-                                        <img src="{% if current_user %}../static/images/avatar/default-avatar-female.png{% else %}{{ user.profile_img }}{% endif %}" alt="user-avatar" class="rounded-circle mt-3" width="120" />
-                                        <div class="mt-3">
-                                            <h4 class="fs-5">{{ user.first_name }}&nbsp;{{user.last_name}}</h4>
-                                            <p class="text-secondary mb-1">{{ user.email }}</p>
-                                        </div>
-                                    </div>
-                                </div>
+<!-- Main Content Start -->
+<div class="container-xxl py-5">
+    <!-- Recipe Popular Start -->
+    <div class="container">
+        <div class="main-body">
+            <div class="row">
+                <div class="profile-card">
+                    <div class="card-body">
+                        <div class="d-flex flex-column align-items-center text-center">
+                            <img src="{% if current_user.is_authenticated %}{% if current_user.profile_img %}{{ current_user.profile_img }}{% else %}../static/images/avatar/{% if current_user.gender.value == 1 %}default-avatar-female.png{% else %}5.jpg{% endif %}{% endif %}{% endif %}"
+                                alt="user-avatar" class="rounded-circle mt-3" width="120" />
+                            <div class="mt-3">
+                                <h4 class="fs-5">{{ current_user.first_name }}&nbsp;{{current_user.last_name}}</h4>
+                                <p class="text-secondary mb-1">
+                                    {% if current_user.gender.value == 1 %}
+                                    Female
+                                    {% else %}
+                                    Male
+                                    {% endif %}
+                                </p>
+                                <p class="text-secondary mb-1">{{ current_user.email }}</p>
                             </div>
-
-                            <div class="row mb-1">
-                                <div class="d-flex justify-content-end">
-                                    <a href="{{ url_for('recipes_bp.add_recipe') }}" class="btn btn-primary">Add Recipe</a>
-                                </div>
-                            </div>
-                            <div class="row my-recipes">
-                                
-                                <section class=" mt-0 mb-4 mb-md-5 my-own-recipes">
-                                    <div class="divider">
-                                        <div class="divider-text my-2">
-                                            <h4 class="mb-0">My Recipes</h4>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="recipe-cards-center mt-4">
-                                            <div class="recipe-top-cats align-items-start justify-content-start">
-                                                <div class="recipe-top-cards">
-                                                    {% for recipe in my_recipes %}
-                                                    <div class="card position-relative">
-                                                        <a href="{{ url_for('recipes_bp.recipe', recipe_title=recipe.title.replace(" ", "_")) }}" class="">
-                                                            <img src="{{ recipe['imgUrl'] }}" class="rounded-4 card-img-container" alt="Menu" />
-                                                        </a>
-                                                        <button type="button" class="favorite-btn btn btn-secondary position-absolute border border-2 end-0 mt-1 me-1 rounded-circle">♥</button>
-                                                        <div class="card-body">
-                                                            <a href="{{ url_for('recipes_bp.recipe', recipe_title=recipe.title.replace(" ", "_")) }}"
-                                                            class="text-black mt-1 text-decoration-none card-title recipe-card-title d-flex justify-content-center"><h5>{{ recipe['title'] }}</h5></a>
-                                                        </div>
-                                                    </div>
-                                                    {% endfor %}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </section>
-                            </div>
-
-                            <div class="row">
-                                <section class="mt-0 mb-4 mb-md-5 my-favorite-recipes">
-                                    <div class="divider">
-                                        <div class="divider-text my-2">
-                                            <h4 class="mb-0">My Favorites</h4>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="recipe-cards-center mt-4">
-                                            <div class="recipe-top-cats align-items-start">
-                                                <div class="recipe-top-cards">
-                                                    {% for recipe in data.favorites %}
-                                                    <div class="card position-relative">
-                                                        <a href="{{ url_for('recipes_bp.recipe', recipe_title=recipe.title.replace(" ", "_")) }}" class="">
-                                                            <img src="{{ recipe['imgUrl'] }}" class="rounded-4 card-img-container" alt="Menu" />
-                                                        </a>
-                                                        <button type="button" class="favorite-btn btn btn-secondary position-absolute border border-2 end-0 mt-1 me-1 rounded-circle">♥</button>
-                                                        <div class="card-body">
-                                                            <a href="{{ url_for('recipes_bp.recipe', recipe_title=recipe.title.replace(" ", "_")) }}"
-                                                            class="text-black mt-1 text-decoration-none card-title recipe-card-title d-flex justify-content-center"><h5>{{ recipe['title'] }}</h5></a>
-                                                        </div>
-                                                    </div>
-                                                    {% endfor %}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </section>
-                            </div>
+                        </div>
                     </div>
                 </div>
+
+                <div class="row mb-1">
+                    <div class="d-flex justify-content-end">
+                        <a href="{{ url_for('recipes_bp.add_recipe') }}" class="btn btn-primary">Add Recipe</a>
+                    </div>
+                </div>
+                <div class="row my-recipes">
+                    <section class=" mt-0 mb-4 mb-md-5 my-own-recipes">
+                        <div class="divider">
+                            <div class="divider-text my-2">
+                                <h4 class="mb-0">My Recipes</h4>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="recipe-cards-center mt-4">
+                                <div class="recipe-top-cats align-items-start justify-content-start">
+                                    <div class="recipe-top-cards">
+                                        {% for recipe in my_recipes %}
+                                        <div class="card position-relative">
+                                            <a href="{{ url_for('recipes_bp.recipe', recipe_title=recipe.title.replace(" ", "_")) }}" class="">
+                                                <img src="{{ recipe['imgUrl'] }}" class="rounded-4 card-img-container" alt="Menu" />
+                                            </a>
+                                            <form method="POST"
+                                                action="{{ url_for('recipes_bp.toggle_favorite', recipe_id=recipe.id) }}"
+                                                method="POST" class="position-absolute end-0 ">
+                                                <button type="button" data-recipe-id="{{ recipe.id }}" class="toggle-favorite-btn btn bg-light position-absolute end-0 py-1 px-2 mt-1 me-1 rounded-4">
+                                                    {% if recipe in current_user.favorites %}
+                                                    <i class="bi bi-heart-fill text-danger"></i>
+                                                    {% else %}
+                                                    <i class="bi bi-heart-fill text-body-tertiary"></i>
+                                                    {% endif %}
+                                                </button>
+                                            </form>
+                                            
+                                            <form method="post" action="{{ url_for('recipes_bp.edit_recipe', recipe_id=recipe.id) }}">
+                                                <button type="submit" data-recipe-id="{{ recipe.id }}" class="edit-recipe-btn btn bg-light position-absolute end-0 py-1 px-2 mt-1 me-1 rounded-4">
+                                                <i class="bi bi-pencil-fill text-info"></i>
+                                            </button>
+                                            </form>
+                                            <div class="card-body">
+                                                <a href="{{ url_for('recipes_bp.recipe', recipe_title=recipe.title.replace(" ", "_")) }}"
+                                                    class="text-black mt-1 text-decoration-none card-title recipe-card-title d-flex justify-content-center">
+                                                    <h5>{{ recipe['title'] }}</h5>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
             </div>
-            <!-- Recipe Popular End -->
         </div>
-        <!-- Main Cntent End -->
+    </div>
+    <!-- Recipe Popular End -->
+</div>
+<!-- Main Cntent End -->
 {% endblock content %}
+
+{% block script %}
+
+<script type="text/javascript">
+    axios.defaults.headers.common["X-CSRFToken"] = "{{ csrf_token() }}";
+</script>
+
+{% endblock %}
