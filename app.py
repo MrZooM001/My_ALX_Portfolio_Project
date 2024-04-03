@@ -24,6 +24,6 @@ migrate = Migrate(app, db)
 
 
 if __name__ == "__main__":
-    # dotenv_file = os.path.join(os.getcwd(), ".env")
-    # load_dotenv(dotenv_file)
+    dotenv_file = os.path.join(os.getcwd(), ".env")
+    load_dotenv(dotenv_file)
     app.run()
