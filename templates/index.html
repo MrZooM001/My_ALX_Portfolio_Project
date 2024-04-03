@@ -6,6 +6,78 @@
 
 <!-- Recipes tabs Start -->
 <div class="container-xxl py-5">
+
+    <div class="container mt-5">
+        <div class="row my-recipes">
+            <section class="mt-0 mb-4 mb-md-5 desserts-box">
+                <div class="divider my-4">
+                    <div class="divider-text my-2">
+                        <h3 class="mb-0">Latest Added Recipes</h3>
+                    </div>
+                </div>
+
+                <div class="row my-favorites">
+                    <div class="recipe-cards-center mt-4">
+                        <div class="recipe-top-cats align-items-start">
+                            <div class="recipe-top-cards">
+                                {% for recipe in latest_recipes %}
+                                <div class="card position-relative">
+                                    <a href="{{ url_for('recipes_bp.recipe', recipe_title=recipe.title.replace(" ", "_")) }}" class="">
+                                        <img src="{{ recipe['imgUrl'] }}" class="rounded-4 card-img-container"
+                                            alt="Menu" />
+                                    </a>
+                                    <form action="{{ url_for('recipes_bp.toggle_favorite', recipe_id=recipe.id) }}"
+                                        method="POST" class="position-absolute end-0 ">
+                                        <button type="button" data-recipe-id="{{ recipe.id }}"
+                                            class="toggle-favorite-btn btn bg-light position-absolute end-0 py-1 px-2 mt-1 me-1 rounded-4">
+                                            {% if recipe in current_user.favorites %}
+                                            <i class="bi bi-heart-fill text-danger"></i>
+                                            {% else %}
+                                            <i class="bi bi-heart-fill text-body-tertiary"></i>
+                                            {% endif %}
+                                        </button>
+                                    </form>
+                                    <div class="card-body">
+                                        <a href="{{ url_for('recipes_bp.recipe', recipe_title=recipe.title.replace(" ", "_")) }}"
+                                            class="text-black mt-1 text-decoration-none card-title recipe-card-title d-flex justify-content-center">
+                                            <h5>{{ recipe['title'] }}</h5>
+                                        </a>
+                                    </div>
+                                    <div class="recipe-stats d-flex justify-content-between">
+                                        <div class="left-stats d-flex flex-column align-items-start">
+                                            <div class="recipe-prep-time mb-2">
+                                                <i class="bi bi-stopwatch"></i>
+                                                <span>{{ recipe.readyInMinutes }}</span>
+                                            </div>
+                                            <div class="recipe-likes">
+                                                <i class="bi bi-hand-thumbs-up"></i>
+                                                <span>{{ recipe.cookingMinutes }}</span>
+                                            </div>
+                                        </div>
+                                        <div class="right-stats d-flex flex-column align-items-end">
+                                            <div class="recipe-level mb-2">
+                                                <span>{{ recipe.servings }}</span>
+                                            </div>
+                                            <div class="recipe-reviews">
+                                                <i class="bi bi-star-fill"></i>
+                                                <i class="bi bi-star-fill"></i>
+                                                <i class="bi bi-star-fill"></i>
+                                                <i class="bi bi-star-fill"></i>
+                                                <i class="bi bi-star-half d-none"></i>
+                                                <i class="bi bi-star"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
     <!-- Recipe Popular Start -->
     <div class="container">
         <div class="divider my-4">
@@ -20,7 +92,7 @@
                         data-bs-toggle="pill" href="#tab-1">
                         <div>
                             <small class="text-body">Popular</small>
-                            <h6 class="mt-n1 mb-0">Instant Pot</h6>
+                            <h6 class="mt-n1 mb-0">Main</h6>
                         </div>
                     </a>
                 </li>
@@ -55,42 +127,55 @@
                                 <h3 class="recipe-cat-title ms-3">Main Course</h3>
                                 <div class="recipe-top-cards">
                                     {% for recipe in recipes %}
-                                <div class="card position-relative">
-                                    <a href="{{ url_for('recipes_bp.recipe', recipe_title=recipe.title.replace(" ", "_")) }}" class="">
-                                        <img src="{{ recipe['imgUrl'] }}" class="rounded-4 card-img-container" alt="Menu" />
-                                    </a>
-                                    <button type="button" class="favorite-btn btn btn-secondary position-absolute border border-2 end-0 mt-1 me-1 rounded-circle">♥</button>
-                                    <div class="card-body">
-                                        <a href="{{ url_for('recipes_bp.recipe', recipe_title=recipe.title.replace(" ", "_")) }}"
-                                        class="text-black mt-1 text-decoration-none card-title recipe-card-title d-flex justify-content-center"><h5>{{ recipe['title'] }}</h5></a>
-                                    </div>
-                                    <div class="recipe-stats d-flex justify-content-between">
-                                        <div class="left-stats d-flex flex-column align-items-start">
-                                            <div class="recipe-prep-time mb-2">
-                                                <i class="bi bi-stopwatch"></i>
-                                                <span>{{ recipe.readyInMinutes }}</span>
+                                    <div class="card position-relative">
+                                        <a href="{{ url_for('recipes_bp.recipe', recipe_title=recipe.title.replace(" ", "_")) }}" class="">
+                                            <img src="{{ recipe['imgUrl'] }}" class="rounded-4 card-img-container"
+                                                alt="Menu" />
+                                        </a>
+                                        <form action="{{ url_for('recipes_bp.toggle_favorite', recipe_id=recipe.id) }}"
+                                            method="POST" class="position-absolute end-0 ">
+                                            <button type="button" data-recipe-id="{{ recipe.id }}"
+                                                class="toggle-favorite-btn btn bg-light position-absolute end-0 py-1 px-2 mt-1 me-1 rounded-4">
+                                                {% if recipe in current_user.favorites %}
+                                                <i class="bi bi-heart-fill text-danger"></i>
+                                                {% else %}
+                                                <i class="bi bi-heart-fill text-body-tertiary"></i>
+                                                {% endif %}
+                                            </button>
+                                        </form>
+                                        <div class="card-body">
+                                            <a href="{{ url_for('recipes_bp.recipe', recipe_title=recipe.title.replace(" ", "_")) }}"
+                                                class="text-black mt-1 text-decoration-none card-title recipe-card-title d-flex justify-content-center">
+                                                <h5>{{ recipe['title'] }}</h5>
+                                            </a>
+                                        </div>
+                                        <div class="recipe-stats d-flex justify-content-between">
+                                            <div class="left-stats d-flex flex-column align-items-start">
+                                                <div class="recipe-prep-time mb-2">
+                                                    <i class="bi bi-stopwatch"></i>
+                                                    <span>{{ recipe.readyInMinutes }}</span>
+                                                </div>
+                                                <div class="recipe-likes">
+                                                    <i class="bi bi-hand-thumbs-up"></i>
+                                                    <span>{{ recipe.cookingMinutes }}</span>
+                                                </div>
                                             </div>
-                                            <div class="recipe-likes">
-                                                <i class="bi bi-hand-thumbs-up"></i>
-                                                <span>{{ recipe.cookingMinutes }}</span>
+                                            <div class="right-stats d-flex flex-column align-items-end">
+                                                <div class="recipe-level mb-2">
+                                                    <span>{{ recipe.servings }}</span>
+                                                </div>
+                                                <div class="recipe-reviews">
+                                                    <i class="bi bi-star-fill"></i>
+                                                    <i class="bi bi-star-fill"></i>
+                                                    <i class="bi bi-star-fill"></i>
+                                                    <i class="bi bi-star-fill"></i>
+                                                    <i class="bi bi-star-half d-none"></i>
+                                                    <i class="bi bi-star"></i>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="right-stats d-flex flex-column align-items-end">
-                                            <div class="recipe-level mb-2">
-                                                <span>{{ recipe.servings }}</span>
-                                            </div>
-                                            <div class="recipe-reviews">
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-half d-none"></i>
-                                                <i class="bi bi-star"></i>
-                                            </div>
-                                        </div>
                                     </div>
-                                </div>
-                                {% endfor %}
+                                    {% endfor %}
 
                                 </div>
                             </div>
@@ -106,42 +191,55 @@
                                 <h3 class="recipe-cat-title ms-3">Bakery</h3>
                                 <div class="recipe-top-cards">
                                     {% for recipe in bakery %}
-                                <div class="card position-relative">
-                                    <a href="{{ url_for('recipes_bp.recipe', recipe_title=recipe.title.replace(" ", "_")) }}" class="">
-                                        <img src="{{ recipe['imgUrl'] }}" class="rounded-4 card-img-container" alt="Menu" />
-                                    </a>
-                                    <button type="button" class="favorite-btn btn btn-secondary position-absolute border border-2 end-0 mt-1 me-1 rounded-circle">♥</button>
-                                    <div class="card-body">
-                                        <a href="{{ url_for('recipes_bp.recipe', recipe_title=recipe.title.replace(" ", "_")) }}"
-                                        class="text-black mt-1 text-decoration-none card-title recipe-card-title d-flex justify-content-center"><h5>{{ recipe['title'] }}</h5></a>
-                                    </div>
-                                    <div class="recipe-stats d-flex justify-content-between">
-                                        <div class="left-stats d-flex flex-column align-items-start">
-                                            <div class="recipe-prep-time mb-2">
-                                                <i class="bi bi-stopwatch"></i>
-                                                <span>{{ recipe.readyInMinutes }}</span>
+                                    <div class="card position-relative">
+                                        <a href="{{ url_for('recipes_bp.recipe', recipe_title=recipe.title.replace(" ", "_")) }}" class="">
+                                            <img src="{{ recipe['imgUrl'] }}" class="rounded-4 card-img-container"
+                                                alt="Menu" />
+                                        </a>
+                                        <form action="{{ url_for('recipes_bp.toggle_favorite', recipe_id=recipe.id) }}"
+                                            method="POST" class="position-absolute end-0 ">
+                                            <button type="button" data-recipe-id="{{ recipe.id }}"
+                                                class="toggle-favorite-btn btn bg-light position-absolute end-0 py-1 px-2 mt-1 me-1 rounded-4">
+                                                {% if recipe in current_user.favorites %}
+                                                <i class="bi bi-heart-fill text-danger"></i>
+                                                {% else %}
+                                                <i class="bi bi-heart-fill text-body-tertiary"></i>
+                                                {% endif %}
+                                            </button>
+                                        </form>
+                                        <div class="card-body">
+                                            <a href="{{ url_for('recipes_bp.recipe', recipe_title=recipe.title.replace(" ", "_")) }}"
+                                                class="text-black mt-1 text-decoration-none card-title recipe-card-title d-flex justify-content-center">
+                                                <h5>{{ recipe['title'] }}</h5>
+                                            </a>
+                                        </div>
+                                        <div class="recipe-stats d-flex justify-content-between">
+                                            <div class="left-stats d-flex flex-column align-items-start">
+                                                <div class="recipe-prep-time mb-2">
+                                                    <i class="bi bi-stopwatch"></i>
+                                                    <span>{{ recipe.readyInMinutes }}</span>
+                                                </div>
+                                                <div class="recipe-likes">
+                                                    <i class="bi bi-hand-thumbs-up"></i>
+                                                    <span>{{ recipe.cookingMinutes }}</span>
+                                                </div>
                                             </div>
-                                            <div class="recipe-likes">
-                                                <i class="bi bi-hand-thumbs-up"></i>
-                                                <span>{{ recipe.cookingMinutes }}</span>
+                                            <div class="right-stats d-flex flex-column align-items-end">
+                                                <div class="recipe-level mb-2">
+                                                    <span>{{ recipe.servings }}</span>
+                                                </div>
+                                                <div class="recipe-reviews">
+                                                    <i class="bi bi-star-fill"></i>
+                                                    <i class="bi bi-star-fill"></i>
+                                                    <i class="bi bi-star-fill"></i>
+                                                    <i class="bi bi-star-fill"></i>
+                                                    <i class="bi bi-star-half d-none"></i>
+                                                    <i class="bi bi-star"></i>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="right-stats d-flex flex-column align-items-end">
-                                            <div class="recipe-level mb-2">
-                                                <span>{{ recipe.servings }}</span>
-                                            </div>
-                                            <div class="recipe-reviews">
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-half d-none"></i>
-                                                <i class="bi bi-star"></i>
-                                            </div>
-                                        </div>
                                     </div>
-                                </div>
-                                {% endfor %}
+                                    {% endfor %}
                                 </div>
                             </div>
                         </div>
@@ -155,42 +253,55 @@
                                 <h3 class="recipe-cat-title ms-3">Dessert</h3>
                                 <div class="recipe-top-cards">
                                     {% for recipe in dessert %}
-                                <div class="card position-relative">
-                                    <a href="{{ url_for('recipes_bp.recipe', recipe_title=recipe.title.replace(" ", "_")) }}" class="">
-                                        <img src="{{ recipe['imgUrl'] }}" class="rounded-4 card-img-container" alt="Menu" />
-                                    </a>
-                                    <button type="button" class="favorite-btn btn btn-secondary position-absolute border border-2 end-0 mt-1 me-1 rounded-circle">♥</button>
-                                    <div class="card-body">
-                                        <a href="{{ url_for('recipes_bp.recipe', recipe_title=recipe.title.replace(" ", "_")) }}"
-                                        class="text-black mt-1 text-decoration-none card-title recipe-card-title d-flex justify-content-center"><h5>{{ recipe['title'] }}</h5></a>
-                                    </div>
-                                    <div class="recipe-stats d-flex justify-content-between">
-                                        <div class="left-stats d-flex flex-column align-items-start">
-                                            <div class="recipe-prep-time mb-2">
-                                                <i class="bi bi-stopwatch"></i>
-                                                <span>{{ recipe.readyInMinutes }}</span>
+                                    <div class="card position-relative">
+                                        <a href="{{ url_for('recipes_bp.recipe', recipe_title=recipe.title.replace(" ", "_")) }}" class="">
+                                            <img src="{{ recipe['imgUrl'] }}" class="rounded-4 card-img-container"
+                                                alt="Menu" />
+                                        </a>
+                                        <form action="{{ url_for('recipes_bp.toggle_favorite', recipe_id=recipe.id) }}"
+                                            method="POST" class="position-absolute end-0 ">
+                                            <button type="button" data-recipe-id="{{ recipe.id }}"
+                                                class="toggle-favorite-btn btn bg-light position-absolute end-0 py-1 px-2 mt-1 me-1 rounded-4">
+                                                {% if recipe in current_user.favorites %}
+                                                <i class="bi bi-heart-fill text-danger"></i>
+                                                {% else %}
+                                                <i class="bi bi-heart-fill text-body-tertiary"></i>
+                                                {% endif %}
+                                            </button>
+                                        </form>
+                                        <div class="card-body">
+                                            <a href="{{ url_for('recipes_bp.recipe', recipe_title=recipe.title.replace(" ", "_")) }}"
+                                                class="text-black mt-1 text-decoration-none card-title recipe-card-title d-flex justify-content-center">
+                                                <h5>{{ recipe['title'] }}</h5>
+                                            </a>
+                                        </div>
+                                        <div class="recipe-stats d-flex justify-content-between">
+                                            <div class="left-stats d-flex flex-column align-items-start">
+                                                <div class="recipe-prep-time mb-2">
+                                                    <i class="bi bi-stopwatch"></i>
+                                                    <span>{{ recipe.readyInMinutes }}</span>
+                                                </div>
+                                                <div class="recipe-likes">
+                                                    <i class="bi bi-hand-thumbs-up"></i>
+                                                    <span>{{ recipe.cookingMinutes }}</span>
+                                                </div>
                                             </div>
-                                            <div class="recipe-likes">
-                                                <i class="bi bi-hand-thumbs-up"></i>
-                                                <span>{{ recipe.cookingMinutes }}</span>
+                                            <div class="right-stats d-flex flex-column align-items-end">
+                                                <div class="recipe-level mb-2">
+                                                    <span>{{ recipe.servings }}</span>
+                                                </div>
+                                                <div class="recipe-reviews">
+                                                    <i class="bi bi-star-fill"></i>
+                                                    <i class="bi bi-star-fill"></i>
+                                                    <i class="bi bi-star-fill"></i>
+                                                    <i class="bi bi-star-fill"></i>
+                                                    <i class="bi bi-star-half d-none"></i>
+                                                    <i class="bi bi-star"></i>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="right-stats d-flex flex-column align-items-end">
-                                            <div class="recipe-level mb-2">
-                                                <span>{{ recipe.servings }}</span>
-                                            </div>
-                                            <div class="recipe-reviews">
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-half d-none"></i>
-                                                <i class="bi bi-star"></i>
-                                            </div>
-                                        </div>
                                     </div>
-                                </div>
-                                {% endfor %}
+                                    {% endfor %}
                                 </div>
                             </div>
                         </div>
@@ -203,10 +314,11 @@
 
     <div class="container mt-5">
         <div class="row my-recipes">
+
             <section class="mt-0 mb-4 mb-md-5 desserts-box">
                 <div class="divider my-4">
                     <div class="divider-text my-2">
-                        <h3 class="mb-0">Chicken Recipes</h3>
+                        <h3 class="mb-0">Appetizer Recipes</h3>
                     </div>
                 </div>
 
@@ -214,15 +326,28 @@
                     <div class="recipe-cards-center mt-4">
                         <div class="recipe-top-cats align-items-start">
                             <div class="recipe-top-cards">
-                                {% for recipe in sides %}
+                                {% for recipe in appetizer %}
                                 <div class="card position-relative">
                                     <a href="{{ url_for('recipes_bp.recipe', recipe_title=recipe.title.replace(" ", "_")) }}" class="">
-                                        <img src="{{ recipe['imgUrl'] }}" class="rounded-4 card-img-container" alt="Menu" />
+                                        <img src="{{ recipe['imgUrl'] }}" class="rounded-4 card-img-container"
+                                            alt="Menu" />
                                     </a>
-                                    <button type="button" class="favorite-btn btn btn-secondary position-absolute border border-2 end-0 mt-1 me-1 rounded-circle">♥</button>
+                                    <form action="{{ url_for('recipes_bp.toggle_favorite', recipe_id=recipe.id) }}"
+                                        method="POST" class="position-absolute end-0 ">
+                                        <button type="button" data-recipe-id="{{ recipe.id }}"
+                                            class="toggle-favorite-btn btn bg-light position-absolute end-0 py-1 px-2 mt-1 me-1 rounded-4">
+                                            {% if recipe in current_user.favorites %}
+                                            <i class="bi bi-heart-fill text-danger"></i>
+                                            {% else %}
+                                            <i class="bi bi-heart-fill text-body-tertiary"></i>
+                                            {% endif %}
+                                        </button>
+                                    </form>
                                     <div class="card-body">
                                         <a href="{{ url_for('recipes_bp.recipe', recipe_title=recipe.title.replace(" ", "_")) }}"
-                                        class="text-black mt-1 text-decoration-none card-title recipe-card-title d-flex justify-content-center"><h5>{{ recipe['title'] }}</h5></a>
+                                            class="text-black mt-1 text-decoration-none card-title recipe-card-title d-flex justify-content-center">
+                                            <h5>{{ recipe['title'] }}</h5>
+                                        </a>
                                     </div>
                                     <div class="recipe-stats d-flex justify-content-between">
                                         <div class="left-stats d-flex flex-column align-items-start">

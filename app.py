@@ -1,4 +1,13 @@
 #!/usr/bin/python3
+"""
+Module creates a Flask application with three blueprints: auth, main, and recipes.
+The auth blueprint handles authentication and registration.
+The main blueprint handles the homepage and other non-user-specific pages.
+The recipes blueprint handles recipe-related routes.
+It also sets up the database, registers the blueprints, initializes the login manager,
+and configures the app for development. Finally, the script loads the.env file and runs the app.
+"""
+
 from flask import Flask
 from config import DevConfig
 from extensions import db

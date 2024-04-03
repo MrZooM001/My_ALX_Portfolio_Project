@@ -1,0 +1,57 @@
+{% extends 'layout.html'%}
+{% block header %}
+{% block page_title %}<title>Favorits &nbsp;—&nbsp; My Recipe Planner</title>{% endblock %}
+{% endblock %}
+
+{% block content %}
+<!-- Main Content Start -->
+<div class="container-xxl py-5">
+    <!-- Recipe Popular Start -->
+    <div class="container">
+        <div class="main-body">
+                <div class="row">
+                    <section class="mt-0 mb-4 mb-md-5 my-favorite-recipes">
+                        <div class="divider">
+                            <div class="divider-text my-2">
+                                <h4 class="mb-0">My Favorites Recipes</h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="recipe-cards-center mt-4">
+                                <div class="recipe-top-cats align-items-start">
+                                    <div class="recipe-top-cards">
+                                        {% for recipe in favorites %}
+                                        <div class="card position-relative">
+                                            <a href="{{ url_for('recipes_bp.recipe', recipe_title=recipe.title.replace(" ", "_")) }}" class=""> <img src="{{ recipe['imgUrl'] }}" class="rounded-4 card-img-container" alt="Menu" /></a>
+                                            <form
+                                                action="{{ url_for('recipes_bp.toggle_favorite', recipe_id=recipe.id) }}"
+                                                method="POST" class="position-absolute end-0 ">
+                                                <button type="button" data-recipe-id="{{ recipe.id }}"
+                                                    class="toggle-favorite-btn btn bg-light position-absolute end-0 py-1 px-2 mt-1 me-1 rounded-4">
+                                                    {% if recipe in current_user.favorites %}
+                                                    <i class="bi bi-heart-fill text-danger"></i>
+                                                    {% else %}
+                                                    <i class="bi bi-heart-fill text-body-tertiary"></i>
+                                                    {% endif %}
+                                                </button>
+                                            </form>
+                                            <div class="card-body">
+                                                <a href="{{ url_for('recipes_bp.recipe', recipe_title=recipe.title.replace(" ", "_")) }}"
+                                                    class="text-black mt-1 text-decoration-none card-title recipe-card-title d-flex justify-content-center">
+                                                    <h5>{{ recipe['title'] }}</h5>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+        </div>
+    </div>
+    <!-- Recipe Popular End -->
+</div>
+<!-- Main Cntent End -->
+{% endblock content %}

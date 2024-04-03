@@ -1,0 +1,6 @@
+API_KEY = b071f59102264755a464be1eb2925e2c
+SECRET_KEY = 5e4d0bfd5cf7e0cb805e46f1f8ba0ae9
+DEBUG = True
+SQLALCHEMY_TRACK_MODIFICATIONS = False
+SQLALCHEMY_DATABASE_URI = mysql+mysqldb://admin:sdlvxkta@myrecipeplannerdb.c9848s00mydq.eu-north-1.rds.amazonaws.com/myrecipeplanner_db
+TEMPLATES_AUTO_RELOAD = True

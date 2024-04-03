@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+"""
+Module defines the base model for all models in the application.
+"""
 from extensions import db
 from datetime import datetime
 from uuid import uuid4
@@ -8,7 +11,7 @@ time_format = "%Y-%m-%dT%H:%M:%S.%f"
 
 class BaseModel():
     """
-    a base model for all models
+    a base model for all models to inherit the common attributes from
     """
     id = db.Column(db.String(60), primary_key=True)
     created_at = db.Column(db.DateTime(), default=datetime.now)
