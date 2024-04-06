@@ -20,7 +20,7 @@ main_bp = Blueprint("main_bp", __name__)
 def main():
     """
     This function serves as the main page for the application. It
-    displays a list of recipes based on the user's search criteria.
+    displays a list of recipes based on categories.
 
     Returns:
         A rendered HTML template with the list of recipes by category 

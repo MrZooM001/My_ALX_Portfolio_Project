@@ -39,6 +39,14 @@ html {
     height: 100%;
 }
 
+body {
+    min-height: 100vh;
+}
+
+.search-result-box {
+    margin: auto;
+}
+
 /* top links bar */
 .top-links-bar {
     height: 3.4rem;

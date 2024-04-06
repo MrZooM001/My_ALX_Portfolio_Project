@@ -25,17 +25,9 @@ class BaseConfig:
 class DevConfig(BaseConfig):
     """
     Configuration class for development environment.
-    
-    This class inherits from the BaseConfig class and overrides the
-    SQLALCHEMY_DATABASE_URI attribute with the value obtained from the
-    SQLALCHEMY_DATABASE_URI environment variable. It also sets the DEBUG
-    attribute to True, which enables debug mode, and enables the SQLAlchemy
-    echo feature, which prints all SQL queries to the console. Additionally,
-    it sets the TEMPLATES_AUTO_RELOAD attribute to the value obtained from
-    the TEMPLATES_AUTO_RELOAD environment variable. Finally, it sets the
-    SESSION_COOKIE_HTTPONLY attribute to False, which allows the session cookie
-    to be accessed from JavaScript.
-        
+
+    Args:
+        BaseConfig (class): Base class to inherit from.
     """
     SQLALCHEMY_DATABASE_URI = config("SQLALCHEMY_DATABASE_URI")
     DEBUG = True

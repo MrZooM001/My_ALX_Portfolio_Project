@@ -16,3 +16,13 @@ class Category(BaseModel, db.Model):
 
     def __repr__(self):
         return "<Category {}>".format(self.name)
+    
+    def get_all():
+        """
+        Function as helper method that retrieves a list of categories.
+
+        Returns:
+            A list of Category objects.
+        """
+        categories = Category.query.order_by(Category.name).all()
+        return categories
