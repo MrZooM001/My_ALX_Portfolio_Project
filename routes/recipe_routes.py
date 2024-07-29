@@ -8,7 +8,6 @@ It also contains the forms for adding & editing recipes.
 from datetime import datetime
 from flask import Blueprint, redirect, render_template, url_for, request
 from extensions import db
-from sqlalchemy.orm.session import make_transient
 from flask_login import login_required, current_user
 from models import Ingredient, Recipe, Step, Category
 from forms import RecipeForm, IngredientForm, StepsForm

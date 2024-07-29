@@ -7,8 +7,7 @@ from models import Recipe
 from flask_wtf import FlaskForm
 from wtforms import (
     StringField, TextAreaField,
-    IntegerField, DecimalField,
-    Form, SelectField,
+    IntegerField, Form, SelectField,
     FieldList, FormField, FloatField
 )
 from wtforms.validators import InputRequired, Length, ValidationError, NumberRange
@@ -45,16 +44,7 @@ class RecipeForm(FlaskForm):
     Class defines the main form for adding or editing a recipe.
     
     Attributes:
-        title (wtforms.fields.StringField): The title of the recipe.
-        imgUrl (wtforms.fields.StringField): The URL of the image of the recipe.
-        servings (wtforms.fields.IntegerField): The number of servings the recipe makes.
-        readyInMinutes (wtforms.fields.IntegerField): The estimated time it takes to prepare the recipe.
-        preparationMinutes (wtforms.fields.IntegerField): The estimated time it takes to prepare the recipe.
-        cookingMinutes (wtforms.fields.IntegerField): The estimated time it takes to cook the recipe.
-        description (wtforms.fields.TextAreaField): A description of the recipe.
-        ingredients (wtforms.fields.FieldList): A list of ingredients for the recipe.
-        steps (wtforms.fields.FieldList): A list of steps for preparing the recipe.
-        category (wtforms.fields.SelectField): The category of the recipe.
+        All available Recipe attributes.
 
     Raises:
         ValidationError: If the title of the recipe is already in use.
@@ -80,3 +70,4 @@ class RecipeForm(FlaskForm):
 
         if existing_recipe:
             raise ValidationError("A recipe with the same title already exists")
+        
