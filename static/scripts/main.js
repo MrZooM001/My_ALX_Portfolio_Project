@@ -253,4 +253,3 @@ $(document).ready(function () {
     // toggle favorite recipes
     $('.toggle-favorite-btn').on('click', toggleFavoriteRecipe);
 });
-
