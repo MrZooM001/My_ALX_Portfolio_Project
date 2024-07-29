@@ -1,8 +1,8 @@
-"""init all tables
+"""initial migration to jawsdb on Heroku
 
-Revision ID: 12f9975e0717
+Revision ID: 7033063fc8db
 Revises: 
-Create Date: 2024-03-26 17:55:49.768363
+Create Date: 2024-07-30 00:40:26.514992
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '12f9975e0717'
+revision = '7033063fc8db'
 down_revision = None
 branch_labels = None
 depends_on = None
